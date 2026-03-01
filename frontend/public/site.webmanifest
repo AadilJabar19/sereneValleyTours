@@ -1,0 +1,16 @@
+{
+  "name": "Serene Valley Tours",
+  "short_name": "SVT",
+  "description": "Kashmir and Ladakh Tour Packages",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1CA8AF",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
