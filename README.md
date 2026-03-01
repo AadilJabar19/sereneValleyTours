@@ -11,17 +11,6 @@ Modern static travel website built with React, Material UI, and Tailwind CSS. Ph
 - **EmailJS** for contact form submissions
 - **React Hook Form** for form handling
 - **React Helmet Async** for SEO metadata
-
-## 📊 Performance Optimizations
-
-### Lighthouse Scores Target
-- **Performance**: 90+
-- **Accessibility**: 95+
-- **Best Practices**: 100
-- **SEO**: 95+
-
-### Implemented Optimizations
-
 #### Performance
 - ✅ Lazy loading for all route components
 - ✅ Code splitting (React, MUI vendors)
@@ -74,18 +63,9 @@ serene-valley-tours/
 └── README.md
 ```
 
-## 🎨 Design Inspiration
-
-UI inspired by **Tourm – Travel & Tour Booking Agency WordPress Theme**
-- Modern travel aesthetic
-- Warm color palette (teal/blue + orange accents)
-- Clean card-based layouts
-- Responsive design
-
 ## 🛠 Setup Instructions
 
 ### Prerequisites
-- Node.js 18+
 - npm or yarn
 
 ### Installation
@@ -115,40 +95,6 @@ npm run dev
 
 Frontend runs on: `http://localhost:5173`
 
-### Build for Production
-
-```bash
-npm run build
-```
-
-The optimized build will be in `frontend/dist` with:
-- Code splitting for vendors
-- Minified assets
-- Tree-shaken dependencies
-- Optimized for compression
-
-## 🚀 Deployment
-
-### Deploy to Vercel (Recommended)
-
-1. Install Vercel CLI:
-```bash
-npm i -g vercel
-```
-
-2. Deploy:
-```bash
-cd frontend
-vercel
-```
-
-3. Add environment variables in Vercel dashboard:
-   - `VITE_EMAILJS_SERVICE_ID`
-   - `VITE_EMAILJS_TEMPLATE_ID`
-   - `VITE_EMAILJS_PUBLIC_KEY`
-
-### Other Hosting Options
-
 The built files in `frontend/dist` can be deployed to:
 - Netlify
 - GitHub Pages
@@ -168,9 +114,6 @@ The built files in `frontend/dist` can be deployed to:
 - SEO optimized
 - Accessibility compliant
 - PWA-ready
-
-## 📧 EmailJS Setup Guide
-
 1. Create account at [EmailJS](https://www.emailjs.com/)
 2. Add email service (Gmail, Outlook, etc.)
 3. Create email template with variables:
@@ -187,5 +130,5 @@ The built files in `frontend/dist` can be deployed to:
 - **Location**: Bemina, Srinagar, Jammu & Kashmir
 
 ## 📝 License
-
+s
 MIT

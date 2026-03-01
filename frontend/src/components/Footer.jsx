@@ -22,6 +22,13 @@ const Footer = () => {
             >
               Serene Valley Tours
             </Typography>
+            <Typography
+              variant="caption"
+              className="text-gray-400 block mb-3"
+              sx={{ fontSize: '0.75rem', fontStyle: 'italic' }}
+            >
+              Your Gateway to Paradise
+            </Typography>
             <Typography variant="body2" className="text-gray-400 mb-3 md:mb-4" sx={{ fontSize: { xs: '0.875rem' } }}>
               Experience the paradise on earth with our expertly crafted tours
               and travel packages. We specialize in creating unforgettable
