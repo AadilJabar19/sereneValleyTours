@@ -25,37 +25,79 @@ const products = [
   },
   {
     id: 2,
-    name: 'Kashmiri Dry Fruits',
-    description: 'Premium selection of almonds, walnuts, and cashews from Kashmir. Rich in nutrients and authentic taste.',
-    image: '/images/dryfruit.webp',
+    name: 'Kashmiri Mamra Almonds',
+    description: 'Premium Mamra almonds from Kashmir - smaller, sweeter, and more nutritious than regular almonds. Rich in oil content.',
+    image: '/images/products/almonds.jpg',
     category: 'Dry Fruits'
   },
   {
     id: 3,
+    name: 'Kashmiri Walnuts (Akhrot)',
+    description: 'Premium quality Kashmiri walnuts with thin shells and rich flavor. Excellent source of omega-3 fatty acids.',
+    image: '/images/walnut.webp',
+    category: 'Dry Fruits'
+  },
+  {
+    id: 4,
+    name: 'Ladakhi Apricots (Jardalu)',
+    description: 'Sun-dried organic apricots from Ladakh. Sweet, nutritious, and naturally grown in the cold desert. Rich in vitamins.',
+    image: '/images/apricots.webp',
+    category: 'Dry Fruits'
+  },
+  {
+    id: 5,
+    name: 'Kashmiri Dried Figs (Anjeer)',
+    description: 'Premium dried figs from Kashmir orchards. Naturally sweet and packed with fiber, minerals, and antioxidants.',
+    image: '/images/products/figs.jpg',
+    category: 'Dry Fruits'
+  },
+  {
+    id: 6,
+    name: 'Kashmiri Raisins (Kishmish)',
+    description: 'Golden and black raisins from Kashmir vineyards. Sweet, seedless, and perfect for snacking or cooking.',
+    image: '/images/products/raisins.jpg',
+    category: 'Dry Fruits'
+  },
+  {
+    id: 7,
+    name: 'Ladakhi Dried Apricot Kernels',
+    description: 'Nutritious apricot kernels from Ladakh. Rich in healthy fats and proteins. Used in traditional Ladakhi cuisine.',
+    image: '/images/products/apricot-kernels.jpg',
+    category: 'Dry Fruits'
+  },
+  {
+    id: 8,
+    name: 'Kashmiri Pine Nuts (Chilgoza)',
+    description: 'Premium pine nuts from Kashmir forests. Buttery flavor, rich in vitamins and minerals. Perfect for desserts.',
+    image: '/images/products/pine-nuts.jpg',
+    category: 'Dry Fruits'
+  },
+  {
+    id: 9,
+    name: 'Kashmiri Dried Cherries',
+    description: 'Naturally dried cherries from Kashmir orchards. Tangy-sweet flavor, rich in antioxidants and vitamins.',
+    image: '/images/products/dried-cherries.jpg',
+    category: 'Dry Fruits'
+  },
+  {
+    id: 10,
     name: 'Pure Himalayan Shilajit',
     description: 'Authentic Himalayan Shilajit resin - natural energy booster and wellness supplement from high-altitude mountains.',
     image: '/images/shilajit.webp',
     category: 'Wellness'
   },
   {
-    id: 4,
-    name: 'Ladakhi Apricots',
-    description: 'Sun-dried organic apricots from Ladakh. Sweet, nutritious, and naturally grown in the cold desert.',
-    image: '/images/apricots.webp',
-    category: 'Dry Fruits'
-  },
-  {
-    id: 5,
+    id: 11,
     name: 'Kashmiri Pashmina Shawl',
     description: 'Handwoven authentic Pashmina shawls made from the finest cashmere wool. Soft, warm, and luxurious.',
     image: '/images/pashminaShawl.webp',
     category: 'Clothing'
   },
   {
-    id: 6,
+    id: 12,
     name: 'Traditional Kashmiri Pheran',
     description: 'Traditional Kashmiri winter wear - comfortable, warm, and stylish. Available in various designs and colors.',
-    image: '/images/gulmarg2.webp',
+    image: '/images/products/pheran.jpg',
     category: 'Clothing'
   }
 ];
@@ -64,7 +106,7 @@ const Store = () => {
   const whatsappNumber = '917006327776';
   const [selectedCategory, setSelectedCategory] = useState('All');
   
-  const categories = ['All', 'Spices', 'Dry Fruits', 'Clothing'];
+  const categories = ['All', 'Spices', 'Dry Fruits', 'Wellness', 'Clothing'];
   
   const filteredProducts = selectedCategory === 'All' 
     ? products 

@@ -51,17 +51,25 @@ const Home = () => {
         {/* Hero Section */}
         <Box
           component="section"
-          className="relative bg-cover bg-center"
+          className="relative bg-cover bg-center overflow-hidden"
           sx={{
             height: { xs: '70vh', sm: '80vh', md: '100vh' },
-            backgroundImage:
-              'linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80&fm=webp&fit=crop)',
           }}
           role="img"
-          aria-label="Kashmir mountain landscape"
+          aria-label="Serene Kashmir valley with snow-capped mountains and lush green meadows"
         >
-          <Container className="h-full flex items-center" sx={{ px: { xs: 2, sm: 3 } }}>
-            <Box className="text-white" sx={{ maxWidth: { xs: '100%', md: '66.666667%' } }}>
+          <picture className="absolute inset-0 w-full h-full">
+            <source srcSet="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=1920&q=85&fm=webp&fit=crop" type="image/webp" />
+            <img 
+              src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=1920&q=85&fit=crop" 
+              alt="Panoramic view of Kashmir valley with Dal Lake and Himalayan mountains"
+              className="w-full h-full object-cover animate-[fadeIn_1.5s_ease-in]"
+              loading="eager"
+            />
+          </picture>
+          <Box className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-transparent" />
+          <Container className="h-full flex items-center relative z-10" sx={{ px: { xs: 2, sm: 3 } }}>
+            <Box className="text-white animate-[slideUp_1s_ease-out]" sx={{ maxWidth: { xs: '100%', md: '66.666667%' } }}>
               <Typography variant="h1" className="font-bold mb-4" sx={{ color: 'white', fontSize: { xs: '1.75rem', sm: '2.5rem', md: '3rem' } }}>
                 Discover the Paradise on Earth
               </Typography>
