@@ -152,6 +152,33 @@ const Contact = () => {
 
                     <TextField
                       fullWidth
+                      label="Travel Date"
+                      type="date"
+                      InputLabelProps={{ shrink: true }}
+                      {...register('travelDate', { required: 'Travel date is required' })}
+                      error={!!errors.travelDate}
+                      helperText={errors.travelDate?.message}
+                      margin="normal"
+                      inputProps={{ 'aria-label': 'Preferred travel date', min: new Date().toISOString().split('T')[0] }}
+                    />
+
+                    <TextField
+                      fullWidth
+                      label="Number of Travelers"
+                      type="number"
+                      {...register('numberOfTravelers', { 
+                        required: 'Number of travelers is required',
+                        min: { value: 1, message: 'At least 1 traveler required' },
+                        max: { value: 50, message: 'Maximum 50 travelers allowed' }
+                      })}
+                      error={!!errors.numberOfTravelers}
+                      helperText={errors.numberOfTravelers?.message}
+                      margin="normal"
+                      inputProps={{ 'aria-label': 'Number of travelers', min: 1, max: 50 }}
+                    />
+
+                    <TextField
+                      fullWidth
                       label="Message"
                       multiline
                       rows={5}

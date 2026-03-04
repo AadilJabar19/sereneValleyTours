@@ -13,12 +13,15 @@ import {
   Chip,
 } from '@mui/material';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import StarIcon from '@mui/icons-material/Star';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { getFeaturedTours } from '../data/tours';
 import { destinations } from '../data/destinations';
 import Loader from '../components/Loader';
 import SEO from '../components/SEO';
 import WhyChooseUs from '../components/WhyChooseUs';
 import Testimonials from '../components/Testimonials';
+import TrustStats from '../components/TrustStats';
 
 const Home = () => {
   const [featuredTours, setFeaturedTours] = useState([]);
@@ -87,20 +90,22 @@ const Home = () => {
                   size="large"
                   className="transition-all duration-300"
                   fullWidth={true}
-                  sx={{ maxWidth: { sm: '280px' } }}
+                  sx={{ maxWidth: { sm: '220px' } }}
                 >
-                  Plan Your Kashmir Escape – 10% Off!
+                  Plan Your Trip
                 </Button>
                 <Button
-                  component={Link}
-                  to="/contact"
+                  component="a"
+                  href="https://wa.me/917006327776?text=Hi!%20I%20am%20interested%20in%20Kashmir/Ladakh%20tour%20packages."
+                  target="_blank"
+                  rel="noopener noreferrer"
                   variant="outlined"
                   size="large"
                   className="text-white border-white hover:bg-white hover:text-primary-main transition-all duration-300"
                   fullWidth={true}
                   sx={{ maxWidth: { sm: '200px' } }}
                 >
-                  Inquire Now
+                  WhatsApp Us
                 </Button>
               </Box>
             </Box>
@@ -131,14 +136,27 @@ const Home = () => {
                     loading="lazy"
                   />
                   <CardContent className="flex-grow">
-                    <Chip
-                      label={tour.category}
-                      size="small"
-                      className="mb-2"
-                    />
+                    <Box className="flex items-center justify-between mb-2">
+                      <Chip
+                        label={tour.category}
+                        size="small"
+                      />
+                      <Box className="flex items-center gap-1">
+                        <StarIcon sx={{ fontSize: 16, color: '#FFC107' }} aria-hidden="true" />
+                        <Typography variant="body2" className="font-medium">
+                          {tour.rating} ({tour.reviewCount})
+                        </Typography>
+                      </Box>
+                    </Box>
                     <Typography variant="h3" className="font-bold mb-2" sx={{ fontSize: '1.25rem' }}>
                       {tour.name}
                     </Typography>
+                    <Box className="flex items-center gap-1 mb-2" color="text.secondary">
+                      <LocationOnIcon fontSize="small" aria-hidden="true" />
+                      <Typography variant="body2">
+                        {tour.itinerary?.slice(1, 4).map(day => day.title.split(' to ')[1] || day.title.split(' ')[0]).filter(Boolean).join(', ')}
+                      </Typography>
+                    </Box>
                     <Typography
                       variant="body2"
                       color="text.secondary"
@@ -146,13 +164,13 @@ const Home = () => {
                     >
                       {tour.description}
                     </Typography>
-                    <Box className="flex items-center gap-4" color="text.secondary">
+                    <Box className="flex items-center justify-between" color="text.secondary">
                       <Box className="flex items-center gap-1">
                         <AccessTimeIcon fontSize="small" aria-hidden="true" />
                         <Typography variant="body2">{tour.duration}</Typography>
                       </Box>
                       <Typography variant="h4" color="primary" className="font-bold" sx={{ fontSize: '1.25rem' }}>
-                        ₹{tour.price}
+                        {tour.priceRange}
                       </Typography>
                     </Box>
                   </CardContent>
@@ -282,6 +300,9 @@ const Home = () => {
             </Grid>
           </Container>
         </Box>
+
+        {/* Trust Stats */}
+        <TrustStats />
 
         {/* Why Choose Us */}
         <WhyChooseUs />
