@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import {
   Box,
   Container,
@@ -8,7 +10,9 @@ import {
   Grid,
   Card,
   CardContent,
+  Snackbar,
   Alert,
+  MenuItem,
 } from '@mui/material';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
@@ -17,28 +21,38 @@ import { sendContactEmail } from '../services/emailService';
 import SEO from '../components/SEO';
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: '',
-  });
-  const [success, setSuccess] = useState(false);
-  const [error, setError] = useState('');
+  const navigate = useNavigate();
+  const { register, handleSubmit, formState: { errors }, reset } = useForm();
+  const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' });
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const tourOptions = [
+    'Kashmir Tour',
+    'Ladakh Tour',
+    'Group Tour',
+    'Solo Adventure',
+    'Honeymoon Package',
+    'Custom Itinerary',
+  ];
+
+  const onSubmit = async (data) => {
     setLoading(true);
-    setError('');
     
     try {
-      await sendContactEmail(formData);
-      setSuccess(true);
-      setFormData({ name: '', email: '', phone: '', message: '' });
-      setTimeout(() => setSuccess(false), 5000);
+      await sendContactEmail(data);
+      setSnackbar({ 
+        open: true, 
+        message: "Inquiry Sent! We'll contact you soon.", 
+        severity: 'success' 
+      });
+      reset();
+      setTimeout(() => navigate('/thank-you'), 2000);
     } catch (err) {
-      setError('Failed to send message. Please try calling or WhatsApp instead.');
+      setSnackbar({ 
+        open: true, 
+        message: 'Failed to send. Please try WhatsApp or call us.', 
+        severity: 'error' 
+      });
     } finally {
       setLoading(false);
     }
@@ -75,27 +89,13 @@ const Contact = () => {
                     Send us a Message
                   </Typography>
 
-                  {success && (
-                    <Alert severity="success" className="mb-4">
-                      Message sent successfully! We'll get back to you soon.
-                    </Alert>
-                  )}
-
-                  {error && (
-                    <Alert severity="error" className="mb-4">
-                      {error}
-                    </Alert>
-                  )}
-
-                  <form onSubmit={handleSubmit}>
+                  <form onSubmit={handleSubmit(onSubmit)}>
                     <TextField
                       fullWidth
                       label="Name"
-                      value={formData.name}
-                      onChange={(e) =>
-                        setFormData({ ...formData, name: e.target.value })
-                      }
-                      required
+                      {...register('name', { required: 'Name is required' })}
+                      error={!!errors.name}
+                      helperText={errors.name?.message}
                       margin="normal"
                       inputProps={{ 'aria-label': 'Your name' }}
                     />
@@ -104,11 +104,15 @@ const Contact = () => {
                       fullWidth
                       label="Email"
                       type="email"
-                      value={formData.email}
-                      onChange={(e) =>
-                        setFormData({ ...formData, email: e.target.value })
-                      }
-                      required
+                      {...register('email', { 
+                        required: 'Email is required',
+                        pattern: {
+                          value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                          message: 'Invalid email address'
+                        }
+                      })}
+                      error={!!errors.email}
+                      helperText={errors.email?.message}
                       margin="normal"
                       inputProps={{ 'aria-label': 'Your email address' }}
                     />
@@ -116,24 +120,44 @@ const Contact = () => {
                     <TextField
                       fullWidth
                       label="Phone"
-                      value={formData.phone}
-                      onChange={(e) =>
-                        setFormData({ ...formData, phone: e.target.value })
-                      }
+                      {...register('phone', { 
+                        required: 'Phone is required',
+                        pattern: {
+                          value: /^[0-9]{10}$/,
+                          message: 'Enter valid 10-digit phone number'
+                        }
+                      })}
+                      error={!!errors.phone}
+                      helperText={errors.phone?.message}
                       margin="normal"
                       inputProps={{ 'aria-label': 'Your phone number' }}
                     />
 
                     <TextField
                       fullWidth
+                      select
+                      label="Interested In"
+                      defaultValue=""
+                      {...register('interestedIn', { required: 'Please select an option' })}
+                      error={!!errors.interestedIn}
+                      helperText={errors.interestedIn?.message}
+                      margin="normal"
+                    >
+                      {tourOptions.map((option) => (
+                        <MenuItem key={option} value={option}>
+                          {option}
+                        </MenuItem>
+                      ))}
+                    </TextField>
+
+                    <TextField
+                      fullWidth
                       label="Message"
                       multiline
                       rows={5}
-                      value={formData.message}
-                      onChange={(e) =>
-                        setFormData({ ...formData, message: e.target.value })
-                      }
-                      required
+                      {...register('message', { required: 'Message is required' })}
+                      error={!!errors.message}
+                      helperText={errors.message?.message}
                       margin="normal"
                       inputProps={{ 'aria-label': 'Your message' }}
                     />
@@ -223,6 +247,17 @@ const Contact = () => {
             </Grid>
           </Grid>
         </Container>
+
+        <Snackbar 
+          open={snackbar.open} 
+          autoHideDuration={6000} 
+          onClose={() => setSnackbar({ ...snackbar, open: false })}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        >
+          <Alert severity={snackbar.severity} sx={{ width: '100%' }}>
+            {snackbar.message}
+          </Alert>
+        </Snackbar>
       </Box>
     </>
   );

@@ -26,6 +26,7 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { getTourById } from '../data/tours';
 import SEO from '../components/SEO';
+import MiniInquiry from '../components/MiniInquiry';
 
 const TourDetail = () => {
   const { id } = useParams();
@@ -229,7 +230,12 @@ const TourDetail = () => {
 
             {/* Sidebar */}
             <Grid item xs={12} md={4}>
-              <Card component="aside" className="md:sticky md:top-24">
+              {/* Mini Inquiry Widget */}
+              <Box className="mb-4">
+                <MiniInquiry tourName={tour.name} />
+              </Box>
+
+              <Card component="aside">
                 <CardContent>
                   <Typography variant="h2" className="font-bold mb-4" sx={{ fontSize: '1.5rem' }}>
                     Interested in This Tour?
@@ -256,7 +262,7 @@ const TourDetail = () => {
                     to="/contact"
                     className="mb-2"
                   >
-                    Inquire Now
+                    Inquire Now – Best Price Guaranteed!
                   </Button>
                   <Button
                     variant="outlined"
