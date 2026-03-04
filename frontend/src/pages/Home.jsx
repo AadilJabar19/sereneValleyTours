@@ -17,6 +17,8 @@ import { getFeaturedTours } from '../data/tours';
 import { destinations } from '../data/destinations';
 import Loader from '../components/Loader';
 import SEO from '../components/SEO';
+import WhyChooseUs from '../components/WhyChooseUs';
+import Testimonials from '../components/Testimonials';
 
 const Home = () => {
   const [featuredTours, setFeaturedTours] = useState([]);
@@ -85,9 +87,9 @@ const Home = () => {
                   size="large"
                   className="transition-all duration-300"
                   fullWidth={true}
-                  sx={{ maxWidth: { sm: '200px' } }}
+                  sx={{ maxWidth: { sm: '280px' } }}
                 >
-                  Explore Tours
+                  Plan Your Kashmir Escape – 10% Off!
                 </Button>
                 <Button
                   component={Link}
@@ -98,7 +100,7 @@ const Home = () => {
                   fullWidth={true}
                   sx={{ maxWidth: { sm: '200px' } }}
                 >
-                  Contact Us
+                  Inquire Now
                 </Button>
               </Box>
             </Box>
@@ -160,9 +162,10 @@ const Home = () => {
                       to={`/tours/${tour.id}`}
                       variant="contained"
                       fullWidth
+                      size="large"
                       aria-label={`View details for ${tour.name}`}
                     >
-                      View Details
+                      Book Now – Limited Seats!
                     </Button>
                   </CardActions>
                 </Card>
@@ -281,46 +284,10 @@ const Home = () => {
         </Box>
 
         {/* Why Choose Us */}
-        <Box component="section" className="py-12 md:py-16">
-          <Container>
-            <Box className="text-center mb-12">
-              <Typography variant="h2" className="font-bold mb-4" sx={{ fontSize: { xs: '2rem', md: '2.5rem' } }}>
-                Why Choose Us
-              </Typography>
-            </Box>
-            <Grid container spacing={4}>
-              {[
-                {
-                  title: 'Expert Guides',
-                  description: 'Local experts with deep knowledge of the region',
-                },
-                {
-                  title: 'Best Prices',
-                  description: 'Competitive pricing with no hidden costs',
-                },
-                {
-                  title: 'Safe Travel',
-                  description: 'Your safety is our top priority',
-                },
-                {
-                  title: '24/7 Support',
-                  description: 'Round-the-clock customer support',
-                },
-              ].map((feature, index) => (
-                <Grid item xs={12} md={3} key={index}>
-                  <Box className="text-center p-6 bg-card-white rounded-2xl shadow-lg h-full transition-all duration-300">
-                    <Typography variant="h3" className="font-bold mb-2" sx={{ fontSize: '1.5rem' }}>
-                      {feature.title}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      {feature.description}
-                    </Typography>
-                  </Box>
-                </Grid>
-              ))}
-            </Grid>
-          </Container>
-        </Box>
+        <WhyChooseUs />
+
+        {/* Testimonials */}
+        <Testimonials />
       </Box>
     </>
   );

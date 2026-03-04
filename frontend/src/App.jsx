@@ -22,6 +22,7 @@ const DestinationDetail = lazy(() => import('./pages/DestinationDetail'));
 const Destinations = lazy(() => import('./pages/Destinations'));
 const Store = lazy(() => import('./pages/Store'));
 const About = lazy(() => import('./pages/About'));
+const ThankYou = lazy(() => import('./pages/ThankYou'));
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
                 <Route path="/adventure" element={<Adventure />} />
                 <Route path="/store" element={<Store />} />
                 <Route path="/about" element={<About />} />
+                <Route path="/thank-you" element={<ThankYou />} />
               </Routes>
             </Suspense>
           </main>
