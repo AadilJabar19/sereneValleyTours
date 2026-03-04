@@ -70,6 +70,13 @@ const theme = createTheme({
     borderRadius: 12,
   },
   components: {
+    MuiContainer: {
+      styleOverrides: {
+        root: {
+          maxWidth: '1600px !important',
+        },
+      },
+    },
     MuiButton: {
       styleOverrides: {
         root: {
