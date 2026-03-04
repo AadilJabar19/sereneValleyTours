@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import {
   AppBar,
   Toolbar,
@@ -49,10 +49,17 @@ const Navbar = () => {
             {menuItems.map((item) => (
               <Button
                 key={item.path}
-                component={Link}
+                component={NavLink}
                 to={item.path}
                 className="text-gray-700 hover:text-primary-main"
-                sx={{ fontSize: '1rem' }}
+                sx={{
+                  fontSize: '1rem',
+                  '&.active': {
+                    borderBottom: '2px solid',
+                    borderColor: 'primary.main',
+                    borderRadius: 0,
+                  },
+                }}
               >
                 {item.label}
               </Button>
@@ -82,9 +89,16 @@ const Navbar = () => {
                 {menuItems.map((item) => (
                   <ListItem key={item.path} disablePadding>
                     <ListItemButton
-                      component={Link}
+                      component={NavLink}
                       to={item.path}
                       onClick={() => setMobileOpen(false)}
+                      sx={{
+                        '&.active': {
+                          borderLeft: '4px solid',
+                          borderColor: 'primary.main',
+                          backgroundColor: 'rgba(25, 118, 210, 0.08)',
+                        },
+                      }}
                     >
                       <ListItemText primary={item.label} />
                     </ListItemButton>

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Box,
@@ -9,6 +10,7 @@ import {
   CardContent,
   CardActions,
   Button,
+  Chip,
 } from '@mui/material';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import SEO from '../components/SEO';
@@ -47,7 +49,7 @@ const products = [
     name: 'Kashmiri Pashmina Shawl',
     description: 'Handwoven authentic Pashmina shawls made from the finest cashmere wool. Soft, warm, and luxurious.',
     image: '/images/pashminaShawl.webp',
-    category: 'Handicrafts'
+    category: 'Clothing'
   },
   {
     id: 6,
@@ -60,6 +62,13 @@ const products = [
 
 const Store = () => {
   const whatsappNumber = '917006327776';
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  
+  const categories = ['All', 'Spices', 'Dry Fruits', 'Clothing'];
+  
+  const filteredProducts = selectedCategory === 'All' 
+    ? products 
+    : products.filter(p => p.category === selectedCategory);
   
   const handleWhatsAppInquiry = (productName) => {
     const message = `Hi, I'm interested in ${productName}. Can you provide more details?`;
@@ -114,10 +123,23 @@ const Store = () => {
                 🚚 7-Day Delivery Available Across India
               </Typography>
             </Box>
+            
+            {/* Category Filter */}
+            <Box className="flex gap-2 justify-center mt-6 flex-wrap">
+              {categories.map((cat) => (
+                <Chip
+                  key={cat}
+                  label={cat}
+                  onClick={() => setSelectedCategory(cat)}
+                  color={selectedCategory === cat ? 'primary' : 'default'}
+                  sx={{ cursor: 'pointer' }}
+                />
+              ))}
+            </Box>
           </Box>
 
           <Grid container spacing={4}>
-            {products.map((product) => (
+            {filteredProducts.map((product) => (
               <Grid item xs={12} sm={6} md={4} key={product.id}>
                 <Card className="h-full flex flex-col shadow-lg rounded-2xl transition-all duration-300 hover:shadow-xl">
                   <CardMedia
