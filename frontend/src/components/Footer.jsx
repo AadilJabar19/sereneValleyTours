@@ -140,11 +140,11 @@ const Footer = () => {
               <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1 }}>
                 <PhoneIcon sx={{ color: 'primary.light', fontSize: '1.25rem' }} aria-hidden="true" />
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
-                  <MuiLink href="tel:+917006327776" sx={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.6)', textDecoration: 'none', '&:hover': { color: 'white' } }}>
-                    +91 7006327776
-                  </MuiLink>
                   <MuiLink href="tel:+917006601277" sx={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.6)', textDecoration: 'none', '&:hover': { color: 'white' } }}>
                     +91 7006601277
+                  </MuiLink>
+                  <MuiLink href="tel:+917006327776" sx={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.6)', textDecoration: 'none', '&:hover': { color: 'white' } }}>
+                    +91 7006327776
                   </MuiLink>
                 </Box>
               </Box>

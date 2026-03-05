@@ -4,7 +4,7 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 
 const FloatingWhatsApp = () => {
   const [visible, setVisible] = useState(false);
-  const whatsappNumber = '917006327776';
+  const whatsappNumber = '917006601277';
 
   useEffect(() => {
     const handleScroll = () => {

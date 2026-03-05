@@ -261,9 +261,9 @@ const TourDetail = () => {
                     size="large"
                     fullWidth
                     startIcon={<PhoneIcon />}
-                    href="tel:+917006327776"
+                    href="tel:+917006601277"
                     sx={{ mb: 1.5 }}
-                    aria-label="Call us at +91 7006327776, +91 7006601277"
+                    aria-label="Call us at +91 7006601277, +91 7006327776"
                   >
                     Call Us
                   </Button>
@@ -272,7 +272,7 @@ const TourDetail = () => {
                     size="large"
                     fullWidth
                     startIcon={<WhatsAppIcon />}
-                    href="https://wa.me/917006327776"
+                    href="https://wa.me/917006601277"
                     target="_blank"
                     rel="noopener noreferrer"
                     sx={{ color: '#25D366', borderColor: '#25D366', '&:hover': { borderColor: '#25D366', bgcolor: 'rgba(37, 211, 102, 0.04)' } }}

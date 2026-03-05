@@ -62,7 +62,7 @@ const Contact = () => {
     <>
       <SEO 
         title="Contact Us - Serene Valley Tours"
-        description="Get in touch with Serene Valley Tours for Kashmir and Ladakh tour bookings. Call us at +91 7006327776, +91 7006601277 or email serenevalleytours@gmail.com"
+        description="Get in touch with Serene Valley Tours for Kashmir and Ladakh tour bookings. Call us at +91 7006601277, +91 7006327776 or email serenevalleytours@gmail.com"
         keywords="contact, book tour, Kashmir tour booking, Ladakh tour booking, travel agency contact"
         url="https://serenevalleytours.com/contact"
       />
@@ -233,11 +233,11 @@ const Contact = () => {
                         Phone
                       </Typography>
                       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
-                        <a href="tel:+917006327776" style={{ color: '#6B7280', textDecoration: 'none', fontSize: '0.875rem' }}>
-                          +91 7006327776
-                        </a>
                         <a href="tel:+917006601277" style={{ color: '#6B7280', textDecoration: 'none', fontSize: '0.875rem' }}>
                           +91 7006601277
+                        </a>
+                        <a href="tel:+917006327776" style={{ color: '#6B7280', textDecoration: 'none', fontSize: '0.875rem' }}>
+                          +91 7006327776
                         </a>
                       </Box>
                     </Box>

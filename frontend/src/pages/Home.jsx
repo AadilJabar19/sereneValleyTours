@@ -98,7 +98,7 @@ const Home = () => {
                 </Button>
                 <Button
                   component="a"
-                  href="https://wa.me/917006327776?text=Hi!%20I%20am%20interested%20in%20Kashmir/Ladakh%20tour%20packages."
+                  href="https://wa.me/917006601277?text=Hi!%20I%20am%20interested%20in%20Kashmir/Ladakh%20tour%20packages."
                   target="_blank"
                   rel="noopener noreferrer"
                   variant="outlined"

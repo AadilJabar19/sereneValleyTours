@@ -103,7 +103,7 @@ const products = [
 ];
 
 const Store = () => {
-  const whatsappNumber = '917006327776';
+  const whatsappNumber = '917006601277';
   const [selectedCategory, setSelectedCategory] = useState('All');
   
   const categories = ['All', 'Spices', 'Dry Fruits', 'Wellness', 'Clothing'];
@@ -234,7 +234,7 @@ const Store = () => {
                 onClick={() => window.open(`https://wa.me/${whatsappNumber}`, '_blank', 'noopener,noreferrer')}
                 sx={{ bgcolor: '#25D366', '&:hover': { bgcolor: '#20BA5A' } }}
               >
-                WhatsApp: +91 7006327776
+                WhatsApp: +91 7006601277
               </Button>
               <Button
                 component={Link}
