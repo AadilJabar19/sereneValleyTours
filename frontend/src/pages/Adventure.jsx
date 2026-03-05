@@ -73,14 +73,11 @@ const Adventure = () => {
                     <Typography variant="body2" color="text.secondary" className="mb-3 line-clamp-2">
                       {tour.description}
                     </Typography>
-                    <Box className="flex items-center gap-4">
-                      <Box className="flex items-center gap-1">
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                         <AccessTimeIcon fontSize="small" aria-hidden="true" />
                         <Typography variant="body2">{tour.duration}</Typography>
                       </Box>
-                      <Typography variant="h4" color="primary" className="font-bold" sx={{ fontSize: '1.25rem' }}>
-                        ₹{tour.price}
-                      </Typography>
                     </Box>
                   </CardContent>
                   <CardActions className="p-4 pt-0">

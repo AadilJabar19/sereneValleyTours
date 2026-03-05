@@ -182,14 +182,9 @@ const Home = () => {
                     >
                       {tour.description}
                     </Typography>
-                    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }} color="text.secondary">
-                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                        <AccessTimeIcon fontSize="small" aria-hidden="true" />
-                        <Typography variant="body2">{tour.duration}</Typography>
-                      </Box>
-                      <Typography variant="h4" color="primary" sx={{ fontSize: '1.25rem', fontWeight: 'bold' }}>
-                        {tour.priceRange}
-                      </Typography>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                      <AccessTimeIcon fontSize="small" aria-hidden="true" />
+                      <Typography variant="body2">{tour.duration}</Typography>
                     </Box>
                   </CardContent>
                   <CardActions sx={{ p: 2, pt: 0 }}>

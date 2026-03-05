@@ -103,14 +103,11 @@ const TourDetail = () => {
               <Typography variant="h1" sx={{ fontSize: { xs: '2rem', md: '2.5rem' }, fontWeight: 'bold', mb: 1, color: 'white' }}>
                 {tour.name}
               </Typography>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                   <AccessTimeIcon aria-hidden="true" />
                   <Typography sx={{ color: 'white' }}>{tour.duration}</Typography>
                 </Box>
-                <Typography variant="h2" sx={{ fontSize: { xs: '1.5rem', md: '2rem' }, fontWeight: 'bold', color: 'white' }}>
-                  ₹{tour.price}
-                </Typography>
               </Box>
             </Box>
           </Container>
@@ -243,23 +240,12 @@ const TourDetail = () => {
 
               <Card component="aside">
                 <CardContent>
-                  <Typography variant="h2" className="font-bold mb-4" sx={{ fontSize: '1.5rem' }}>
+                  <Typography variant="h2" sx={{ fontSize: '1.5rem', fontWeight: 'bold', mb: 2, color: 'white' }}>
                     Interested in This Tour?
                   </Typography>
-                  <Box className="mb-4">
-                    <Typography variant="body2" className="text-gray-600 mb-1">
-                      Starting from
-                    </Typography>
-                    <Typography variant="h3" className="font-bold text-primary-main mb-1" sx={{ fontSize: '1.75rem' }}>
-                      {tour.priceRange || `₹${tour.price}`}
-                    </Typography>
-                    <Typography variant="body2" className="text-gray-600 mb-2">
-                      per person
-                    </Typography>
-                    <Typography variant="caption" className="text-gray-500" sx={{ fontSize: '0.75rem' }}>
-                      *Final pricing may vary depending on season and availability.
-                    </Typography>
-                  </Box>
+                  <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.9)', mb: 3 }}>
+                    Contact us for pricing and availability
+                  </Typography>
                   <Button
                     variant="contained"
                     size="large"

@@ -113,14 +113,9 @@ const Tours = () => {
                     >
                       {tour.description}
                     </Typography>
-                    <Box className="flex items-center justify-between">
-                      <Box className="flex items-center gap-1 text-gray-600">
-                        <AccessTimeIcon fontSize="small" aria-hidden="true" />
-                        <Typography variant="body2">{tour.duration}</Typography>
-                      </Box>
-                      <Typography variant="h4" className="text-primary-main font-bold" sx={{ fontSize: '1.25rem' }}>
-                        ₹{tour.price}
-                      </Typography>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                      <AccessTimeIcon fontSize="small" aria-hidden="true" />
+                      <Typography variant="body2">{tour.duration}</Typography>
                     </Box>
                   </CardContent>
                   <CardActions className="p-4 pt-0">
