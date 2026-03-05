@@ -239,11 +239,11 @@ const TourDetail = () => {
               )}
 
               <Card component="aside">
-                <CardContent>
-                  <Typography variant="h2" sx={{ fontSize: '1.5rem', fontWeight: 'bold', mb: 2, color: 'white' }}>
+                <CardContent sx={{ p: 3 }}>
+                  <Typography variant="h2" sx={{ fontSize: '1.5rem', fontWeight: 'bold', mb: 2 }}>
                     Interested in This Tour?
                   </Typography>
-                  <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.9)', mb: 3 }}>
+                  <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
                     Contact us for pricing and availability
                   </Typography>
                   <Button
@@ -252,7 +252,7 @@ const TourDetail = () => {
                     fullWidth
                     component={Link}
                     to="/contact"
-                    className="mb-2"
+                    sx={{ mb: 1.5 }}
                   >
                     Inquire Now – Best Price Guaranteed!
                   </Button>
@@ -262,7 +262,7 @@ const TourDetail = () => {
                     fullWidth
                     startIcon={<PhoneIcon />}
                     href="tel:+917006327776"
-                    className="mb-2"
+                    sx={{ mb: 1.5 }}
                     aria-label="Call us at +91 7006327776, +91 7006601277"
                   >
                     Call Us
