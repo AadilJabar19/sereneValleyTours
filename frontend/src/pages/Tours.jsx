@@ -54,12 +54,12 @@ const Tours = () => {
       />
       <Box>
         {/* Header */}
-        <Box component="header" className="bg-primary-main text-white py-16">
+        <Box component="header" sx={{ bgcolor: 'primary.main', color: 'white', py: 8 }}>
           <Container>
-            <Typography variant="h1" className="font-bold mb-4" sx={{ fontSize: { xs: '2rem', md: '2.5rem' } }}>
+            <Typography variant="h1" sx={{ fontSize: { xs: '2rem', md: '2.5rem' }, fontWeight: 'bold', mb: 2, color: 'white' }}>
               Explore Our Tours
             </Typography>
-            <Typography variant="h2" sx={{ fontSize: { xs: '1.25rem', md: '1.5rem' }, fontWeight: 400 }}>
+            <Typography variant="h2" sx={{ fontSize: { xs: '1.25rem', md: '1.5rem' }, fontWeight: 400, color: 'white' }}>
               Find your perfect adventure in Kashmir and Ladakh
             </Typography>
           </Container>

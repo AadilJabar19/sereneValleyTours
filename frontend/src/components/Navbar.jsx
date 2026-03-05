@@ -30,7 +30,7 @@ const Navbar = () => {
   ];
 
   return (
-    <AppBar position="sticky" component="nav" className="bg-white shadow-md">
+    <AppBar position="sticky" component="nav" sx={{ bgcolor: 'white', boxShadow: 2 }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters sx={{ minHeight: { xs: '56px', sm: '64px' } }}>
           {/* Logo */}
@@ -38,22 +38,30 @@ const Navbar = () => {
             variant="h5"
             component={Link}
             to="/"
-            className="font-bold text-primary-main no-underline hover:opacity-80 transition-opacity"
-            sx={{ fontFamily: 'Pacifico, cursive', textDecoration: 'none', fontSize: { xs: '1.25rem', md: '1.5rem' } }}
+            sx={{ 
+              fontFamily: 'Pacifico, cursive', 
+              textDecoration: 'none', 
+              fontSize: { xs: '1.25rem', md: '1.5rem' },
+              fontWeight: 'bold',
+              color: 'primary.main',
+              '&:hover': { opacity: 0.8 },
+              transition: 'opacity 0.3s'
+            }}
           >
             Serene Valley Tours
           </Typography>
 
           {/* Desktop Menu */}
-          <Box component="nav" className="hidden lg:flex flex-grow justify-center" sx={{ gap: { lg: 2 } }}>
+          <Box component="nav" sx={{ display: { xs: 'none', lg: 'flex' }, flexGrow: 1, justifyContent: 'center', gap: 2 }}>
             {menuItems.map((item) => (
               <Button
                 key={item.path}
                 component={NavLink}
                 to={item.path}
-                className="text-gray-700 hover:text-primary-main"
                 sx={{
                   fontSize: '1rem',
+                  color: 'text.primary',
+                  '&:hover': { color: 'primary.main' },
                   '&.active': {
                     borderBottom: '2px solid',
                     borderColor: 'primary.main',
@@ -67,11 +75,11 @@ const Navbar = () => {
           </Box>
 
           {/* Spacer */}
-          <Box className="flex-grow lg:flex-grow-0" />
+          <Box sx={{ flexGrow: { xs: 1, lg: 0 } }} />
 
           {/* Mobile Menu Icon */}
           <IconButton
-            className="lg:hidden"
+            sx={{ display: { xs: 'block', lg: 'none' } }}
             onClick={() => setMobileOpen(true)}
             aria-label="Open navigation menu"
           >
@@ -84,7 +92,7 @@ const Navbar = () => {
             open={mobileOpen}
             onClose={() => setMobileOpen(false)}
           >
-            <Box className="w-64 p-4" role="navigation">
+            <Box sx={{ width: 256, p: 2 }} role="navigation">
               <List>
                 {menuItems.map((item) => (
                   <ListItem key={item.path} disablePadding>

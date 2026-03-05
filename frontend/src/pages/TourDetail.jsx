@@ -33,6 +33,7 @@ const TourDetail = () => {
   const [tour, setTour] = useState(null);
   const [openImage, setOpenImage] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [showInquiry, setShowInquiry] = useState(true);
 
   useEffect(() => {
     loadTour();
@@ -83,28 +84,31 @@ const TourDetail = () => {
         {/* Hero Image */}
         <Box
           component="header"
-          className="h-96 bg-cover bg-center relative"
           sx={{
+            height: '24rem',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            position: 'relative',
             backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${tour.bannerImage})`,
           }}
           role="img"
           aria-label={`${tour.name} banner`}
         >
-          <Container className="h-full flex items-end pb-8">
-            <Box className="text-white">
+          <Container sx={{ height: '100%', display: 'flex', alignItems: 'flex-end', pb: 4 }}>
+            <Box sx={{ color: 'white' }}>
               <Chip
                 label={tour.category}
-                className="mb-2 rounded-full bg-secondary-main h-12 w-28 text-lg font-bold text-white"
+                sx={{ mb: 1, borderRadius: '9999px', bgcolor: 'secondary.main', height: '3rem', width: '7rem', fontSize: '1.125rem', fontWeight: 'bold', color: 'white' }}
               />
-              <Typography variant="h1" className="font-bold mb-2 text-white" sx={{ fontSize: { xs: '2rem', md: '2.5rem' } }}>
+              <Typography variant="h1" sx={{ fontSize: { xs: '2rem', md: '2.5rem' }, fontWeight: 'bold', mb: 1, color: 'white' }}>
                 {tour.name}
               </Typography>
-              <Box className="flex items-center gap-4">
-                <Box className="flex items-center gap-1">
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                   <AccessTimeIcon aria-hidden="true" />
-                  <Typography className='text-white'>{tour.duration}</Typography>
+                  <Typography sx={{ color: 'white' }}>{tour.duration}</Typography>
                 </Box>
-                <Typography variant="h2" className="font-bold text-white" sx={{ fontSize: { xs: '1.5rem', md: '2rem' } }}>
+                <Typography variant="h2" sx={{ fontSize: { xs: '1.5rem', md: '2rem' }, fontWeight: 'bold', color: 'white' }}>
                   ₹{tour.price}
                 </Typography>
               </Box>
@@ -231,9 +235,11 @@ const TourDetail = () => {
             {/* Sidebar */}
             <Grid item xs={12} md={4}>
               {/* Mini Inquiry Widget */}
-              <Box className="mb-4">
-                <MiniInquiry tourName={tour.name} />
-              </Box>
+              {showInquiry && (
+                <Box sx={{ mb: 2 }}>
+                  <MiniInquiry tourName={tour.name} onClose={() => setShowInquiry(false)} />
+                </Box>
+              )}
 
               <Card component="aside">
                 <CardContent>

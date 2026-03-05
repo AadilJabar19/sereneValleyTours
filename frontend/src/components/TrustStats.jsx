@@ -34,14 +34,13 @@ const TrustStats = () => {
         <Grid container spacing={4}>
           {stats.map((stat, index) => (
             <Grid item xs={6} md={3} key={index}>
-              <Box className="text-center">
-                <Box className="mb-2" sx={{ color: 'white', opacity: 0.9 }} aria-hidden="true">
+              <Box sx={{ textAlign: 'center' }}>
+                <Box sx={{ mb: 1, color: 'white', opacity: 0.9 }} aria-hidden="true">
                   {stat.icon}
                 </Box>
                 <Typography 
                   variant="h3" 
-                  className="font-bold mb-1" 
-                  sx={{ fontSize: { xs: '2rem', md: '2.5rem' } }}
+                  sx={{ fontSize: { xs: '2rem', md: '2.5rem' }, fontWeight: 'bold', mb: 0.5 }}
                 >
                   {stat.number}
                 </Typography>

@@ -139,12 +139,12 @@ const Store = () => {
           role="img"
           aria-label="Kashmir store products"
         >
-          <Container className="h-full flex items-center" sx={{ px: { xs: 2, sm: 3 } }}>
-            <Box className="text-white">
-              <Typography variant="h1" className="font-bold mb-4" sx={{ color: 'white', fontSize: { xs: '2rem', md: '3rem' } }}>
+          <Container sx={{ height: '100%', display: 'flex', alignItems: 'center', px: { xs: 2, sm: 3 } }}>
+            <Box sx={{ color: 'white' }}>
+              <Typography variant="h1" sx={{ color: 'white', fontSize: { xs: '2rem', md: '3rem' }, fontWeight: 'bold', mb: 2 }}>
                 Authentic Kashmir & Ladakh Products
               </Typography>
-              <Typography variant="h2" className="text-gray-200" sx={{ fontSize: { xs: '1rem', md: '1.25rem' }, fontWeight: 400 }}>
+              <Typography variant="h2" sx={{ fontSize: { xs: '1rem', md: '1.25rem' }, fontWeight: 400, color: 'white' }}>
                 Premium quality products directly from the valleys
               </Typography>
             </Box>

@@ -28,12 +28,12 @@ const Ladakh = () => {
           role="img"
           aria-label="Ladakh Pangong Lake landscape"
         >
-          <Container className="h-full flex items-center relative z-10">
-            <Box className="text-white max-w-3xl">
-              <Typography variant="h1" className="font-bold mb-4 text-white" sx={{ fontSize: { xs: '2rem', md: '3rem' } }}>
+          <Container sx={{ height: '100%', display: 'flex', alignItems: 'center', position: 'relative', zIndex: 10, px: { xs: 2, sm: 3 } }}>
+            <Box sx={{ color: 'white', maxWidth: '48rem' }}>
+              <Typography variant="h1" sx={{ color: 'white', fontSize: { xs: '2rem', md: '3rem' }, fontWeight: 'bold', mb: 2 }}>
                 {ladakhContent.heading}
               </Typography>
-              <Typography variant="h2" className="mb-6 text-white" sx={{ fontSize: { xs: '1.25rem', md: '1.5rem' }, fontWeight: 400 }}>
+              <Typography variant="h2" sx={{ fontSize: { xs: '1.25rem', md: '1.5rem' }, fontWeight: 400, mb: 3, color: 'white' }}>
                 {ladakhContent.description}
               </Typography>
             </Box>
