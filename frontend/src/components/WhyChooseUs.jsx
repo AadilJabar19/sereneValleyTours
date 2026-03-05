@@ -37,11 +37,10 @@ const WhyChooseUs = () => {
   return (
     <Box component="section" sx={{ bgcolor: 'background.default', py: { xs: 8, md: 12 } }}>
       <Container>
-        <Box className="text-center mb-12">
+        <Box sx={{ textAlign: 'center', mb: 6 }}>
           <Typography 
             variant="h2" 
-            className="font-bold mb-4" 
-            sx={{ fontSize: { xs: '2rem', md: '2.5rem' } }}
+            sx={{ fontSize: { xs: '2rem', md: '2.5rem' }, fontWeight: 'bold', mb: 2 }}
           >
             Why Choose Serene Valley Tours?
           </Typography>
@@ -58,20 +57,23 @@ const WhyChooseUs = () => {
           {features.map((feature, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
               <Card 
-                className="h-full transition-all duration-300 hover:shadow-xl"
                 sx={{ 
+                  height: '100%',
                   textAlign: 'center',
-                  '&:hover': { transform: 'translateY(-8px)' }
+                  transition: 'all 0.3s',
+                  '&:hover': { 
+                    boxShadow: 6,
+                    transform: 'translateY(-8px)'
+                  }
                 }}
               >
                 <CardContent sx={{ p: 4 }}>
-                  <Box className="mb-3" aria-hidden="true">
+                  <Box sx={{ mb: 1.5 }} aria-hidden="true">
                     {feature.icon}
                   </Box>
                   <Typography 
                     variant="h3" 
-                    className="font-bold mb-2" 
-                    sx={{ fontSize: '1.25rem' }}
+                    sx={{ fontSize: '1.25rem', fontWeight: 'bold', mb: 1 }}
                   >
                     {feature.title}
                   </Typography>
@@ -85,8 +87,8 @@ const WhyChooseUs = () => {
         </Grid>
 
         {/* Trust Badges */}
-        <Box className="text-center mt-8">
-          <Typography variant="body2" color="text.secondary" className="mb-3">
+        <Box sx={{ textAlign: 'center', mt: 4 }}>
+          <Typography variant="body2" color="text.secondary" sx={{ mb: 1.5 }}>
             🏆 Registered Tour Operator | ✓ Sustainable Tourism Certified | ⭐ 500+ Happy Travelers
           </Typography>
         </Box>

@@ -62,15 +62,15 @@ const Contact = () => {
     <>
       <SEO 
         title="Contact Us - Serene Valley Tours"
-        description="Get in touch with Serene Valley Tours for Kashmir and Ladakh tour bookings. Call us at +91 7006327776, +91 7006601277 or email serenevalleytours@gmail.com"
+        description="Get in touch with Serene Valley Tours for Kashmir and Ladakh tour bookings. Call us at +91 7006601277, +91 7006327776 or email serenevalleytours@gmail.com"
         keywords="contact, book tour, Kashmir tour booking, Ladakh tour booking, travel agency contact"
         url="https://serenevalleytours.com/contact"
       />
       <Box>
         {/* Header */}
-        <Box component="header" className="bg-primary-main text-white py-16">
+        <Box component="header" sx={{ bgcolor: 'primary.main', color: 'white', py: 8 }}>
           <Container>
-            <Typography variant="h1" className="font-bold mb-4" sx={{ fontSize: { xs: '2rem', md: '2.5rem' } }}>
+            <Typography variant="h1" sx={{ fontSize: { xs: '2rem', md: '2.5rem' }, fontWeight: 'bold', mb: 2 }}>
               Contact Us
             </Typography>
             <Typography variant="h2" sx={{ fontSize: { xs: '1.25rem', md: '1.5rem' }, fontWeight: 400 }}>
@@ -79,13 +79,13 @@ const Contact = () => {
           </Container>
         </Box>
 
-        <Container component="section" className="py-16">
+        <Container component="section" sx={{ py: 8 }}>
           <Grid container spacing={4}>
             {/* Contact Form */}
             <Grid item xs={12} md={7}>
               <Card>
-                <CardContent className="p-6">
-                  <Typography variant="h2" className="font-bold mb-4" sx={{ fontSize: '1.5rem' }}>
+                <CardContent sx={{ p: 3 }}>
+                  <Typography variant="h2" sx={{ fontSize: '1.5rem', fontWeight: 'bold', mb: 2 }}>
                     Send us a Message
                   </Typography>
 
@@ -152,6 +152,33 @@ const Contact = () => {
 
                     <TextField
                       fullWidth
+                      label="Travel Date"
+                      type="date"
+                      InputLabelProps={{ shrink: true }}
+                      {...register('travelDate', { required: 'Travel date is required' })}
+                      error={!!errors.travelDate}
+                      helperText={errors.travelDate?.message}
+                      margin="normal"
+                      inputProps={{ 'aria-label': 'Preferred travel date', min: new Date().toISOString().split('T')[0] }}
+                    />
+
+                    <TextField
+                      fullWidth
+                      label="Number of Travelers"
+                      type="number"
+                      {...register('numberOfTravelers', { 
+                        required: 'Number of travelers is required',
+                        min: { value: 1, message: 'At least 1 traveler required' },
+                        max: { value: 50, message: 'Maximum 50 travelers allowed' }
+                      })}
+                      error={!!errors.numberOfTravelers}
+                      helperText={errors.numberOfTravelers?.message}
+                      margin="normal"
+                      inputProps={{ 'aria-label': 'Number of travelers', min: 1, max: 50 }}
+                    />
+
+                    <TextField
+                      fullWidth
                       label="Message"
                       multiline
                       rows={5}
@@ -167,7 +194,7 @@ const Contact = () => {
                       variant="contained"
                       size="large"
                       fullWidth
-                      className="mt-4"
+                      sx={{ mt: 2 }}
                       disabled={loading}
                     >
                       {loading ? 'Sending...' : 'Send Message'}
@@ -179,19 +206,19 @@ const Contact = () => {
 
             {/* Contact Info */}
             <Grid item xs={12} md={5}>
-              <Card className="mb-4">
+              <Card sx={{ mb: 2 }}>
                 <CardContent>
-                  <Typography variant="h2" className="font-bold mb-4" sx={{ fontSize: '1.5rem' }}>
+                  <Typography variant="h2" sx={{ fontSize: '1.5rem', fontWeight: 'bold', mb: 2 }}>
                     Contact Information
                   </Typography>
 
-                  <Box className="flex items-start gap-3 mb-4">
-                    <LocationOnIcon className="text-primary-main mt-1" aria-hidden="true" />
+                  <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1.5, mb: 2 }}>
+                    <LocationOnIcon sx={{ color: 'primary.main', mt: 0.5 }} aria-hidden="true" />
                     <Box>
-                      <Typography variant="body1" className="font-medium">
+                      <Typography variant="body1" sx={{ fontWeight: 500 }}>
                         Address
                       </Typography>
-                      <Typography variant="body2" className="text-gray-600">
+                      <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                         Bemina, Srinagar
                         <br />
                         Jammu & Kashmir
@@ -199,31 +226,31 @@ const Contact = () => {
                     </Box>
                   </Box>
 
-                  <Box className="flex items-start gap-3 mb-4">
-                    <PhoneIcon className="text-primary-main mt-1" aria-hidden="true" />
+                  <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1.5, mb: 2 }}>
+                    <PhoneIcon sx={{ color: 'primary.main', mt: 0.5 }} aria-hidden="true" />
                     <Box>
-                      <Typography variant="body1" className="font-medium">
+                      <Typography variant="body1" sx={{ fontWeight: 500 }}>
                         Phone
                       </Typography>
-                      <Box className="flex flex-col gap-1">
-                        <a href="tel:+917006327776" className="text-gray-600 hover:text-primary-main no-underline text-sm">
-                          +91 7006327776
-                        </a>
-                        <a href="tel:+917006601277" className="text-gray-600 hover:text-primary-main no-underline text-sm">
+                      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
+                        <a href="tel:+917006601277" style={{ color: '#6B7280', textDecoration: 'none', fontSize: '0.875rem' }}>
                           +91 7006601277
+                        </a>
+                        <a href="tel:+917006327776" style={{ color: '#6B7280', textDecoration: 'none', fontSize: '0.875rem' }}>
+                          +91 7006327776
                         </a>
                       </Box>
                     </Box>
                   </Box>
 
-                  <Box className="flex items-start gap-3">
-                    <EmailIcon className="text-primary-main mt-1" aria-hidden="true" />
+                  <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1.5 }}>
+                    <EmailIcon sx={{ color: 'primary.main', mt: 0.5 }} aria-hidden="true" />
                     <Box>
-                      <Typography variant="body1" className="font-medium">
+                      <Typography variant="body1" sx={{ fontWeight: 500 }}>
                         Email
                       </Typography>
-                      <Typography variant="body2" className="text-gray-600">
-                        <a href="mailto:serenevalleytours@gmail.com" className="text-gray-600 hover:text-primary-main no-underline">
+                      <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                        <a href="mailto:serenevalleytours@gmail.com" style={{ color: '#6B7280', textDecoration: 'none' }}>
                           serenevalleytours@gmail.com
                         </a>
                       </Typography>
@@ -234,10 +261,10 @@ const Contact = () => {
 
               <Card>
                 <CardContent>
-                  <Typography variant="h3" className="font-bold mb-3" sx={{ fontSize: '1.25rem' }}>
+                  <Typography variant="h3" sx={{ fontSize: '1.25rem', fontWeight: 'bold', mb: 1.5 }}>
                     Business Hours
                   </Typography>
-                  <Typography variant="body2" className="text-gray-600">
+                  <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                     Monday - Saturday: 9:00 AM - 6:00 PM
                     <br />
                     Sunday: Closed

@@ -6,7 +6,7 @@ import DownloadIcon from '@mui/icons-material/Download';
 import SEO from '../components/SEO';
 
 const ThankYou = () => {
-  const whatsappNumber = '917006327776';
+  const whatsappNumber = '917006601277';
   const whatsappMessage = encodeURIComponent('Following up on my inquiry about Kashmir/Ladakh tours');
 
   return (
@@ -63,8 +63,8 @@ const ThankYou = () => {
 
               <Typography variant="body2" color="text.secondary" className="mb-4">
                 Need immediate assistance? Call us at{' '}
-                <a href="tel:+917006327776" className="text-primary-main font-semibold no-underline">
-                  +91 7006327776
+                <a href="tel:+917006601277" className="text-primary-main font-semibold no-underline">
+                  +91 7006601277
                 </a>
               </Typography>
 

@@ -9,14 +9,21 @@ import {
   Button,
   Snackbar,
   Alert,
+  IconButton,
 } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
+import CloseIcon from '@mui/icons-material/Close';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
 import { sendContactEmail } from '../services/emailService';
 
-const MiniInquiry = ({ tourName }) => {
-  const { register, handleSubmit, formState: { errors }, reset } = useForm();
+const MiniInquiry = ({ tourName, onClose }) => {
+  const { register, handleSubmit, formState: { errors }, reset, setValue, watch } = useForm({
+    defaultValues: { people: 1 }
+  });
   const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' });
   const [loading, setLoading] = useState(false);
+  const people = watch('people', 1);
 
   const onSubmit = async (data) => {
     setLoading(true);
@@ -61,9 +68,19 @@ const MiniInquiry = ({ tourName }) => {
         }}
       >
         <CardContent sx={{ p: { xs: 2, md: 3 } }}>
-          <Typography variant="h3" className="font-bold mb-3" sx={{ fontSize: '1.25rem' }}>
-            Quick Inquiry
-          </Typography>
+          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1.5 }}>
+            <Typography variant="h3" sx={{ fontSize: '1.25rem', fontWeight: 'bold' }}>
+              Quick Inquiry
+            </Typography>
+            <IconButton 
+              onClick={onClose}
+              size="small"
+              sx={{ display: { xs: 'block', md: 'none' } }}
+              aria-label="Close inquiry form"
+            >
+              <CloseIcon />
+            </IconButton>
+          </Box>
 
           <form onSubmit={handleSubmit(onSubmit)}>
             <TextField
@@ -96,27 +113,53 @@ const MiniInquiry = ({ tourName }) => {
               fullWidth
               size="small"
               label="Travel Date"
-              placeholder="e.g., June 2026"
+              type="date"
+              InputLabelProps={{ shrink: true }}
               {...register('travelDate', { required: 'Date required' })}
               error={!!errors.travelDate}
               helperText={errors.travelDate?.message}
               margin="dense"
+              inputProps={{ min: new Date().toISOString().split('T')[0] }}
             />
 
-            <TextField
-              fullWidth
-              size="small"
-              label="Number of People"
-              type="number"
-              {...register('people', { 
-                required: 'Required',
-                min: { value: 1, message: 'Min 1' }
-              })}
-              error={!!errors.people}
-              helperText={errors.people?.message}
-              margin="dense"
-              inputProps={{ min: 1 }}
-            />
+            <Box sx={{ mt: 1, mb: 1 }}>
+              <Typography variant="body2" sx={{ mb: 0.5, color: 'text.secondary' }}>
+                Number of People
+              </Typography>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                <IconButton 
+                  size="small"
+                  onClick={() => setValue('people', Math.max(1, people - 1))}
+                  disabled={people <= 1}
+                  sx={{ border: '1px solid', borderColor: 'divider' }}
+                >
+                  <RemoveIcon fontSize="small" />
+                </IconButton>
+                <TextField
+                  size="small"
+                  type="number"
+                  {...register('people', { 
+                    required: 'Required',
+                    min: { value: 1, message: 'Min 1' }
+                  })}
+                  error={!!errors.people}
+                  sx={{ width: '80px', '& input': { textAlign: 'center' } }}
+                  inputProps={{ min: 1, readOnly: true }}
+                />
+                <IconButton 
+                  size="small"
+                  onClick={() => setValue('people', people + 1)}
+                  sx={{ border: '1px solid', borderColor: 'divider' }}
+                >
+                  <AddIcon fontSize="small" />
+                </IconButton>
+              </Box>
+              {errors.people && (
+                <Typography variant="caption" color="error" sx={{ mt: 0.5, display: 'block' }}>
+                  {errors.people.message}
+                </Typography>
+              )}
+            </Box>
 
             <Button
               type="submit"

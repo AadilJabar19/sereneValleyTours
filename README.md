@@ -5,8 +5,7 @@ Modern static travel website built with React, Material UI, and Tailwind CSS. Ph
 ## 🚀 Tech Stack
 
 - **React 18** with Vite
-- **Material UI v5** for components
-- **Tailwind CSS** for utility styling
+- **Material UI v5** for components and styling
 - **React Router v6** for navigation
 - **EmailJS** for contact form submissions
 - **React Hook Form** for form handling
@@ -17,7 +16,7 @@ Modern static travel website built with React, Material UI, and Tailwind CSS. Ph
 - ✅ Image lazy loading with `loading="lazy"`
 - ✅ Optimized bundle size with tree shaking
 - ✅ Individual MUI icon imports
-- ✅ Tailwind CSS purge configuration
+- ✅ Pure MUI styling (no Tailwind overhead)
 
 #### SEO
 - ✅ React Helmet Async for dynamic metadata

@@ -54,12 +54,12 @@ const Tours = () => {
       />
       <Box>
         {/* Header */}
-        <Box component="header" className="bg-primary-main text-white py-16">
+        <Box component="header" sx={{ bgcolor: 'primary.main', color: 'white', py: 8 }}>
           <Container>
-            <Typography variant="h1" className="font-bold mb-4" sx={{ fontSize: { xs: '2rem', md: '2.5rem' } }}>
+            <Typography variant="h1" sx={{ fontSize: { xs: '2rem', md: '2.5rem' }, fontWeight: 'bold', mb: 2, color: 'white' }}>
               Explore Our Tours
             </Typography>
-            <Typography variant="h2" sx={{ fontSize: { xs: '1.25rem', md: '1.5rem' }, fontWeight: 400 }}>
+            <Typography variant="h2" sx={{ fontSize: { xs: '1.25rem', md: '1.5rem' }, fontWeight: 400, color: 'white' }}>
               Find your perfect adventure in Kashmir and Ladakh
             </Typography>
           </Container>
@@ -113,14 +113,9 @@ const Tours = () => {
                     >
                       {tour.description}
                     </Typography>
-                    <Box className="flex items-center justify-between">
-                      <Box className="flex items-center gap-1 text-gray-600">
-                        <AccessTimeIcon fontSize="small" aria-hidden="true" />
-                        <Typography variant="body2">{tour.duration}</Typography>
-                      </Box>
-                      <Typography variant="h4" className="text-primary-main font-bold" sx={{ fontSize: '1.25rem' }}>
-                        ₹{tour.price}
-                      </Typography>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                      <AccessTimeIcon fontSize="small" aria-hidden="true" />
+                      <Typography variant="body2">{tour.duration}</Typography>
                     </Box>
                   </CardContent>
                   <CardActions className="p-4 pt-0">

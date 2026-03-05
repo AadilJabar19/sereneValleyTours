@@ -13,12 +13,15 @@ import {
   Chip,
 } from '@mui/material';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import StarIcon from '@mui/icons-material/Star';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { getFeaturedTours } from '../data/tours';
 import { destinations } from '../data/destinations';
 import Loader from '../components/Loader';
 import SEO from '../components/SEO';
 import WhyChooseUs from '../components/WhyChooseUs';
 import Testimonials from '../components/Testimonials';
+import TrustStats from '../components/TrustStats';
 
 const Home = () => {
   const [featuredTours, setFeaturedTours] = useState([]);
@@ -53,54 +56,67 @@ const Home = () => {
         {/* Hero Section */}
         <Box
           component="section"
-          className="relative bg-cover bg-center overflow-hidden"
           sx={{
+            position: 'relative',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            overflow: 'hidden',
             height: { xs: '70vh', sm: '80vh', md: '100vh' },
           }}
           role="img"
           aria-label="Serene Kashmir valley with snow-capped mountains and lush green meadows"
         >
-          <picture className="absolute inset-0 w-full h-full">
+          <picture style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}>
             <source srcSet="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=1920&q=85&fm=webp&fit=crop" type="image/webp" />
             <img 
               src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=1920&q=85&fit=crop" 
               alt="Panoramic view of Kashmir valley with Dal Lake and Himalayan mountains"
-              className="w-full h-full object-cover animate-[fadeIn_1.5s_ease-in]"
+              style={{ width: '100%', height: '100%', objectFit: 'cover', animation: 'fadeIn 1.5s ease-in' }}
               loading="eager"
             />
           </picture>
-          <Box className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-transparent" />
-          <Container className="h-full flex items-center relative z-10" sx={{ px: { xs: 2, sm: 3 } }}>
-            <Box className="text-white animate-[slideUp_1s_ease-out]" sx={{ maxWidth: { xs: '100%', md: '66.666667%' } }}>
-              <Typography variant="h1" className="font-bold mb-4" sx={{ color: 'white', fontSize: { xs: '1.75rem', sm: '2.5rem', md: '3rem' } }}>
+          <Box sx={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.3), transparent)' }} />
+          <Container sx={{ height: '100%', display: 'flex', alignItems: 'center', position: 'relative', zIndex: 10, px: { xs: 2, sm: 3 } }}>
+            <Box sx={{ color: 'white', animation: 'slideUp 1s ease-out', maxWidth: { xs: '100%', md: '66.666667%' } }}>
+              <Typography variant="h1" sx={{ color: 'white', fontSize: { xs: '1.75rem', sm: '2.5rem', md: '3rem' }, fontWeight: 'bold', mb: 2 }}>
                 Discover the Paradise on Earth
               </Typography>
-              <Typography variant="h2" className="mb-6 text-gray-200" sx={{ fontSize: { xs: '1rem', sm: '1.25rem', md: '1.5rem' }, fontWeight: 400 }}>
+              <Typography variant="h2" sx={{ fontSize: { xs: '1rem', sm: '1.25rem', md: '1.5rem' }, fontWeight: 400, mb: 3, color: '#E5E7EB' }}>
                 Experience breathtaking landscapes, rich culture, and unforgettable
                 adventures in Kashmir and Ladakh
               </Typography>
-              <Box className="flex gap-4" sx={{ flexDirection: { xs: 'column', sm: 'row' } }}>
+              <Box sx={{ display: 'flex', gap: 2, flexDirection: { xs: 'column', sm: 'row' } }}>
                 <Button
                   component={Link}
                   to="/tours"
                   variant="contained"
                   size="large"
-                  className="transition-all duration-300"
                   fullWidth={true}
-                  sx={{ maxWidth: { sm: '280px' } }}
+                  sx={{ maxWidth: { sm: '220px' }, transition: 'all 0.3s' }}
                 >
-                  Plan Your Kashmir Escape – 10% Off!
+                  Plan Your Trip
                 </Button>
                 <Button
-                  component={Link}
-                  to="/contact"
+                  component="a"
+                  href="https://wa.me/917006601277?text=Hi!%20I%20am%20interested%20in%20Kashmir/Ladakh%20tour%20packages."
+                  target="_blank"
+                  rel="noopener noreferrer"
                   variant="outlined"
                   size="large"
-                  className="text-white border-white hover:bg-white hover:text-primary-main transition-all duration-300"
                   fullWidth={true}
-                  sx={{ maxWidth: { sm: '200px' } }}
+                  sx={{ 
+                    maxWidth: { sm: '200px' }, 
+                    color: 'white', 
+                    borderColor: 'white',
+                    transition: 'all 0.3s',
+                    '&:hover': { 
+                      bgcolor: 'white', 
+                      color: 'primary.main',
+                      borderColor: 'white'
+                    }
+                  }}
                 >
-                  Inquire Now
+                  WhatsApp Us
                 </Button>
               </Box>
             </Box>
@@ -108,9 +124,9 @@ const Home = () => {
         </Box>
 
         {/* Featured Tours */}
-        <Container component="section" className="py-12 md:py-16" sx={{ px: { xs: 2, sm: 3 } }}>
-          <Box className="text-center mb-12">
-            <Typography variant="h2" className="font-bold mb-4" sx={{ fontSize: { xs: '2rem', md: '2.5rem' } }}>
+        <Container component="section" sx={{ py: { xs: 6, md: 8 }, px: { xs: 2, sm: 3 } }}>
+          <Box sx={{ textAlign: 'center', mb: 6 }}>
+            <Typography variant="h2" sx={{ fontSize: { xs: '2rem', md: '2.5rem' }, fontWeight: 'bold', mb: 2 }}>
               Featured Tours
             </Typography>
             <Typography variant="h3" color="text.secondary" sx={{ fontSize: { xs: '1.125rem', md: '1.5rem' }, fontWeight: 400 }}>
@@ -121,42 +137,57 @@ const Home = () => {
           <Grid container spacing={4}>
             {featuredTours.map((tour) => (
               <Grid item xs={12} md={4} key={tour.id}>
-                <Card className="h-full flex flex-col shadow-lg rounded-2xl transition-all duration-300">
+                <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', boxShadow: 3, borderRadius: 2, transition: 'all 0.3s' }}>
                   <CardMedia
                     component="img"
                     height="240"
                     image={tour.bannerImage || 'https://via.placeholder.com/400x240'}
                     alt={tour.name}
-                    className="h-60 object-cover"
+                    sx={{ height: 240, objectFit: 'cover' }}
                     loading="lazy"
                   />
-                  <CardContent className="flex-grow">
-                    <Chip
-                      label={tour.category}
-                      size="small"
-                      className="mb-2"
-                    />
-                    <Typography variant="h3" className="font-bold mb-2" sx={{ fontSize: '1.25rem' }}>
+                  <CardContent sx={{ flexGrow: 1 }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1 }}>
+                      <Chip
+                        label={tour.category}
+                        size="small"
+                      />
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                        <StarIcon sx={{ fontSize: 16, color: '#FFC107' }} aria-hidden="true" />
+                        <Typography variant="body2" sx={{ fontWeight: 500 }}>
+                          {tour.rating} ({tour.reviewCount})
+                        </Typography>
+                      </Box>
+                    </Box>
+                    <Typography variant="h3" sx={{ fontSize: '1.25rem', fontWeight: 'bold', mb: 1 }}>
                       {tour.name}
                     </Typography>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, mb: 1 }} color="text.secondary">
+                      <LocationOnIcon fontSize="small" aria-hidden="true" />
+                      <Typography variant="body2">
+                        {tour.itinerary?.slice(1, 4).map(day => day.title.split(' to ')[1] || day.title.split(' ')[0]).filter(Boolean).join(', ')}
+                      </Typography>
+                    </Box>
                     <Typography
                       variant="body2"
                       color="text.secondary"
-                      className="mb-3 line-clamp-2"
+                      sx={{ 
+                        mb: 1.5,
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        display: '-webkit-box',
+                        WebkitLineClamp: 2,
+                        WebkitBoxOrient: 'vertical'
+                      }}
                     >
                       {tour.description}
                     </Typography>
-                    <Box className="flex items-center gap-4" color="text.secondary">
-                      <Box className="flex items-center gap-1">
-                        <AccessTimeIcon fontSize="small" aria-hidden="true" />
-                        <Typography variant="body2">{tour.duration}</Typography>
-                      </Box>
-                      <Typography variant="h4" color="primary" className="font-bold" sx={{ fontSize: '1.25rem' }}>
-                        ₹{tour.price}
-                      </Typography>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                      <AccessTimeIcon fontSize="small" aria-hidden="true" />
+                      <Typography variant="body2">{tour.duration}</Typography>
                     </Box>
                   </CardContent>
-                  <CardActions className="p-4 pt-0">
+                  <CardActions sx={{ p: 2, pt: 0 }}>
                     <Button
                       component={Link}
                       to={`/tours/${tour.id}`}
@@ -173,7 +204,7 @@ const Home = () => {
             ))}
           </Grid>
 
-          <Box className="text-center mt-8">
+          <Box sx={{ textAlign: 'center', mt: 4 }}>
             <Button
               component={Link}
               to="/tours"
@@ -186,10 +217,10 @@ const Home = () => {
         </Container>
 
         {/* Destinations Section */}
-        <Box component="section" sx={{ bgcolor: 'background.default' }} className="py-12 md:py-16">
+        <Box component="section" sx={{ bgcolor: 'background.default', py: { xs: 6, md: 8 } }}>
           <Container sx={{ px: { xs: 2, sm: 3 } }}>
-            <Box className="text-center mb-12">
-              <Typography variant="h2" className="font-bold mb-4" sx={{ fontSize: { xs: '2rem', md: '2.5rem' } }}>
+            <Box sx={{ textAlign: 'center', mb: 6 }}>
+              <Typography variant="h2" sx={{ fontSize: { xs: '2rem', md: '2.5rem' }, fontWeight: 'bold', mb: 2 }}>
                 Explore Destinations
               </Typography>
               <Typography variant="h3" color="text.secondary" sx={{ fontSize: { xs: '1.125rem', md: '1.5rem' }, fontWeight: 400 }}>
@@ -200,24 +231,24 @@ const Home = () => {
             <Grid container spacing={4}>
               {destinations.slice(0, 4).map((dest) => (
                 <Grid item xs={12} sm={6} md={3} key={dest.id}>
-                  <Card className="h-full flex flex-col shadow-lg rounded-2xl transition-all duration-300 hover:shadow-xl">
+                  <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', boxShadow: 3, borderRadius: 2, transition: 'all 0.3s', '&:hover': { boxShadow: 6 } }}>
                     <CardMedia
                       component="img"
                       height="200"
                       image={dest.bannerImage}
                       alt={dest.name}
-                      className="h-48 object-cover"
+                      sx={{ height: 192, objectFit: 'cover' }}
                       loading="lazy"
                     />
-                    <CardContent className="flex-grow">
-                      <Typography variant="h3" className="font-bold mb-2" sx={{ fontSize: '1.25rem' }}>
+                    <CardContent sx={{ flexGrow: 1 }}>
+                      <Typography variant="h3" sx={{ fontSize: '1.25rem', fontWeight: 'bold', mb: 1 }}>
                         {dest.name}
                       </Typography>
-                      <Typography variant="body2" color="text.secondary" className="mb-2">
+                      <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
                         {dest.tagline}
                       </Typography>
                     </CardContent>
-                    <CardActions className="p-4 pt-0">
+                    <CardActions sx={{ p: 2, pt: 0 }}>
                       <Button
                         component={Link}
                         to={`/destinations/${dest.id}`}
@@ -232,7 +263,7 @@ const Home = () => {
               ))}
             </Grid>
 
-            <Box className="text-center mt-8">
+            <Box sx={{ textAlign: 'center', mt: 4 }}>
               <Button
                 component={Link}
                 to="/destinations"
@@ -246,18 +277,18 @@ const Home = () => {
         </Box>
 
         {/* About Us Section */}
-        <Box component="section" sx={{ bgcolor: 'background.default' }} className="py-12 md:py-16">
+        <Box component="section" sx={{ bgcolor: 'background.default', py: { xs: 6, md: 8 } }}>
           <Container sx={{ px: { xs: 2, sm: 3 } }}>
             <Grid container spacing={6} alignItems="center">
               <Grid item xs={12} md={6}>
-                <Typography variant="h2" className="font-bold mb-4" sx={{ fontSize: { xs: '2rem', md: '2.5rem' } }}>
+                <Typography variant="h2" sx={{ fontSize: { xs: '2rem', md: '2.5rem' }, fontWeight: 'bold', mb: 2 }}>
                   About Serene Valley Tours
                 </Typography>
-                <Typography variant="body1" color="text.secondary" className="mb-4" sx={{ lineHeight: 1.8 }}>
+                <Typography variant="body1" color="text.secondary" sx={{ mb: 2, lineHeight: 1.8 }}>
                   We are passionate locals who know every corner of Kashmir and Ladakh. Based in Srinagar, 
                   we specialize in creating memorable experiences that go beyond typical tourism.
                 </Typography>
-                <Typography variant="body1" color="text.secondary" className="mb-6" sx={{ lineHeight: 1.8 }}>
+                <Typography variant="body1" color="text.secondary" sx={{ mb: 3, lineHeight: 1.8 }}>
                   Our carefully crafted itineraries combine breathtaking landscapes, rich cultural heritage, 
                   and authentic local experiences tailored to your dreams.
                 </Typography>
@@ -282,6 +313,9 @@ const Home = () => {
             </Grid>
           </Container>
         </Box>
+
+        {/* Trust Stats */}
+        <TrustStats />
 
         {/* Why Choose Us */}
         <WhyChooseUs />

@@ -33,6 +33,7 @@ const TourDetail = () => {
   const [tour, setTour] = useState(null);
   const [openImage, setOpenImage] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [showInquiry, setShowInquiry] = useState(true);
 
   useEffect(() => {
     loadTour();
@@ -83,30 +84,30 @@ const TourDetail = () => {
         {/* Hero Image */}
         <Box
           component="header"
-          className="h-96 bg-cover bg-center relative"
           sx={{
+            height: '24rem',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            position: 'relative',
             backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${tour.bannerImage})`,
           }}
           role="img"
           aria-label={`${tour.name} banner`}
         >
-          <Container className="h-full flex items-end pb-8">
-            <Box className="text-white">
+          <Container sx={{ height: '100%', display: 'flex', alignItems: 'flex-end', pb: 4 }}>
+            <Box sx={{ color: 'white' }}>
               <Chip
                 label={tour.category}
-                className="mb-2 rounded-full bg-secondary-main h-12 w-28 text-lg font-bold text-white"
+                sx={{ mb: 1, borderRadius: '9999px', bgcolor: 'secondary.main', height: '3rem', width: '7rem', fontSize: '1.125rem', fontWeight: 'bold', color: 'white' }}
               />
-              <Typography variant="h1" className="font-bold mb-2 text-white" sx={{ fontSize: { xs: '2rem', md: '2.5rem' } }}>
+              <Typography variant="h1" sx={{ fontSize: { xs: '2rem', md: '2.5rem' }, fontWeight: 'bold', mb: 1, color: 'white' }}>
                 {tour.name}
               </Typography>
-              <Box className="flex items-center gap-4">
-                <Box className="flex items-center gap-1">
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                   <AccessTimeIcon aria-hidden="true" />
-                  <Typography className='text-white'>{tour.duration}</Typography>
+                  <Typography sx={{ color: 'white' }}>{tour.duration}</Typography>
                 </Box>
-                <Typography variant="h2" className="font-bold text-white" sx={{ fontSize: { xs: '1.5rem', md: '2rem' } }}>
-                  ₹{tour.price}
-                </Typography>
               </Box>
             </Box>
           </Container>
@@ -231,36 +232,27 @@ const TourDetail = () => {
             {/* Sidebar */}
             <Grid item xs={12} md={4}>
               {/* Mini Inquiry Widget */}
-              <Box className="mb-4">
-                <MiniInquiry tourName={tour.name} />
-              </Box>
+              {showInquiry && (
+                <Box sx={{ mb: 2 }}>
+                  <MiniInquiry tourName={tour.name} onClose={() => setShowInquiry(false)} />
+                </Box>
+              )}
 
               <Card component="aside">
-                <CardContent>
-                  <Typography variant="h2" className="font-bold mb-4" sx={{ fontSize: '1.5rem' }}>
+                <CardContent sx={{ p: 3 }}>
+                  <Typography variant="h2" sx={{ fontSize: '1.5rem', fontWeight: 'bold', mb: 2 }}>
                     Interested in This Tour?
                   </Typography>
-                  <Box className="mb-4">
-                    <Typography variant="body2" className="text-gray-600 mb-1">
-                      Starting from
-                    </Typography>
-                    <Typography variant="h3" className="font-bold text-primary-main mb-1" sx={{ fontSize: '1.75rem' }}>
-                      {tour.priceRange || `₹${tour.price}`}
-                    </Typography>
-                    <Typography variant="body2" className="text-gray-600 mb-2">
-                      per person
-                    </Typography>
-                    <Typography variant="caption" className="text-gray-500" sx={{ fontSize: '0.75rem' }}>
-                      *Final pricing may vary depending on season and availability.
-                    </Typography>
-                  </Box>
+                  <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
+                    Contact us for pricing and availability
+                  </Typography>
                   <Button
                     variant="contained"
                     size="large"
                     fullWidth
                     component={Link}
                     to="/contact"
-                    className="mb-2"
+                    sx={{ mb: 1.5 }}
                   >
                     Inquire Now – Best Price Guaranteed!
                   </Button>
@@ -269,9 +261,9 @@ const TourDetail = () => {
                     size="large"
                     fullWidth
                     startIcon={<PhoneIcon />}
-                    href="tel:+917006327776"
-                    className="mb-2"
-                    aria-label="Call us at +91 7006327776, +91 7006601277"
+                    href="tel:+917006601277"
+                    sx={{ mb: 1.5 }}
+                    aria-label="Call us at +91 7006601277, +91 7006327776"
                   >
                     Call Us
                   </Button>
@@ -280,7 +272,7 @@ const TourDetail = () => {
                     size="large"
                     fullWidth
                     startIcon={<WhatsAppIcon />}
-                    href="https://wa.me/917006327776"
+                    href="https://wa.me/917006601277"
                     target="_blank"
                     rel="noopener noreferrer"
                     sx={{ color: '#25D366', borderColor: '#25D366', '&:hover': { borderColor: '#25D366', bgcolor: 'rgba(37, 211, 102, 0.04)' } }}

@@ -10,33 +10,31 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 const Footer = () => {
   return (
-    <Box component="footer" sx={{ bgcolor: '#0F3F3F' }} className="text-white py-8 md:py-12">
+    <Box component="footer" sx={{ bgcolor: '#0F3F3F', color: 'white', py: { xs: 4, md: 6 } }}>
       <Container maxWidth="xl">
         <Grid container spacing={{ xs: 3, md: 4 }}>
           {/* Company Info */}
           <Grid item xs={12} sm={6} md={4}>
             <Typography
               variant="h5"
-              className="font-bold mb-3 md:mb-4 text-white"
-              sx={{ fontFamily: 'Pacifico, cursive', fontSize: { xs: '1.25rem', md: '1.5rem' } }}
+              sx={{ fontFamily: 'Pacifico, cursive', fontSize: { xs: '1.25rem', md: '1.5rem' }, fontWeight: 'bold', mb: { xs: 1.5, md: 2 }, color: 'white' }}
             >
               Serene Valley Tours
             </Typography>
             <Typography
               variant="caption"
-              className="text-gray-400 block mb-3"
-              sx={{ fontSize: '0.75rem', fontStyle: 'italic' }}
+              sx={{ fontSize: '0.75rem', fontStyle: 'italic', color: 'rgba(255,255,255,0.6)', display: 'block', mb: 1.5 }}
             >
               Your Gateway to Paradise
             </Typography>
-            <Typography variant="body2" className="text-gray-400 mb-3 md:mb-4" sx={{ fontSize: { xs: '0.875rem' } }}>
+            <Typography variant="body2" sx={{ fontSize: { xs: '0.875rem' }, color: 'rgba(255,255,255,0.6)', mb: { xs: 1.5, md: 2 } }}>
               Experience the paradise on earth with our expertly crafted tours
               and travel packages. We specialize in creating unforgettable
               experiences in Kashmir and Ladakh.
             </Typography>
-            <Box className="flex gap-2">
+            <Box sx={{ display: 'flex', gap: 1 }}>
               <IconButton 
-                className="text-white hover:text-primary-light"
+                sx={{ color: 'white', '&:hover': { color: 'primary.light' } }}
                 size="small"
                 aria-label="Visit our Facebook page"
                 component="a"
@@ -47,7 +45,7 @@ const Footer = () => {
                 <FacebookIcon fontSize="small" />
               </IconButton>
               <IconButton 
-                className="text-white hover:text-primary-light"
+                sx={{ color: 'white', '&:hover': { color: 'primary.light' } }}
                 size="small"
                 aria-label="Visit our Twitter page"
                 component="a"
@@ -58,7 +56,7 @@ const Footer = () => {
                 <TwitterIcon fontSize="small" />
               </IconButton>
               <IconButton 
-                className="text-white hover:text-primary-light"
+                sx={{ color: 'white', '&:hover': { color: 'primary.light' } }}
                 size="small"
                 aria-label="Visit our Instagram page"
                 component="a"
@@ -69,7 +67,7 @@ const Footer = () => {
                 <InstagramIcon fontSize="small" />
               </IconButton>
               <IconButton 
-                className="text-white hover:text-primary-light"
+                sx={{ color: 'white', '&:hover': { color: 'primary.light' } }}
                 size="small"
                 aria-label="Visit our YouTube channel"
                 component="a"
@@ -84,23 +82,23 @@ const Footer = () => {
 
           {/* Quick Links */}
           <Grid item xs={6} sm={3} md={2}>
-            <Typography variant="h6" className="font-bold mb-3 md:mb-4 text-white" sx={{ fontSize: { xs: '1rem', md: '1.25rem' } }}>
+            <Typography variant="h6" sx={{ fontSize: { xs: '1rem', md: '1.25rem' }, fontWeight: 'bold', mb: { xs: 1.5, md: 2 }, color: 'white' }}>
               Quick Links
             </Typography>
-            <Box component="nav" className="flex flex-col gap-2">
-              <MuiLink component={Link} to="/" className="text-gray-400 hover:text-white no-underline" sx={{ fontSize: '0.875rem' }}>
+            <Box component="nav" sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+              <MuiLink component={Link} to="/" sx={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.6)', textDecoration: 'none', '&:hover': { color: 'white' } }}>
                 Home
               </MuiLink>
-              <MuiLink component={Link} to="/destinations" className="text-gray-400 hover:text-white no-underline" sx={{ fontSize: '0.875rem' }}>
+              <MuiLink component={Link} to="/destinations" sx={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.6)', textDecoration: 'none', '&:hover': { color: 'white' } }}>
                 Destinations
               </MuiLink>
-              <MuiLink component={Link} to="/store" className="text-gray-400 hover:text-white no-underline" sx={{ fontSize: '0.875rem' }}>
+              <MuiLink component={Link} to="/store" sx={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.6)', textDecoration: 'none', '&:hover': { color: 'white' } }}>
                 Store
               </MuiLink>
-              <MuiLink component={Link} to="/about" className="text-gray-400 hover:text-white no-underline" sx={{ fontSize: '0.875rem' }}>
+              <MuiLink component={Link} to="/about" sx={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.6)', textDecoration: 'none', '&:hover': { color: 'white' } }}>
                 About
               </MuiLink>
-              <MuiLink component={Link} to="/contact" className="text-gray-400 hover:text-white no-underline" sx={{ fontSize: '0.875rem' }}>
+              <MuiLink component={Link} to="/contact" sx={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.6)', textDecoration: 'none', '&:hover': { color: 'white' } }}>
                 Contact
               </MuiLink>
             </Box>
@@ -108,20 +106,20 @@ const Footer = () => {
 
           {/* Tours */}
           <Grid item xs={6} sm={3} md={3}>
-            <Typography variant="h6" className="font-bold mb-3 md:mb-4 text-white" sx={{ fontSize: { xs: '1rem', md: '1.25rem' } }}>
+            <Typography variant="h6" sx={{ fontSize: { xs: '1rem', md: '1.25rem' }, fontWeight: 'bold', mb: { xs: 1.5, md: 2 }, color: 'white' }}>
               Popular Tours
             </Typography>
-            <Box component="nav" className="flex flex-col gap-2">
-              <MuiLink component={Link} to="/kashmir" className="text-gray-400 hover:text-white no-underline" sx={{ fontSize: '0.875rem' }}>
+            <Box component="nav" sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+              <MuiLink component={Link} to="/kashmir" sx={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.6)', textDecoration: 'none', '&:hover': { color: 'white' } }}>
                 Kashmir Packages
               </MuiLink>
-              <MuiLink component={Link} to="/ladakh" className="text-gray-400 hover:text-white no-underline" sx={{ fontSize: '0.875rem' }}>
+              <MuiLink component={Link} to="/ladakh" sx={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.6)', textDecoration: 'none', '&:hover': { color: 'white' } }}>
                 Ladakh Adventures
               </MuiLink>
-              <MuiLink component={Link} to="/adventure" className="text-gray-400 hover:text-white no-underline" sx={{ fontSize: '0.875rem' }}>
+              <MuiLink component={Link} to="/adventure" sx={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.6)', textDecoration: 'none', '&:hover': { color: 'white' } }}>
                 Adventure Tours
               </MuiLink>
-              <MuiLink component={Link} to="/tours" className="text-gray-400 hover:text-white no-underline" sx={{ fontSize: '0.875rem' }}>
+              <MuiLink component={Link} to="/tours" sx={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.6)', textDecoration: 'none', '&:hover': { color: 'white' } }}>
                 All Tours
               </MuiLink>
             </Box>
@@ -129,30 +127,30 @@ const Footer = () => {
 
           {/* Contact Info */}
           <Grid item xs={12} sm={12} md={3}>
-            <Typography variant="h6" className="font-bold mb-3 md:mb-4 text-white" sx={{ fontSize: { xs: '1rem', md: '1.25rem' } }}>
+            <Typography variant="h6" sx={{ fontSize: { xs: '1rem', md: '1.25rem' }, fontWeight: 'bold', mb: { xs: 1.5, md: 2 }, color: 'white' }}>
               Contact Us
             </Typography>
-            <Box className="flex flex-col gap-3">
-              <Box className="flex items-start gap-2">
-                <LocationOnIcon className="text-primary-light mt-1" aria-hidden="true" sx={{ fontSize: '1.25rem' }} />
-                <Typography variant="body2" className="text-gray-400" sx={{ fontSize: '0.875rem' }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+              <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1 }}>
+                <LocationOnIcon sx={{ color: 'primary.light', mt: 0.5, fontSize: '1.25rem' }} aria-hidden="true" />
+                <Typography variant="body2" sx={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.6)' }}>
                   Bemina, Srinagar, Jammu & Kashmir
                 </Typography>
               </Box>
-              <Box className="flex items-start gap-2">
-                <PhoneIcon className="text-primary-light" aria-hidden="true" sx={{ fontSize: '1.25rem' }} />
-                <Box className="flex flex-col gap-1">
-                  <MuiLink href="tel:+917006327776" className="text-gray-400 hover:text-white no-underline" sx={{ fontSize: '0.875rem' }}>
-                    +91 7006327776
-                  </MuiLink>
-                  <MuiLink href="tel:+917006601277" className="text-gray-400 hover:text-white no-underline" sx={{ fontSize: '0.875rem' }}>
+              <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1 }}>
+                <PhoneIcon sx={{ color: 'primary.light', fontSize: '1.25rem' }} aria-hidden="true" />
+                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
+                  <MuiLink href="tel:+917006601277" sx={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.6)', textDecoration: 'none', '&:hover': { color: 'white' } }}>
                     +91 7006601277
+                  </MuiLink>
+                  <MuiLink href="tel:+917006327776" sx={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.6)', textDecoration: 'none', '&:hover': { color: 'white' } }}>
+                    +91 7006327776
                   </MuiLink>
                 </Box>
               </Box>
-              <Box className="flex items-start gap-2">
-                <EmailIcon className="text-primary-light" aria-hidden="true" sx={{ fontSize: '1.25rem' }} />
-                <MuiLink href="mailto:serenevalleytours@gmail.com" className="text-gray-400 hover:text-white no-underline break-all" sx={{ fontSize: '0.875rem' }}>
+              <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1 }}>
+                <EmailIcon sx={{ color: 'primary.light', fontSize: '1.25rem' }} aria-hidden="true" />
+                <MuiLink href="mailto:serenevalleytours@gmail.com" sx={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.6)', textDecoration: 'none', wordBreak: 'break-all', '&:hover': { color: 'white' } }}>
                   serenevalleytours@gmail.com
                 </MuiLink>
               </Box>
@@ -161,8 +159,8 @@ const Footer = () => {
         </Grid>
 
         {/* Bottom Bar */}
-        <Box className="border-t border-gray-800 mt-6 md:mt-8 pt-4 md:pt-6 text-center">
-          <Typography variant="body2" className="text-gray-400" sx={{ fontSize: { xs: '0.75rem', md: '0.875rem' } }}>
+        <Box sx={{ borderTop: '1px solid rgba(255,255,255,0.1)', mt: { xs: 3, md: 4 }, pt: { xs: 2, md: 3 }, textAlign: 'center' }}>
+          <Typography variant="body2" sx={{ fontSize: { xs: '0.75rem', md: '0.875rem' }, color: 'rgba(255,255,255,0.6)' }}>
             © 2025 Serene Valley Tours. All rights reserved.
           </Typography>
         </Box>

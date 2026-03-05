@@ -66,10 +66,10 @@ const DestinationDetail = () => {
           }}
         >
           <Container>
-            <Typography variant="h1" className="font-bold text-white text-center" sx={{ fontSize: { xs: '2.5rem', md: '4rem' } }}>
+            <Typography variant="h1" sx={{ fontSize: { xs: '2.5rem', md: '4rem' }, fontWeight: 'bold', color: 'white', textAlign: 'center' }}>
               {destination.name}
             </Typography>
-            <Typography variant="h2" className="text-white text-center mt-2" sx={{ fontSize: { xs: '1.25rem', md: '1.75rem' }, fontWeight: 400 }}>
+            <Typography variant="h2" sx={{ fontSize: { xs: '1.25rem', md: '1.75rem' }, fontWeight: 400, color: 'white', textAlign: 'center', mt: 1 }}>
               {destination.tagline}
             </Typography>
           </Container>
