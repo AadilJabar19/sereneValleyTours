@@ -68,7 +68,7 @@ const TourDetail = () => {
   };
 
   if (!tour) {
-    return <Box className="py-16 text-center">Loading...</Box>;
+    return <Box sx={{ py: 16, textAlign: 'center' }}>Loading...</Box>;
   }
 
   return (
@@ -98,7 +98,7 @@ const TourDetail = () => {
             <Box sx={{ color: 'white' }}>
               <Chip
                 label={tour.category}
-                sx={{ mb: 1, borderRadius: '9999px', bgcolor: 'secondary.main', height: '3rem', width: '7rem', fontSize: '1.125rem', fontWeight: 'bold', color: 'white' }}
+                sx={{ mb: 1, borderRadius: '9999px', height: '3rem', width: '7rem', fontSize: '1.125rem', fontWeight: 'bold' }}
               />
               <Typography variant="h1" sx={{ fontSize: { xs: '2rem', md: '2.5rem' }, fontWeight: 'bold', mb: 1, color: 'white' }}>
                 {tour.name}
@@ -113,39 +113,39 @@ const TourDetail = () => {
           </Container>
         </Box>
 
-        <Container component="article" className="py-12">
+        <Container component="article" sx={{ py: { xs: 8, md: 12 } }}>
           <Grid container spacing={4}>
             {/* Main Content */}
             <Grid item xs={12} md={8}>
               {/* Description */}
-              <Card component="section" className="mb-4">
-                <CardContent>
-                  <Typography variant="h2" className="font-bold mb-4" sx={{ fontSize: '1.5rem' }}>
+              <Card component="section" sx={{ mb: 3, p: 1 }}>
+                <CardContent sx={{ p: 3 }}>
+                  <Typography variant="h2" sx={{ fontSize: '1.75rem', fontWeight: 'bold', mb: 3, color: '#2C3E50' }}>
                     About This Tour
                   </Typography>
-                  <Typography variant="body1" className="text-gray-700">
+                  <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.8 }}>
                     {tour.description}
                   </Typography>
                 </CardContent>
               </Card>
 
               {/* Itinerary */}
-              <Card component="section" className="mb-4">
-                <CardContent>
-                  <Typography variant="h2" className="font-bold mb-4" sx={{ fontSize: '1.5rem' }}>
+              <Card component="section" sx={{ mb: 3, p: 1 }}>
+                <CardContent sx={{ p: 3 }}>
+                  <Typography variant="h2" sx={{ fontSize: '1.75rem', fontWeight: 'bold', mb: 3, color: '#2C3E50' }}>
                     Itinerary
                   </Typography>
-                  <Box className="mb-4 p-3 bg-blue-50 rounded-lg border-l-4 border-primary-main">
-                    <Typography variant="body2" className="text-gray-700" sx={{ fontStyle: 'italic' }}>
+                  <Box sx={{ mb: 3, p: 2.5, bgcolor: '#E0F7F8', borderRadius: '12px', borderLeft: '4px solid', borderColor: 'primary.main' }}>
+                    <Typography variant="body2" color="text.secondary" sx={{ fontStyle: 'italic' }}>
                       💡 <strong>Note:</strong> This itinerary can be fully customized as per your preferences and requirements. Contact us to create your perfect tour!
                     </Typography>
                   </Box>
                   {tour.itinerary?.map((day, index) => (
-                    <Box key={index} className="mb-4">
-                      <Typography variant="h3" className="font-bold text-primary-main" sx={{ fontSize: '1.25rem' }}>
+                    <Box key={index} sx={{ mb: 3 }}>
+                      <Typography variant="h3" sx={{ fontSize: '1.25rem', fontWeight: 'bold', color: 'primary.main', mb: 1 }}>
                         {day.day} - {day.title}
                       </Typography>
-                      <Typography variant="body2" className="text-gray-700 mt-2">
+                      <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.7 }}>
                         {day.details}
                       </Typography>
                     </Box>
@@ -154,9 +154,9 @@ const TourDetail = () => {
               </Card>
 
               {/* Tour Gallery */}
-              <Card component="section" className="mb-4">
-                <CardContent>
-                  <Typography variant="h2" className="font-bold mb-4" sx={{ fontSize: '1.5rem' }}>
+              <Card component="section" sx={{ mb: 3, p: 1 }}>
+                <CardContent sx={{ p: 3 }}>
+                  <Typography variant="h2" sx={{ fontSize: '1.75rem', fontWeight: 'bold', mb: 3, color: '#2C3E50' }}>
                     Tour Gallery
                   </Typography>
                   <Grid container spacing={2}>
@@ -165,7 +165,7 @@ const TourDetail = () => {
                         component="img"
                         src={tour.bannerImage}
                         alt={`${tour.name} main view`}
-                        className="w-full h-64 object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
+                        sx={{ width: '100%', height: 256, objectFit: 'cover', borderRadius: '12px', cursor: 'pointer', transition: 'opacity 0.3s', '&:hover': { opacity: 0.9 } }}
                         loading="lazy"
                         onClick={() => handleImageClick(0)}
                       />
@@ -176,7 +176,7 @@ const TourDetail = () => {
                           component="img"
                           src={image}
                           alt={`${tour.name} view ${index + 1}`}
-                          className="w-full h-40 object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
+                          sx={{ width: '100%', height: 160, objectFit: 'cover', borderRadius: '12px', cursor: 'pointer', transition: 'opacity 0.3s', '&:hover': { opacity: 0.9 } }}
                           loading="lazy"
                           onClick={() => handleImageClick(index + 1)}
                         />
@@ -189,18 +189,18 @@ const TourDetail = () => {
               {/* Inclusions & Exclusions */}
               <Grid container spacing={2}>
                 <Grid item xs={12} md={6}>
-                  <Card component="section">
-                    <CardContent>
-                      <Typography variant="h3" className="font-bold mb-3" sx={{ fontSize: '1.25rem' }}>
+                  <Card component="section" sx={{ p: 1 }}>
+                    <CardContent sx={{ p: 3 }}>
+                      <Typography variant="h3" sx={{ fontSize: '1.25rem', fontWeight: 'bold', mb: 2, color: '#2C3E50' }}>
                         Inclusions
                       </Typography>
                       <List dense>
                         {tour.inclusions?.map((item, index) => (
-                          <ListItem key={index}>
-                            <ListItemIcon>
-                              <CheckCircleIcon className="text-green-600" aria-hidden="true" />
+                          <ListItem key={index} sx={{ px: 0 }}>
+                            <ListItemIcon sx={{ minWidth: 36 }}>
+                              <CheckCircleIcon sx={{ color: '#16A34A', fontSize: '1.25rem' }} aria-hidden="true" />
                             </ListItemIcon>
-                            <ListItemText primary={item} />
+                            <ListItemText primary={item} primaryTypographyProps={{ variant: 'body2', color: 'text.secondary' }} />
                           </ListItem>
                         ))}
                       </List>
@@ -208,18 +208,18 @@ const TourDetail = () => {
                   </Card>
                 </Grid>
                 <Grid item xs={12} md={6}>
-                  <Card component="section">
-                    <CardContent>
-                      <Typography variant="h3" className="font-bold mb-3" sx={{ fontSize: '1.25rem' }}>
+                  <Card component="section" sx={{ p: 1 }}>
+                    <CardContent sx={{ p: 3 }}>
+                      <Typography variant="h3" sx={{ fontSize: '1.25rem', fontWeight: 'bold', mb: 2, color: '#2C3E50' }}>
                         Exclusions
                       </Typography>
                       <List dense>
                         {tour.exclusions?.map((item, index) => (
-                          <ListItem key={index}>
-                            <ListItemIcon>
-                              <CancelIcon className="text-red-600" aria-hidden="true" />
+                          <ListItem key={index} sx={{ px: 0 }}>
+                            <ListItemIcon sx={{ minWidth: 36 }}>
+                              <CancelIcon sx={{ color: '#DC2626', fontSize: '1.25rem' }} aria-hidden="true" />
                             </ListItemIcon>
-                            <ListItemText primary={item} />
+                            <ListItemText primary={item} primaryTypographyProps={{ variant: 'body2', color: 'text.secondary' }} />
                           </ListItem>
                         ))}
                       </List>
@@ -238,9 +238,9 @@ const TourDetail = () => {
                 </Box>
               )}
 
-              <Card component="aside">
+              <Card component="aside" sx={{ p: 1 }}>
                 <CardContent sx={{ p: 3 }}>
-                  <Typography variant="h2" sx={{ fontSize: '1.5rem', fontWeight: 'bold', mb: 2 }}>
+                  <Typography variant="h2" sx={{ fontSize: '1.5rem', fontWeight: 'bold', mb: 2, color: '#2C3E50' }}>
                     Interested in This Tour?
                   </Typography>
                   <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
@@ -252,9 +252,9 @@ const TourDetail = () => {
                     fullWidth
                     component={Link}
                     to="/contact"
-                    sx={{ mb: 1.5 }}
+                    sx={{ mb: 1.5, py: 1.5 }}
                   >
-                    Inquire Now – Best Price Guaranteed!
+                    Inquire Now
                   </Button>
                   <Button
                     variant="outlined"
@@ -262,7 +262,7 @@ const TourDetail = () => {
                     fullWidth
                     startIcon={<PhoneIcon />}
                     href="tel:+917006601277"
-                    sx={{ mb: 1.5 }}
+                    sx={{ mb: 1.5, py: 1.5 }}
                     aria-label="Call us at +91 7006601277, +91 7006327776"
                   >
                     Call Us
@@ -275,7 +275,7 @@ const TourDetail = () => {
                     href="https://wa.me/917006601277"
                     target="_blank"
                     rel="noopener noreferrer"
-                    sx={{ color: '#25D366', borderColor: '#25D366', '&:hover': { borderColor: '#25D366', bgcolor: 'rgba(37, 211, 102, 0.04)' } }}
+                    sx={{ color: '#25D366', borderColor: '#25D366', py: 1.5, '&:hover': { borderColor: '#25D366', bgcolor: 'rgba(37, 211, 102, 0.04)' } }}
                     aria-label="Contact us on WhatsApp"
                   >
                     WhatsApp

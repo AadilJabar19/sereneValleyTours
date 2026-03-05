@@ -7,46 +7,87 @@ import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 const TrustStats = () => {
   const stats = [
     {
-      icon: <GroupsIcon sx={{ fontSize: 48 }} />,
       number: '500+',
       label: 'Happy Travelers',
     },
     {
-      icon: <CalendarMonthIcon sx={{ fontSize: 48 }} />,
       number: '5+',
       label: 'Years Experience',
     },
     {
-      icon: <LocationOnIcon sx={{ fontSize: 48 }} />,
       number: '50+',
       label: 'Destinations',
     },
     {
-      icon: <SupportAgentIcon sx={{ fontSize: 48 }} />,
       number: '24/7',
-      label: 'Customer Support',
+      label: 'Support',
     },
   ];
 
   return (
-    <Box component="section" sx={{ bgcolor: 'primary.main', color: 'white', py: { xs: 6, md: 8 } }}>
+    <Box component="section" sx={{ py: { xs: 8, md: 12 } }}>
       <Container>
+        <Box sx={{ textAlign: 'center', mb: 8 }}>
+          <Typography 
+            sx={{ 
+              fontFamily: 'Pacifico, cursive', 
+              fontSize: { xs: '1.5rem', md: '2rem' }, 
+              color: 'primary.main',
+              mb: 1
+            }}
+          >
+            Our Achievements
+          </Typography>
+          <Typography 
+            variant="h2" 
+            sx={{ fontSize: { xs: '2rem', md: '2.75rem' }, fontWeight: 'bold', color: '#2C3E50' }}
+          >
+            Why Choose Us
+          </Typography>
+        </Box>
         <Grid container spacing={4}>
           {stats.map((stat, index) => (
             <Grid item xs={6} md={3} key={index}>
-              <Box sx={{ textAlign: 'center' }}>
-                <Box sx={{ mb: 1, color: 'white', opacity: 0.9 }} aria-hidden="true">
-                  {stat.icon}
-                </Box>
+              <Box 
+                sx={{ 
+                  textAlign: 'center',
+                  p: 4,
+                  borderRadius: '50%',
+                  width: { xs: '160px', md: '200px' },
+                  height: { xs: '160px', md: '200px' },
+                  mx: 'auto',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  bgcolor: '#E0F7F8',
+                  border: '3px solid',
+                  borderColor: 'primary.main',
+                  transition: 'all 0.3s',
+                  '&:hover': {
+                    transform: 'scale(1.05)',
+                    boxShadow: '0 8px 30px rgba(28, 168, 175, 0.2)'
+                  }
+                }}
+              >
                 <Typography 
                   variant="h3" 
-                  sx={{ fontSize: { xs: '2rem', md: '2.5rem' }, fontWeight: 'bold', mb: 0.5 }}
+                  sx={{ 
+                    fontSize: { xs: '2.5rem', md: '3rem' }, 
+                    fontWeight: 'bold',
+                    color: 'primary.main',
+                    mb: 0.5
+                  }}
                 >
                   {stat.number}
                 </Typography>
                 <Typography 
                   variant="body1" 
-                  sx={{ fontSize: { xs: '0.875rem', md: '1rem' }, opacity: 0.9 }}
+                  sx={{ 
+                    fontSize: { xs: '0.875rem', md: '1rem' }, 
+                    fontWeight: 600,
+                    color: '#2C3E50'
+                  }}
                 >
                   {stat.label}
                 </Typography>

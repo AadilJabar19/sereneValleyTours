@@ -54,21 +54,33 @@ const Tours = () => {
       />
       <Box>
         {/* Header */}
-        <Box component="header" sx={{ bgcolor: 'primary.main', color: 'white', py: 8 }}>
+        <Box component="header" sx={{ bgcolor: '#F0F9FA', py: 10 }}>
           <Container>
-            <Typography variant="h1" sx={{ fontSize: { xs: '2rem', md: '2.5rem' }, fontWeight: 'bold', mb: 2, color: 'white' }}>
-              Explore Our Tours
-            </Typography>
-            <Typography variant="h2" sx={{ fontSize: { xs: '1.25rem', md: '1.5rem' }, fontWeight: 400, color: 'white' }}>
-              Find your perfect adventure in Kashmir and Ladakh
-            </Typography>
+            <Box sx={{ textAlign: 'center' }}>
+              <Typography 
+                sx={{ 
+                  fontFamily: 'Pacifico, cursive', 
+                  fontSize: { xs: '1.5rem', md: '2rem' }, 
+                  color: 'primary.main',
+                  mb: 1
+                }}
+              >
+                Find Your Adventure
+              </Typography>
+              <Typography variant="h1" sx={{ fontSize: { xs: '2rem', md: '2.75rem' }, fontWeight: 'bold', mb: 2, color: '#2C3E50' }}>
+                Explore Our Tours
+              </Typography>
+              <Typography variant="body1" color="text.secondary" sx={{ fontSize: { xs: '1rem', md: '1.125rem' }, maxWidth: '600px', mx: 'auto' }}>
+                Find your perfect adventure in Kashmir and Ladakh
+              </Typography>
+            </Box>
           </Container>
         </Box>
 
         {/* Filters */}
-        <Container component="section" className="py-8">
-          <Box className="mb-6">
-            <FormControl className="w-64">
+        <Container component="section" sx={{ py: 8 }}>
+          <Box sx={{ mb: 6 }}>
+            <FormControl sx={{ minWidth: 250 }}>
               <InputLabel id="category-filter-label">Category</InputLabel>
               <Select
                 labelId="category-filter-label"
@@ -89,42 +101,59 @@ const Tours = () => {
           <Grid container spacing={4}>
             {tours.map((tour) => (
               <Grid item xs={12} md={4} key={tour.id}>
-                <Card className="h-full flex flex-col">
-                  <CardMedia
-                    component="img"
-                    height="240"
-                    image={tour.bannerImage || 'https://via.placeholder.com/400x240'}
-                    alt={tour.name}
-                    className="h-60 object-cover"
-                    loading="lazy"
-                  />
-                  <CardContent className="flex-grow">
+                <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+                  <Box sx={{ position: 'relative', overflow: 'hidden' }}>
+                    <CardMedia
+                      component="img"
+                      height="280"
+                      image={tour.bannerImage || 'https://via.placeholder.com/400x280'}
+                      alt={tour.name}
+                      sx={{ height: 280, objectFit: 'cover', transition: 'transform 0.3s', '&:hover': { transform: 'scale(1.05)' } }}
+                      loading="lazy"
+                    />
                     <Chip
                       label={tour.category}
                       size="small"
-                      className="mb-2 bg-primary-light text-white"
+                      sx={{ 
+                        position: 'absolute', 
+                        top: 16, 
+                        left: 16
+                      }}
                     />
-                    <Typography variant="h3" className="font-bold mb-2" sx={{ fontSize: '1.25rem' }}>
+                  </Box>
+                  <CardContent sx={{ flexGrow: 1, p: 3 }}>
+                    <Typography variant="h3" sx={{ fontSize: '1.375rem', fontWeight: 'bold', mb: 1.5, color: '#2C3E50' }}>
                       {tour.name}
                     </Typography>
                     <Typography
                       variant="body2"
-                      className="text-gray-600 mb-3 line-clamp-3"
+                      color="text.secondary"
+                      sx={{ 
+                        mb: 2,
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        display: '-webkit-box',
+                        WebkitLineClamp: 3,
+                        WebkitBoxOrient: 'vertical',
+                        lineHeight: 1.6
+                      }}
                     >
                       {tour.description}
                     </Typography>
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, color: 'text.secondary' }}>
                       <AccessTimeIcon fontSize="small" aria-hidden="true" />
                       <Typography variant="body2">{tour.duration}</Typography>
                     </Box>
                   </CardContent>
-                  <CardActions className="p-4 pt-0">
+                  <CardActions sx={{ p: 3, pt: 0 }}>
                     <Button
                       component={Link}
                       to={`/tours/${tour.id}`}
                       variant="contained"
                       fullWidth
+                      size="large"
                       aria-label={`View details for ${tour.name}`}
+                      sx={{ py: 1.5 }}
                     >
                       View Details
                     </Button>
@@ -135,8 +164,8 @@ const Tours = () => {
           </Grid>
 
           {tours.length === 0 && (
-            <Box className="text-center py-16">
-              <Typography variant="h3" className="text-gray-600" sx={{ fontSize: '1.5rem' }}>
+            <Box sx={{ textAlign: 'center', py: 16 }}>
+              <Typography variant="h3" color="text.secondary" sx={{ fontSize: '1.5rem' }}>
                 No tours found
               </Typography>
             </Box>
