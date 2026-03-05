@@ -15,6 +15,7 @@ import {
   Chip,
   Dialog,
   IconButton,
+  Fab,
 } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
@@ -24,6 +25,7 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import EmailIcon from '@mui/icons-material/Email';
 import { getTourById } from '../data/tours';
 import SEO from '../components/SEO';
 import MiniInquiry from '../components/MiniInquiry';
@@ -238,7 +240,7 @@ const TourDetail = () => {
                 </Box>
               )}
 
-              <Card component="aside" sx={{ p: 1 }}>
+              <Card component="aside" sx={{ p: 1, position: 'sticky', top: 24 }}>
                 <CardContent sx={{ p: 3 }}>
                   <Typography variant="h2" sx={{ fontSize: '1.5rem', fontWeight: 'bold', mb: 2, color: '#2C3E50' }}>
                     Interested in This Tour?
@@ -285,6 +287,24 @@ const TourDetail = () => {
             </Grid>
           </Grid>
         </Container>
+
+        {/* Floating Inquiry Button */}
+        {!showInquiry && (
+          <Fab
+            color="primary"
+            aria-label="Open inquiry form"
+            onClick={() => setShowInquiry(true)}
+            sx={{
+              position: 'fixed',
+              bottom: 100,
+              right: 24,
+              zIndex: 1000,
+              boxShadow: '0 8px 24px rgba(28, 168, 175, 0.4)',
+            }}
+          >
+            <EmailIcon />
+          </Fab>
+        )}
 
         {/* Image Lightbox with Slider */}
         <Dialog
