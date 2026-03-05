@@ -1,9 +1,14 @@
-import { Box, Container, Typography, Grid, Card, CardContent } from '@mui/material';
+import { Box, Container, Typography, Card, CardContent } from '@mui/material';
 import LocalPoliceIcon from '@mui/icons-material/LocalPolice';
 import NatureIcon from '@mui/icons-material/Nature';
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 import PersonIcon from '@mui/icons-material/Person';
 import VerifiedIcon from '@mui/icons-material/Verified';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, Autoplay, EffectCoverflow } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/effect-coverflow';
 
 const WhyChooseUs = () => {
   const features = [
@@ -35,60 +40,107 @@ const WhyChooseUs = () => {
   ];
 
   return (
-    <Box component="section" sx={{ bgcolor: 'background.default', py: { xs: 8, md: 12 } }}>
+    <Box component="section" sx={{ bgcolor: '#F0F9FA', py: { xs: 8, md: 12 } }}>
       <Container>
-        <Box sx={{ textAlign: 'center', mb: 6 }}>
+        <Box sx={{ textAlign: 'center', mb: 8 }}>
+          <Typography 
+            sx={{ 
+              fontFamily: 'Pacifico, cursive', 
+              fontSize: { xs: '1.5rem', md: '2rem' }, 
+              color: 'primary.main',
+              mb: 1
+            }}
+          >
+            Our Services
+          </Typography>
           <Typography 
             variant="h2" 
-            sx={{ fontSize: { xs: '2rem', md: '2.5rem' }, fontWeight: 'bold', mb: 2 }}
+            sx={{ fontSize: { xs: '2rem', md: '2.75rem' }, fontWeight: 'bold', mb: 2, color: '#2C3E50' }}
           >
             Why Choose Serene Valley Tours?
           </Typography>
           <Typography 
             variant="body1" 
             color="text.secondary" 
-            sx={{ fontSize: '1.125rem', maxWidth: '700px', mx: 'auto' }}
+            sx={{ fontSize: { xs: '1rem', md: '1.125rem' }, maxWidth: '600px', mx: 'auto' }}
           >
             Your trusted partner for unforgettable Kashmir and Ladakh adventures
           </Typography>
         </Box>
 
-        <Grid container spacing={4}>
+        <Swiper
+          modules={[Pagination, Autoplay, EffectCoverflow]}
+          effect="coverflow"
+          centeredSlides={true}
+          slidesPerView={3}
+          loop={true}
+          loopedSlides={5}
+          slideToClickedSlide={true}
+          allowTouchMove={true}
+          coverflowEffect={{
+            rotate: 15,
+            stretch: 0,
+            depth: 200,
+            modifier: 1.5,
+            slideShadows: true,
+          }}
+          pagination={{ clickable: true }}
+          autoplay={{ delay: 3500, disableOnInteraction: false }}
+          breakpoints={{
+            320: { slidesPerView: 1 },
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+          }}
+          style={{ paddingBottom: '60px', paddingTop: '20px' }}
+        >
           {features.map((feature, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
+            <SwiperSlide key={index} style={{ width: '380px' }}>
               <Card 
                 sx={{ 
                   height: '100%',
                   textAlign: 'center',
-                  transition: 'all 0.3s',
-                  '&:hover': { 
-                    boxShadow: 6,
-                    transform: 'translateY(-8px)'
+                  p: 1,
+                  minHeight: '300px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  cursor: 'pointer',
+                  '&:hover': {
+                    transform: 'none',
+                    boxShadow: '0 10px 40px rgba(28, 168, 175, 0.15)',
                   }
                 }}
               >
-                <CardContent sx={{ p: 4 }}>
-                  <Box sx={{ mb: 1.5 }} aria-hidden="true">
+                <CardContent sx={{ p: 4, width: '100%' }}>
+                  <Box 
+                    sx={{ 
+                      mb: 2.5,
+                      display: 'inline-flex',
+                      p: 2.5,
+                      borderRadius: '50%',
+                      bgcolor: '#E0F7F8'
+                    }} 
+                    aria-hidden="true"
+                  >
                     {feature.icon}
                   </Box>
                   <Typography 
                     variant="h3" 
-                    sx={{ fontSize: '1.25rem', fontWeight: 'bold', mb: 1 }}
+                    sx={{ fontSize: '1.375rem', fontWeight: 'bold', mb: 1.5, color: '#2C3E50' }}
                   >
                     {feature.title}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary">
+                  <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.7, fontSize: '1rem' }}>
                     {feature.description}
                   </Typography>
                 </CardContent>
               </Card>
-            </Grid>
+            </SwiperSlide>
           ))}
-        </Grid>
+        </Swiper>
 
         {/* Trust Badges */}
-        <Box sx={{ textAlign: 'center', mt: 4 }}>
-          <Typography variant="body2" color="text.secondary" sx={{ mb: 1.5 }}>
+        <Box sx={{ textAlign: 'center', mt: 6 }}>
+          <Typography variant="body2" color="text.secondary" sx={{ mb: 1.5, fontSize: '0.9375rem' }}>
             🏆 Registered Tour Operator | ✓ Sustainable Tourism Certified | ⭐ 500+ Happy Travelers
           </Typography>
         </Box>

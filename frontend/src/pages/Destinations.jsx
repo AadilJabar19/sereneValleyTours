@@ -27,9 +27,11 @@ const Destinations = () => {
         {/* Hero Section */}
         <Box
           component="section"
-          className="relative bg-cover bg-center"
           sx={{
-            height: { xs: '40vh', md: '50vh' },
+            height: { xs: '50vh', md: '60vh' },
+            position: 'relative',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
             backgroundImage:
               'linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url(https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80&fm=webp&fit=crop)',
           }}
@@ -37,11 +39,21 @@ const Destinations = () => {
           aria-label="Kashmir destinations"
         >
           <Container sx={{ height: '100%', display: 'flex', alignItems: 'center', px: { xs: 2, sm: 3 } }}>
-            <Box sx={{ color: 'white' }}>
+            <Box sx={{ color: 'white', textAlign: 'center', width: '100%' }}>
+              <Typography 
+                sx={{ 
+                  fontFamily: 'Pacifico, cursive', 
+                  fontSize: { xs: '1.5rem', md: '2rem' }, 
+                  color: 'white',
+                  mb: 1
+                }}
+              >
+                Beautiful Places
+              </Typography>
               <Typography variant="h1" sx={{ color: 'white', fontSize: { xs: '2rem', md: '3rem' }, fontWeight: 'bold', mb: 2 }}>
                 Explore Destinations
               </Typography>
-              <Typography variant="h2" sx={{ fontSize: { xs: '1rem', md: '1.25rem' }, fontWeight: 400, color: 'white' }}>
+              <Typography variant="body1" sx={{ fontSize: { xs: '1rem', md: '1.125rem' }, color: 'rgba(255,255,255,0.9)', maxWidth: '600px', mx: 'auto' }}>
                 Discover the most beautiful places in Kashmir
               </Typography>
             </Box>
@@ -49,36 +61,40 @@ const Destinations = () => {
         </Box>
 
         {/* Destinations Grid */}
-        <Container component="section" className="py-12 md:py-16" sx={{ px: { xs: 2, sm: 3 } }}>
+        <Container component="section" sx={{ py: { xs: 8, md: 12 }, px: { xs: 2, sm: 3 } }}>
           <Grid container spacing={4}>
             {destinations.map((dest) => (
               <Grid item xs={12} sm={6} md={4} key={dest.id}>
-                <Card className="h-full flex flex-col shadow-lg rounded-2xl transition-all duration-300 hover:shadow-xl">
-                  <CardMedia
-                    component="img"
-                    height="250"
-                    image={dest.bannerImage}
-                    alt={dest.name}
-                    className="h-64 object-cover"
-                    loading="lazy"
-                  />
-                  <CardContent className="flex-grow">
-                    <Typography variant="h3" className="font-bold mb-2" sx={{ fontSize: '1.5rem' }}>
+                <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+                  <Box sx={{ position: 'relative', overflow: 'hidden' }}>
+                    <CardMedia
+                      component="img"
+                      height="280"
+                      image={dest.bannerImage}
+                      alt={dest.name}
+                      sx={{ height: 280, objectFit: 'cover', transition: 'transform 0.3s', '&:hover': { transform: 'scale(1.05)' } }}
+                      loading="lazy"
+                    />
+                  </Box>
+                  <CardContent sx={{ flexGrow: 1, p: 3 }}>
+                    <Typography variant="h3" sx={{ fontSize: '1.5rem', fontWeight: 'bold', mb: 1.5, color: '#2C3E50' }}>
                       {dest.name}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary" className="mb-3">
+                    <Typography variant="body2" color="text.secondary" sx={{ mb: 2, fontWeight: 500, fontSize: '0.9375rem' }}>
                       {dest.tagline}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary" className="line-clamp-3">
+                    <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.7, overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}>
                       {dest.description}
                     </Typography>
                   </CardContent>
-                  <CardActions className="p-4 pt-0">
+                  <CardActions sx={{ p: 3, pt: 0 }}>
                     <Button
                       component={Link}
                       to={`/destinations/${dest.id}`}
                       variant="contained"
                       fullWidth
+                      size="large"
+                      sx={{ py: 1.5 }}
                     >
                       Explore {dest.name}
                     </Button>

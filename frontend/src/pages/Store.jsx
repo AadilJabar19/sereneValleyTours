@@ -128,23 +128,23 @@ const Store = () => {
       
       <Box component="main">
         {/* Hero Section */}
-        <Box
-          component="section"
-          className="relative bg-cover bg-center"
-          sx={{
-            height: { xs: '40vh', md: '50vh' },
-            backgroundImage:
-              'linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url(https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1920&q=80&fm=webp&fit=crop)',
-          }}
-          role="img"
-          aria-label="Kashmir store products"
-        >
-          <Container sx={{ height: '100%', display: 'flex', alignItems: 'center', px: { xs: 2, sm: 3 } }}>
-            <Box sx={{ color: 'white' }}>
-              <Typography variant="h1" sx={{ color: 'white', fontSize: { xs: '2rem', md: '3rem' }, fontWeight: 'bold', mb: 2 }}>
-                Authentic Kashmir & Ladakh Products
+        <Box component="header" sx={{ bgcolor: '#F0F9FA', py: 10 }}>
+          <Container>
+            <Box sx={{ textAlign: 'center' }}>
+              <Typography 
+                sx={{ 
+                  fontFamily: 'Pacifico, cursive', 
+                  fontSize: { xs: '1.5rem', md: '2rem' }, 
+                  color: 'primary.main',
+                  mb: 1
+                }}
+              >
+                Authentic Products
               </Typography>
-              <Typography variant="h2" sx={{ fontSize: { xs: '1rem', md: '1.25rem' }, fontWeight: 400, color: 'white' }}>
+              <Typography variant="h1" sx={{ fontSize: { xs: '2rem', md: '2.75rem' }, fontWeight: 'bold', mb: 2, color: '#2C3E50' }}>
+                Kashmir & Ladakh Store
+              </Typography>
+              <Typography variant="body1" color="text.secondary" sx={{ fontSize: { xs: '1rem', md: '1.125rem' }, maxWidth: '600px', mx: 'auto' }}>
                 Premium quality products directly from the valleys
               </Typography>
             </Box>
@@ -152,22 +152,22 @@ const Store = () => {
         </Box>
 
         {/* Products Grid */}
-        <Container component="section" className="py-12 md:py-16" sx={{ px: { xs: 2, sm: 3 } }}>
-          <Box className="text-center mb-12">
-            <Typography variant="h2" className="font-bold mb-4" sx={{ fontSize: { xs: '2rem', md: '2.5rem' } }}>
+        <Container component="section" sx={{ py: { xs: 8, md: 12 }, px: { xs: 2, sm: 3 } }}>
+          <Box sx={{ textAlign: 'center', mb: 8 }}>
+            <Typography variant="h2" sx={{ fontSize: { xs: '2rem', md: '2.75rem' }, fontWeight: 'bold', mb: 2, color: '#2C3E50' }}>
               Our Products
             </Typography>
-            <Typography variant="body1" color="text.secondary" className="mb-2">
+            <Typography variant="body1" color="text.secondary" sx={{ mb: 3 }}>
               Contact us on WhatsApp for pricing, availability, and orders
             </Typography>
-            <Box className="mt-4 p-3 bg-green-50 rounded-lg inline-block">
-              <Typography variant="body1" className="text-green-800 font-semibold">
+            <Box sx={{ p: 3, bgcolor: 'rgba(28, 168, 175, 0.1)', borderRadius: '12px', display: 'inline-block', mb: 4 }}>
+              <Typography variant="body1" sx={{ color: 'primary.main', fontWeight: 600 }}>
                 🚚 7-Day Delivery Available Across India
               </Typography>
             </Box>
             
             {/* Category Filter */}
-            <Box className="flex gap-2 justify-center mt-6 flex-wrap">
+            <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', flexWrap: 'wrap' }}>
               {categories.map((cat) => (
                 <Chip
                   key={cat}
@@ -183,33 +183,33 @@ const Store = () => {
           <Grid container spacing={4}>
             {filteredProducts.map((product) => (
               <Grid item xs={12} sm={6} md={4} key={product.id}>
-                <Card className="h-full flex flex-col shadow-lg rounded-2xl transition-all duration-300 hover:shadow-xl">
+                <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                   <CardMedia
                     component="img"
                     height="250"
                     image={product.image}
                     alt={product.name}
-                    className="h-64 object-cover"
+                    sx={{ height: 250, objectFit: 'cover' }}
                     loading="lazy"
                   />
-                  <CardContent className="flex-grow">
-                    <Typography variant="caption" color="primary" className="font-semibold">
+                  <CardContent sx={{ flexGrow: 1, p: 3 }}>
+                    <Typography variant="caption" color="primary" sx={{ fontWeight: 600, display: 'block', mb: 1 }}>
                       {product.category}
                     </Typography>
-                    <Typography variant="h3" className="font-bold mb-2" sx={{ fontSize: '1.5rem' }}>
+                    <Typography variant="h3" sx={{ fontSize: '1.375rem', fontWeight: 'bold', mb: 1.5, color: '#2C3E50' }}>
                       {product.name}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6 }}>
                       {product.description}
                     </Typography>
                   </CardContent>
-                  <CardActions className="p-4 pt-0">
+                  <CardActions sx={{ p: 3, pt: 0 }}>
                     <Button
                       variant="contained"
                       fullWidth
                       startIcon={<WhatsAppIcon />}
                       onClick={() => handleWhatsAppInquiry(product.name)}
-                      sx={{ bgcolor: '#25D366', '&:hover': { bgcolor: '#20BA5A' } }}
+                      sx={{ bgcolor: '#25D366', '&:hover': { bgcolor: '#20BA5A' }, py: 1.5 }}
                     >
                       Inquire on WhatsApp
                     </Button>
@@ -220,19 +220,19 @@ const Store = () => {
           </Grid>
 
           {/* Contact Info */}
-          <Box className="text-center mt-12 p-6 bg-gray-50 rounded-lg">
-            <Typography variant="h3" className="font-bold mb-4" sx={{ fontSize: '1.5rem' }}>
+          <Box sx={{ textAlign: 'center', mt: 8, p: 6, bgcolor: '#F0F9FA', borderRadius: '20px' }}>
+            <Typography variant="h3" sx={{ fontSize: '1.75rem', fontWeight: 'bold', mb: 2, color: '#2C3E50' }}>
               Need Help?
             </Typography>
-            <Typography variant="body1" color="text.secondary" className="mb-4">
+            <Typography variant="body1" color="text.secondary" sx={{ mb: 4 }}>
               Contact us for bulk orders, custom requirements, or any queries
             </Typography>
-            <Box className="flex gap-4 justify-center" sx={{ flexDirection: { xs: 'column', sm: 'row' } }}>
+            <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', flexDirection: { xs: 'column', sm: 'row' } }}>
               <Button
                 variant="contained"
                 startIcon={<WhatsAppIcon />}
                 onClick={() => window.open(`https://wa.me/${whatsappNumber}`, '_blank', 'noopener,noreferrer')}
-                sx={{ bgcolor: '#25D366', '&:hover': { bgcolor: '#20BA5A' } }}
+                sx={{ bgcolor: '#25D366', '&:hover': { bgcolor: '#20BA5A' }, py: 1.5 }}
               >
                 WhatsApp: +91 7006601277
               </Button>
@@ -240,6 +240,7 @@ const Store = () => {
                 component={Link}
                 to="/contact"
                 variant="outlined"
+                sx={{ py: 1.5 }}
               >
                 Contact Page
               </Button>

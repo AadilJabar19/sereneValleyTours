@@ -75,25 +75,25 @@ const DestinationDetail = () => {
           </Container>
         </Box>
 
-        <Container className="py-12" sx={{ px: { xs: 2, sm: 3 } }}>
+        <Container sx={{ py: { xs: 8, md: 12 }, px: { xs: 2, sm: 3 } }}>
           <Grid container spacing={4}>
             <Grid item xs={12} md={8}>
               {/* Description */}
-              <Card className="mb-4">
-                <CardContent>
-                  <Typography variant="h2" className="font-bold mb-4" sx={{ fontSize: '1.75rem' }}>
+              <Card sx={{ mb: 3, p: 1 }}>
+                <CardContent sx={{ p: 3 }}>
+                  <Typography variant="h2" sx={{ fontSize: '1.75rem', fontWeight: 'bold', mb: 3, color: '#2C3E50' }}>
                     About {destination.name}
                   </Typography>
-                  <Typography variant="body1" className="text-gray-700" sx={{ lineHeight: 1.8, fontSize: '1.05rem' }}>
+                  <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.8, fontSize: '1.0625rem' }}>
                     {destination.description}
                   </Typography>
                 </CardContent>
               </Card>
 
               {/* Gallery */}
-              <Card className="mb-4">
-                <CardContent>
-                  <Typography variant="h2" className="font-bold mb-4" sx={{ fontSize: '1.75rem' }}>
+              <Card sx={{ mb: 3, p: 1 }}>
+                <CardContent sx={{ p: 3 }}>
+                  <Typography variant="h2" sx={{ fontSize: '1.75rem', fontWeight: 'bold', mb: 3, color: '#2C3E50' }}>
                     Gallery
                   </Typography>
                   <Grid container spacing={2}>
@@ -102,7 +102,7 @@ const DestinationDetail = () => {
                         component="img"
                         src={destination.bannerImage}
                         alt={destination.name}
-                        className="w-full h-80 object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
+                        sx={{ width: '100%', height: 320, objectFit: 'cover', borderRadius: '12px', cursor: 'pointer', transition: 'opacity 0.3s', '&:hover': { opacity: 0.9 } }}
                         loading="lazy"
                         onClick={() => handleImageClick(0)}
                       />
@@ -113,7 +113,7 @@ const DestinationDetail = () => {
                           component="img"
                           src={image}
                           alt={`${destination.name} view ${index + 1}`}
-                          className="w-full h-40 object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
+                          sx={{ width: '100%', height: 160, objectFit: 'cover', borderRadius: '12px', cursor: 'pointer', transition: 'opacity 0.3s', '&:hover': { opacity: 0.9 } }}
                           loading="lazy"
                           onClick={() => handleImageClick(index + 1)}
                         />
@@ -126,9 +126,9 @@ const DestinationDetail = () => {
 
             <Grid item xs={12} md={4}>
               {/* Highlights */}
-              <Card className="mb-4">
-                <CardContent>
-                  <Typography variant="h3" className="font-bold mb-3" sx={{ fontSize: '1.5rem' }}>
+              <Card sx={{ mb: 3, p: 1 }}>
+                <CardContent sx={{ p: 3 }}>
+                  <Typography variant="h3" sx={{ fontSize: '1.5rem', fontWeight: 'bold', mb: 2, color: '#2C3E50' }}>
                     Highlights
                   </Typography>
                   <List dense>
@@ -145,21 +145,21 @@ const DestinationDetail = () => {
               </Card>
 
               {/* Best Time */}
-              <Card className="mb-4">
-                <CardContent>
-                  <Typography variant="h3" className="font-bold mb-3" sx={{ fontSize: '1.5rem' }}>
+              <Card sx={{ mb: 3, p: 1 }}>
+                <CardContent sx={{ p: 3 }}>
+                  <Typography variant="h3" sx={{ fontSize: '1.5rem', fontWeight: 'bold', mb: 2, color: '#2C3E50' }}>
                     Best Time to Visit
                   </Typography>
-                  <Typography variant="body1" className="text-gray-700">
+                  <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.7 }}>
                     {destination.bestTime}
                   </Typography>
                 </CardContent>
               </Card>
 
               {/* CTA */}
-              <Card>
-                <CardContent>
-                  <Typography variant="h3" className="font-bold mb-3" sx={{ fontSize: '1.5rem' }}>
+              <Card sx={{ p: 1 }}>
+                <CardContent sx={{ p: 3 }}>
+                  <Typography variant="h3" sx={{ fontSize: '1.5rem', fontWeight: 'bold', mb: 2, color: '#2C3E50' }}>
                     Plan Your Visit
                   </Typography>
                   <Button
@@ -168,7 +168,7 @@ const DestinationDetail = () => {
                     variant="contained"
                     size="large"
                     fullWidth
-                    className="mb-2"
+                    sx={{ mb: 2, py: 1.5 }}
                   >
                     View Tours
                   </Button>
@@ -178,6 +178,7 @@ const DestinationDetail = () => {
                     variant="outlined"
                     size="large"
                     fullWidth
+                    sx={{ py: 1.5 }}
                   >
                     Contact Us
                   </Button>

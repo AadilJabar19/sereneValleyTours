@@ -1,5 +1,10 @@
-import { Box, Container, Typography, Grid, Card, CardContent, Avatar } from '@mui/material';
+import { Box, Container, Typography, Card, CardContent, Avatar, Rating } from '@mui/material';
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, Autoplay, EffectCoverflow } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/effect-coverflow';
 
 const Testimonials = () => {
   const testimonials = [
@@ -41,82 +46,111 @@ const Testimonials = () => {
   ];
 
   return (
-    <Box component="section" sx={{ py: { xs: 8, md: 12 } }}>
+    <Box component="section" sx={{ bgcolor: '#F0F9FA', py: { xs: 8, md: 12 }, overflow: 'hidden' }}>
       <Container>
-        <Box sx={{ textAlign: 'center', mb: 6 }}>
+        <Box sx={{ textAlign: 'center', mb: 8 }}>
+          <Typography 
+            sx={{ 
+              fontFamily: 'Pacifico, cursive', 
+              fontSize: { xs: '1.5rem', md: '2rem' }, 
+              color: 'primary.main',
+              mb: 1
+            }}
+          >
+            Testimonial
+          </Typography>
           <Typography 
             variant="h2" 
-            sx={{ fontSize: { xs: '2rem', md: '2.5rem' }, fontWeight: 'bold', mb: 2 }}
+            sx={{ fontSize: { xs: '2rem', md: '2.75rem' }, fontWeight: 'bold', mb: 2, color: '#2C3E50' }}
           >
             What Our Travelers Say
           </Typography>
           <Typography 
             variant="body1" 
             color="text.secondary" 
-            sx={{ fontSize: '1.125rem' }}
+            sx={{ fontSize: { xs: '1rem', md: '1.125rem' }, maxWidth: '600px', mx: 'auto' }}
           >
             Real experiences from real travelers
           </Typography>
         </Box>
 
-        <Grid container spacing={4}>
+        <Swiper
+          modules={[Pagination, Autoplay, EffectCoverflow]}
+          effect="coverflow"
+          centeredSlides={true}
+          slidesPerView="auto"
+          loop={true}
+          loopedSlides={5}
+          slideToClickedSlide={true}
+          allowTouchMove={true}
+          coverflowEffect={{
+            rotate: 15,
+            stretch: 0,
+            depth: 200,
+            modifier: 1.5,
+            slideShadows: true,
+          }}
+          pagination={{ clickable: true }}
+          autoplay={{ delay: 5000, disableOnInteraction: false }}
+          style={{ paddingBottom: '60px', paddingTop: '20px' }}
+        >
           {testimonials.map((testimonial, index) => (
-            <Grid item xs={12} md={4} key={index}>
+            <SwiperSlide key={index} style={{ width: '600px', maxWidth: '90vw' }}>
               <Card 
                 sx={{ 
-                  height: '100%', 
-                  position: 'relative',
-                  transition: 'all 0.3s',
-                  '&:hover': { boxShadow: 6 }
+                  height: '100%',
+                  p: 1,
+                  minHeight: '320px',
+                  background: 'linear-gradient(135deg, #FFFFFF 0%, #F8FCFF 100%)',
+                  cursor: 'pointer',
+                  '&:hover': {
+                    transform: 'none',
+                    boxShadow: '0 10px 40px rgba(28, 168, 175, 0.15)',
+                  }
                 }}
               >
-                <CardContent sx={{ p: 3 }}>
+                <CardContent sx={{ p: 4, textAlign: 'center' }}>
                   <FormatQuoteIcon 
                     sx={{ 
                       fontSize: 48, 
-                      color: 'primary.light', 
+                      color: 'primary.main', 
                       opacity: 0.3,
-                      position: 'absolute',
-                      top: 16,
-                      right: 16,
+                      mb: 2
                     }} 
                     aria-hidden="true"
                   />
                   
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 1.5 }}>
+                  <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.8, fontSize: '1.0625rem', mb: 3, fontStyle: 'italic' }}>
+                    "{testimonial.text}"
+                  </Typography>
+
+                  <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1.5 }}>
                     <Avatar 
                       sx={{ 
                         bgcolor: 'primary.main', 
-                        width: 56, 
-                        height: 56,
-                        fontSize: '1.5rem',
+                        width: 64, 
+                        height: 64,
+                        fontSize: '1.75rem',
+                        fontWeight: 600
                       }}
                     >
                       {testimonial.avatar}
                     </Avatar>
                     <Box>
-                      <Typography variant="h4" sx={{ fontSize: '1.125rem', fontWeight: 'bold' }}>
+                      <Typography variant="h4" sx={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#2C3E50', mb: 0.5 }}>
                         {testimonial.name}
                       </Typography>
-                      <Typography variant="body2" color="text.secondary">
+                      <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
                         {testimonial.location}
                       </Typography>
-                      <Box sx={{ display: 'flex', gap: 0.5, mt: 0.5 }}>
-                        {[...Array(testimonial.rating)].map((_, i) => (
-                          <span key={i} style={{ color: '#FFC107' }} aria-hidden="true">★</span>
-                        ))}
-                      </Box>
+                      <Rating value={testimonial.rating} readOnly size="small" sx={{ color: '#FFC107' }} />
                     </Box>
                   </Box>
-
-                  <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.7 }}>
-                    "{testimonial.text}"
-                  </Typography>
                 </CardContent>
               </Card>
-            </Grid>
+            </SwiperSlide>
           ))}
-        </Grid>
+        </Swiper>
       </Container>
     </Box>
   );

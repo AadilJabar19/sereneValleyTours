@@ -21,16 +21,16 @@ const Navbar = () => {
 
   const menuItems = [
     { label: 'Home', path: '/' },
+    { label: 'About', path: '/about' },
     { label: 'Kashmir', path: '/kashmir' },
     { label: 'Ladakh', path: '/ladakh' },
     { label: 'Adventure', path: '/adventure' },
     { label: 'Store', path: '/store' },
-    { label: 'About', path: '/about' },
     { label: 'Contact', path: '/contact' },
   ];
 
   return (
-    <AppBar position="sticky" component="nav" sx={{ bgcolor: 'white', boxShadow: 2 }}>
+    <AppBar position="sticky" component="nav" sx={{ bgcolor: 'white', boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters sx={{ minHeight: { xs: '56px', sm: '64px' } }}>
           {/* Logo */}
@@ -42,7 +42,7 @@ const Navbar = () => {
               fontFamily: 'Pacifico, cursive', 
               textDecoration: 'none', 
               fontSize: { xs: '1.25rem', md: '1.5rem' },
-              fontWeight: 'bold',
+              fontWeight: 'normal',
               color: 'primary.main',
               '&:hover': { opacity: 0.8 },
               transition: 'opacity 0.3s'
@@ -52,7 +52,7 @@ const Navbar = () => {
           </Typography>
 
           {/* Desktop Menu */}
-          <Box component="nav" sx={{ display: { xs: 'none', lg: 'flex' }, flexGrow: 1, justifyContent: 'center', gap: 2 }}>
+          <Box component="nav" sx={{ display: { xs: 'none', lg: 'flex' }, flexGrow: 1, justifyContent: 'center', gap: 0.5 }}>
             {menuItems.map((item) => (
               <Button
                 key={item.path}
@@ -61,11 +61,12 @@ const Navbar = () => {
                 sx={{
                   fontSize: '1rem',
                   color: 'text.primary',
+                  fontWeight: 500,
+                  px: 2,
                   '&:hover': { color: 'primary.main' },
                   '&.active': {
-                    borderBottom: '2px solid',
-                    borderColor: 'primary.main',
-                    borderRadius: 0,
+                    color: 'primary.main',
+                    fontWeight: 600
                   },
                 }}
               >
