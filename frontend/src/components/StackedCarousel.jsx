@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Box, Container, Typography, Chip, Button } from '@mui/material';
 
@@ -13,6 +13,9 @@ const StackedCarousel = ({
 }) => {
   const [activeCategory, setActiveCategory] = useState(categories[0]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const touchStartRef = useRef({ x: null, y: null });
+  const pointerStartRef = useRef({ x: null, y: null, pointerId: null });
+  const wheelLockRef = useRef(0);
 
   const filteredItems = items.filter(
     (item) => activeCategory === 'All' || item.category === activeCategory
@@ -118,6 +121,93 @@ const StackedCarousel = ({
     setCurrentIndex((prev) => (prev - 1 + total) % total);
   };
 
+  const handleTouchStart = (event) => {
+    const firstTouch = event.touches?.[0];
+    if (!firstTouch) return;
+    touchStartRef.current = { x: firstTouch.clientX, y: firstTouch.clientY };
+  };
+
+  const handleTouchEnd = (event) => {
+    const start = touchStartRef.current;
+    const endTouch = event.changedTouches?.[0];
+    touchStartRef.current = { x: null, y: null };
+
+    if (!endTouch || start.x === null || start.y === null) return;
+
+    const deltaX = endTouch.clientX - start.x;
+    const deltaY = endTouch.clientY - start.y;
+    const horizontalThreshold = 40;
+    const verticalThreshold = 30;
+
+    if (Math.abs(deltaX) < horizontalThreshold || Math.abs(deltaX) < Math.abs(deltaY) + verticalThreshold) {
+      return;
+    }
+
+    if (deltaX < 0) {
+      handleNext();
+      return;
+    }
+
+    handlePrev();
+  };
+
+  const handlePointerDown = (event) => {
+    if (event.pointerType === 'mouse' && event.button !== 0) return;
+    pointerStartRef.current = {
+      x: event.clientX,
+      y: event.clientY,
+      pointerId: event.pointerId,
+    };
+  };
+
+  const handlePointerUp = (event) => {
+    const start = pointerStartRef.current;
+    pointerStartRef.current = { x: null, y: null, pointerId: null };
+
+    if (start.x === null || start.y === null) return;
+    if (start.pointerId !== null && event.pointerId !== start.pointerId) return;
+
+    const deltaX = event.clientX - start.x;
+    const deltaY = event.clientY - start.y;
+    const horizontalThreshold = 40;
+    const verticalThreshold = 30;
+
+    if (Math.abs(deltaX) < horizontalThreshold || Math.abs(deltaX) < Math.abs(deltaY) + verticalThreshold) {
+      return;
+    }
+
+    if (deltaX < 0) {
+      handleNext();
+      return;
+    }
+
+    handlePrev();
+  };
+
+  const handlePointerCancel = () => {
+    pointerStartRef.current = { x: null, y: null, pointerId: null };
+  };
+
+  const handleWheel = (event) => {
+    if (!hasItems) return;
+
+    const isHorizontalIntent = Math.abs(event.deltaX) > 20 && Math.abs(event.deltaX) > Math.abs(event.deltaY);
+    if (!isHorizontalIntent) return;
+
+    const now = Date.now();
+    if (now - wheelLockRef.current < 350) return;
+
+    event.preventDefault();
+    wheelLockRef.current = now;
+
+    if (event.deltaX > 0) {
+      handleNext();
+      return;
+    }
+
+    handlePrev();
+  };
+
   return (
     <Box sx={{ py: 0, bgcolor: 'transparent', overflow: 'hidden' }}>
       <Container maxWidth="lg">
@@ -194,7 +284,14 @@ const StackedCarousel = ({
             position: 'relative',
             height: { xs: 420, md: 500 },
             userSelect: 'none',
+            touchAction: 'pan-y pinch-zoom',
           }}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          onPointerDown={handlePointerDown}
+          onPointerUp={handlePointerUp}
+          onPointerCancel={handlePointerCancel}
+          onWheel={handleWheel}
         >
           {filteredItems.map((item, index) => {
             const pos = getCardPosition(index);
