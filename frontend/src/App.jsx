@@ -7,6 +7,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import FloatingWhatsApp from './components/FloatingWhatsApp';
+import FloatingInquiry from './components/FloatingInquiry';
 import Loader from './components/Loader';
 import './index.css';
 
@@ -30,6 +31,7 @@ function App() {
       <CssBaseline />
       <BrowserRouter>
         <ScrollToTop />
+        <FloatingInquiry />
         <FloatingWhatsApp />
         <div className="flex flex-col min-h-screen">
           <Navbar />
