@@ -239,7 +239,7 @@ const Home = () => {
                     '&:hover': { bgcolor: '#0D404C' },
                   }}
                 >
-                  Learn More
+                  Learn More About Us
                 </Button>
               </Grid>
 
@@ -262,9 +262,6 @@ const Home = () => {
                       boxShadow: '0 16px 40px rgba(18,62,73,0.16)',
                     }}
                   />
-                  <Box sx={{ position: 'absolute', top: 24, right: -6, bgcolor: 'white', borderRadius: '999px', px: 1.2, py: 0.7, boxShadow: '0 8px 20px rgba(0,0,0,0.12)', fontWeight: 700, color: '#123E49' }}>
-                    4.9k
-                  </Box>
                   <Box sx={{ position: 'absolute', bottom: 72, left: -10, bgcolor: 'white', borderRadius: '50%', width: 42, height: 42, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 8px 20px rgba(0,0,0,0.12)', fontSize: '1.3rem' }}>
                     😍
                   </Box>

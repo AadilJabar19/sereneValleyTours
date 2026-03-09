@@ -86,7 +86,7 @@ export const tours = [
     price: 25000,
     priceRange: "Starting from ₹23,000",
     bannerImage: "/images/sonamarg2.webp",
-    images: ["/images/gulmarg5.webp", "/images/pahalgam4.webp", "/images/srinagar5.webp"],
+    images: ["https://images.unsplash.com/photo-1587474260584-136574528ed5?w=1200&q=80&auto=format&fit=crop", "/images/pahalgam4.webp", "/images/srinagar5.webp"],
     accommodation: ["3 nights Srinagar hotel", "1 night houseboat", "1 night Pahalgam hotel"],
     itinerary: [
       { day: "Day 1", title: "Srinagar Gardens", details: "Arrival, Mughal Gardens tour, Shikara ride" },

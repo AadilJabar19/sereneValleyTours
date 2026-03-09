@@ -17,7 +17,8 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { sendContactEmail } from '../services/emailService';
 
-const MiniInquiry = ({ tourName, onClose }) => {
+const MiniInquiry = ({ tourName, onClose, mode = 'sidebar' }) => {
+  const isFloating = mode === 'floating';
   const { register, handleSubmit, formState: { errors }, reset, setValue, watch } = useForm({
     defaultValues: { people: 1 }
   });
@@ -57,14 +58,17 @@ const MiniInquiry = ({ tourName, onClose }) => {
     <>
       <Card 
         sx={{ 
-          position: { xs: 'fixed', md: 'sticky' },
-          bottom: { xs: 0, md: 'auto' },
-          top: { md: 100 },
-          left: { xs: 0, md: 'auto' },
-          right: { xs: 0, md: 'auto' },
-          zIndex: 100,
+          position: isFloating ? 'fixed' : { xs: 'fixed', md: 'sticky' },
+          bottom: isFloating ? { xs: 84, md: 96 } : { xs: 0, md: 'auto' },
+          top: isFloating ? 'auto' : { md: 100 },
+          left: isFloating ? { xs: 12, md: 'auto' } : { xs: 0, md: 'auto' },
+          right: isFloating ? { xs: 12, md: 24 } : { xs: 0, md: 'auto' },
+          width: isFloating ? { xs: 'auto', md: 390 } : 'auto',
+          maxHeight: isFloating ? 'calc(100vh - 130px)' : 'none',
+          overflowY: isFloating ? 'auto' : 'visible',
+          zIndex: isFloating ? 1300 : 100,
           boxShadow: 3,
-          borderRadius: { xs: '16px 16px 0 0', md: 2 },
+          borderRadius: isFloating ? '16px' : { xs: '16px 16px 0 0', md: 2 },
         }}
       >
         <CardContent sx={{ p: { xs: 2, md: 3 } }}>
@@ -75,7 +79,7 @@ const MiniInquiry = ({ tourName, onClose }) => {
             <IconButton 
               onClick={onClose}
               size="small"
-              sx={{ display: { xs: 'block', md: 'none' } }}
+              sx={{ display: isFloating ? 'block' : { xs: 'block', md: 'none' } }}
               aria-label="Close inquiry form"
             >
               <CloseIcon />

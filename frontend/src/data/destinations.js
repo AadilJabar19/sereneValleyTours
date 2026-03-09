@@ -13,7 +13,7 @@ export const destinations = [
     ],
     bestTime: 'December to March for snow activities, April to June for meadows',
     bannerImage: '/images/gulmarg1.webp',
-    images: ['/images/gulmarg2.webp', '/images/gulmarg3.webp', '/images/gulmarg4.webp', '/images/gulmarg5.webp']
+    images: ['/images/gulmarg2.webp', '/images/gulmarg3.webp', '/images/gulmarg4.webp', 'https://images.unsplash.com/photo-1587474260584-136574528ed5?w=1200&q=80&auto=format&fit=crop']
   },
   {
     id: 'pahalgam',
@@ -189,7 +189,7 @@ export const destinations = [
     ],
     bestTime: 'May to September',
     bannerImage: '/images/gulmarg1.webp',
-    images: ['/images/doodpathri5.webp', '/images/gulmarg3.webp', '/images/doodpathri2.webp', '/images/gulmarg5.webp']
+    images: ['/images/doodpathri5.webp', '/images/gulmarg3.webp', '/images/doodpathri2.webp', 'https://images.unsplash.com/photo-1587474260584-136574528ed5?w=1200&q=80&auto=format&fit=crop']
   },
   {
     id: 'aru-valley',
