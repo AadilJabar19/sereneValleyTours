@@ -352,7 +352,8 @@ const StackedCarousel = ({
                         bottom: 16,
                         display: 'flex',
                         justifyContent: 'space-between',
-                        alignItems: 'flex-end',
+                        alignItems: { xs: 'flex-start', sm: 'flex-end' },
+                        flexDirection: { xs: 'column', sm: 'row' },
                         gap: 1,
                       }}
                     >
@@ -373,11 +374,12 @@ const StackedCarousel = ({
                           textDecoration: 'none',
                           border: '1px solid rgba(255,255,255,0.55)',
                           borderRadius: '999px',
-                          px: 1.6,
-                          py: 0.65,
-                          fontSize: '0.78rem',
+                          px: { xs: 1.25, sm: 1.6 },
+                          py: { xs: 0.55, sm: 0.65 },
+                          fontSize: { xs: '0.72rem', sm: '0.78rem' },
                           fontWeight: 600,
                           whiteSpace: 'nowrap',
+                          alignSelf: { xs: 'flex-start', sm: 'auto' },
                           bgcolor: 'rgba(255,255,255,0.08)',
                           '&:hover': { bgcolor: 'rgba(255,255,255,0.2)' },
                         }}
