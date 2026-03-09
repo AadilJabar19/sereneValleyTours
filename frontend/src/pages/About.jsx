@@ -82,7 +82,15 @@ const About = () => {
             </Grid>
           </Grid>
 
-          <Box sx={{ mt: 10 }}>
+          <Box
+            sx={{
+              mt: 10,
+              py: { xs: 3, md: 4 },
+              px: { xs: 1, md: 2 },
+              borderRadius: '28px',
+              background: 'linear-gradient(180deg, rgba(235,248,251,0.72) 0%, rgba(227,244,248,0.52) 100%)',
+            }}
+          >
             <SectionHeader
               subtitle="Our Services"
               title="Why Choose Us"
@@ -91,9 +99,38 @@ const About = () => {
             <Grid container spacing={3}>
               {features.map((feature, index) => (
                 <Grid item xs={12} sm={6} md={4} key={index}>
-                  <Card sx={{ height: '100%', p: 1 }}>
-                    <CardContent sx={{ display: 'flex', alignItems: 'flex-start', gap: 1.5, p: 3 }}>
-                      <CheckCircleIcon sx={{ color: 'primary.main', fontSize: '1.75rem', mt: 0.2 }} />
+                  <Card
+                    sx={{
+                      height: '100%',
+                      p: 1,
+                      borderRadius: '24px',
+                      border: '1px solid rgba(71, 171, 187, 0.24)',
+                      background: 'linear-gradient(180deg, #FFFFFF 0%, #F6FCFE 100%)',
+                      boxShadow: '0 12px 28px rgba(18, 89, 103, 0.1)',
+                      transition: 'transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease',
+                      '&:hover': {
+                        transform: 'translateY(-4px)',
+                        boxShadow: '0 20px 36px rgba(18, 89, 103, 0.15)',
+                        borderColor: 'rgba(39, 184, 205, 0.45)',
+                      },
+                    }}
+                  >
+                    <CardContent sx={{ display: 'flex', alignItems: 'center', gap: 1.7, p: 3 }}>
+                      <Box
+                        sx={{
+                          width: 42,
+                          height: 42,
+                          borderRadius: '50%',
+                          background: 'linear-gradient(135deg, #2DBFD4 0%, #1A95A7 100%)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          flexShrink: 0,
+                          boxShadow: '0 8px 18px rgba(26,149,167,0.3)',
+                        }}
+                      >
+                        <CheckCircleIcon sx={{ color: '#FFFFFF', fontSize: '1.45rem' }} />
+                      </Box>
                       <Typography variant="body1" sx={{ fontWeight: 500, color: '#123E49', fontSize: '1rem', lineHeight: 1.6 }}>
                         {feature}
                       </Typography>
