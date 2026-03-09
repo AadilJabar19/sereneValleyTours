@@ -18,6 +18,7 @@ import TrustStats from '../components/TrustStats';
 import Testimonials from '../components/Testimonials';
 import StackedCarousel from '../components/StackedCarousel';
 import PageHero from '../components/PageHero';
+import { FloatingPlane, FloatingMountain, FloatingPalmTree, DecorativeWave } from '../components/DecorativeIcons';
 
 const Home = () => {
   const tourCategories = ['All', 'Kashmir', 'Ladakh', 'Trekking', 'Skiing'];
@@ -26,6 +27,35 @@ const Home = () => {
     ...dest,
     category: ['leh', 'nubra-valley', 'pangong-lake'].includes(dest.id) ? 'Ladakh' : 'Kashmir'
   }));
+  const sectionStrokeSx = {
+    position: 'relative',
+    overflow: 'hidden',
+    isolation: 'isolate',
+    '& > *': {
+      position: 'relative',
+      zIndex: 1,
+    },
+    '&::before': {
+      content: '""',
+      position: 'absolute',
+      inset: 0,
+      zIndex: 0,
+      pointerEvents: 'none',
+      backgroundImage:
+        'repeating-linear-gradient(112deg, rgba(33,154,173,0.08) 0 2px, transparent 2px 20px), radial-gradient(circle at 85% 12%, rgba(42,182,201,0.11), transparent 42%)',
+      opacity: { xs: 0.24, md: 0.45 },
+    },
+    '&::after': {
+      content: '""',
+      position: 'absolute',
+      inset: 0,
+      zIndex: 0,
+      pointerEvents: 'none',
+      backgroundImage:
+        'radial-gradient(ellipse 60% 24% at 12% 86%, rgba(18,102,118,0.09), transparent 70%), radial-gradient(ellipse 42% 15% at 78% 74%, rgba(29,165,184,0.09), transparent 68%)',
+      opacity: { xs: 0.46, md: 0.8 },
+    },
+  };
 
   return (
     <>
@@ -38,69 +68,102 @@ const Home = () => {
       <Box
         sx={{
           background: 'linear-gradient(180deg, #F8FCFF 0%, #F3FAFC 52%, #EEF8FB 100%)',
+          position: 'relative',
+          overflow: 'hidden',
+          '&::before': {
+            content: '""',
+            position: 'absolute',
+            inset: 0,
+            pointerEvents: 'none',
+            backgroundImage:
+              'repeating-linear-gradient(120deg, rgba(41,172,192,0.06) 0 2px, transparent 2px 22px)',
+            opacity: 0.35,
+          },
         }}
       >
-        <PageHero
-          subtitle="Serene Valley Tours"
-          title="Discover the Paradise on Earth"
-          description="Experience breathtaking landscapes, rich culture, and unforgettable adventures in Kashmir and Ladakh"
-          image="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=1920&q=85&fit=crop"
-          ariaLabel="Serene Kashmir valley with snow-capped mountains and lush green meadows"
-        >
-          <Box sx={{ display: 'flex', gap: 2, flexDirection: { xs: 'column', sm: 'row' }, alignItems: 'stretch' }}>
-            <Button
-              component={Link}
-              to="/tours"
-              variant="contained"
-              size="large"
-              sx={{
-                width: { xs: '100%', sm: 'auto' },
-                borderRadius: '999px',
-                px: 4,
-                py: 1.4,
-                fontSize: '1.05rem',
-                textTransform: 'none',
-                background: 'linear-gradient(135deg, #2DBFD4 0%, #1A95A7 100%)',
-                boxShadow: '0 10px 24px rgba(26,149,167,0.35)',
-                '&:hover': {
-                  background: 'linear-gradient(135deg, #28B5C8 0%, #167F8F 100%)',
-                },
-              }}
-            >
-              Plan Your Trip
-            </Button>
-            <Button
-              component="a"
-              href="https://wa.me/917006601277?text=Hi!%20I%20am%20interested%20in%20Kashmir/Ladakh%20tour%20packages."
-              target="_blank"
-              rel="noopener noreferrer"
-              variant="outlined"
-              size="large"
-              sx={{
-                width: { xs: '100%', sm: 'auto' },
-                color: 'white',
-                borderColor: 'rgba(255,255,255,0.6)',
-                borderWidth: 1.5,
-                borderRadius: '999px',
-                px: 4,
-                py: 1.4,
-                fontSize: '1.05rem',
-                textTransform: 'none',
-                backdropFilter: 'blur(1px)',
-                '&:hover': {
-                  bgcolor: 'rgba(255,255,255,0.1)',
-                  color: 'white',
-                  borderColor: 'rgba(255,255,255,0.85)',
-                },
-              }}
-            >
-              WhatsApp Us
-            </Button>
+        <Box component="section" sx={sectionStrokeSx}>
+          <FloatingPlane sx={{ display: { xs: 'none', md: 'block' }, right: { md: 120 }, top: { md: 120 }, color: '#2DAFC4', opacity: 0.12 }} />
+          <Box
+            sx={{
+              display: { xs: 'none', sm: 'block' },
+              position: 'absolute',
+              left: { sm: 24, md: 110 },
+              bottom: { sm: 66, md: 88 },
+              color: '#27AEC4',
+              pointerEvents: 'none',
+              opacity: 0.38,
+              zIndex: 0,
+            }}
+          >
+            <svg width="72" height="34" viewBox="0 0 72 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 22C14 8 27 6 37 13C47 20 57 30 69 18" stroke="currentColor" strokeWidth="2.3" strokeLinecap="round" />
+              <circle cx="45" cy="17" r="2.2" fill="currentColor" />
+            </svg>
           </Box>
-        </PageHero>
+          <PageHero
+            subtitle="Serene Valley Tours"
+            title="Discover the Paradise on Earth"
+            description="Experience breathtaking landscapes, rich culture, and unforgettable adventures in Kashmir and Ladakh"
+            image="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=1920&q=85&fit=crop"
+            ariaLabel="Serene Kashmir valley with snow-capped mountains and lush green meadows"
+          >
+            <Box sx={{ display: 'flex', gap: 2, flexDirection: { xs: 'column', sm: 'row' }, alignItems: 'stretch' }}>
+              <Button
+                component={Link}
+                to="/tours"
+                variant="contained"
+                size="large"
+                sx={{
+                  width: { xs: '100%', sm: 'auto' },
+                  borderRadius: '999px',
+                  px: 4,
+                  py: 1.4,
+                  fontSize: '1.05rem',
+                  textTransform: 'none',
+                  background: 'linear-gradient(135deg, #2DBFD4 0%, #1A95A7 100%)',
+                  boxShadow: '0 10px 24px rgba(26,149,167,0.35)',
+                  '&:hover': {
+                    background: 'linear-gradient(135deg, #28B5C8 0%, #167F8F 100%)',
+                  },
+                }}
+              >
+                Plan Your Trip
+              </Button>
+              <Button
+                component="a"
+                href="https://wa.me/917006601277?text=Hi!%20I%20am%20interested%20in%20Kashmir/Ladakh%20tour%20packages."
+                target="_blank"
+                rel="noopener noreferrer"
+                variant="outlined"
+                size="large"
+                sx={{
+                  width: { xs: '100%', sm: 'auto' },
+                  color: 'white',
+                  borderColor: 'rgba(255,255,255,0.6)',
+                  borderWidth: 1.5,
+                  borderRadius: '999px',
+                  px: 4,
+                  py: 1.4,
+                  fontSize: '1.05rem',
+                  textTransform: 'none',
+                  backdropFilter: 'blur(1px)',
+                  '&:hover': {
+                    bgcolor: 'rgba(255,255,255,0.1)',
+                    color: 'white',
+                    borderColor: 'rgba(255,255,255,0.85)',
+                  },
+                }}
+              >
+                WhatsApp Us
+              </Button>
+            </Box>
+          </PageHero>
+        </Box>
 
         {/* Tours Section */}
-        <Box component="section" sx={{ py: { xs: 2, md: 4 } }}>
+        <Box component="section" sx={{ ...sectionStrokeSx, py: { xs: 2, md: 4 } }}>
+          <FloatingMountain sx={{ display: { xs: 'none', md: 'block' }, left: { md: 24 }, top: { md: 64 }, color: '#33B7CC', opacity: 0.1 }} />
+          <FloatingPlane sx={{ display: { xs: 'none', sm: 'block' }, right: { sm: 18, md: 70 }, top: { sm: 64, md: 92 }, color: '#2FAEC5', opacity: 0.1 }} />
           <StackedCarousel
             title="Top Tours"
             subtitle="Find Your Adventure"
@@ -113,7 +176,26 @@ const Home = () => {
         </Box>
 
         {/* Destinations Section */}
-        <Box component="section" sx={{ py: { xs: 2, md: 4 } }}>
+        <Box component="section" sx={{ ...sectionStrokeSx, py: { xs: 2, md: 4 } }}>
+          <FloatingPalmTree sx={{ display: { xs: 'none', sm: 'block' }, left: { sm: 22, md: 110 }, top: { sm: 38, md: 42 }, color: '#2EAFC3', opacity: 0.12 }} />
+          <Box
+            sx={{
+              display: { xs: 'none', md: 'block' },
+              position: 'absolute',
+              right: { md: 110 },
+              top: { md: 80 },
+              color: '#2AAEC4',
+              pointerEvents: 'none',
+              opacity: 0.36,
+              zIndex: 0,
+              transform: 'scaleX(-1)',
+            }}
+          >
+            <svg width="64" height="30" viewBox="0 0 64 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 20C10 9 21 6 30 11C39 16 47 28 62 19" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+              <path d="M8 21L2 20L5 16" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+            </svg>
+          </Box>
           <StackedCarousel
             title="Top Destinations"
             subtitle="Beautiful Places"
@@ -126,7 +208,9 @@ const Home = () => {
         </Box>
 
         {/* About Us Section */}
-        <Box component="section" sx={{ py: { xs: 7, md: 10 }, bgcolor: 'transparent' }}>
+        <Box component="section" sx={{ ...sectionStrokeSx, py: { xs: 7, md: 10 }, bgcolor: 'transparent' }}>
+          <FloatingMountain sx={{ display: { xs: 'none', md: 'block' }, right: { md: 12 }, top: { md: 34 }, color: '#2CAFC5', opacity: 0.1 }} />
+          <DecorativeWave sx={{ display: { xs: 'none', md: 'block' }, bottom: -4, height: 42, color: '#4DC0D2', opacity: 0.2 }} />
           <Container sx={{ px: { xs: 2, sm: 3 } }}>
             <Grid container spacing={{ xs: 4, md: 6 }} alignItems="center">
               <Grid item xs={12} lg={5.2}>
@@ -272,13 +356,20 @@ const Home = () => {
         </Box>
 
         {/* Why Choose Us */}
-        <WhyChooseUs />
+        <Box component="section" sx={sectionStrokeSx}>
+          <FloatingPlane sx={{ display: { xs: 'none', sm: 'block' }, left: { sm: 14, md: 54 }, top: { sm: 42, md: 54 }, color: '#30B1C7', opacity: 0.1 }} />
+          <WhyChooseUs />
+        </Box>
 
         {/* Trust Stats */}
-        <TrustStats />
+        <Box component="section" sx={sectionStrokeSx}>
+          <TrustStats />
+        </Box>
 
         {/* Testimonials */}
-        <Testimonials />
+        <Box component="section" sx={sectionStrokeSx}>
+          <Testimonials />
+        </Box>
       </Box>
     </>
   );
