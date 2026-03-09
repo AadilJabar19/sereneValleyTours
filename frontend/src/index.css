@@ -12,10 +12,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background: linear-gradient(135deg, #F8FCFF 0%, #E0F7F8 100%);
   background-attachment: fixed;
+  overflow-x: clip;
 }
 
 #root {
   min-height: 100vh;
+  overflow-x: clip;
 }
 
 /* Custom scrollbar */

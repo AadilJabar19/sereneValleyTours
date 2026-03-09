@@ -7,6 +7,7 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { getDestinationById } from '../data/destinations';
 import SEO from '../components/SEO';
+import PageHero from '../components/PageHero';
 
 const DestinationDetail = () => {
   const { id } = useParams();
@@ -51,29 +52,14 @@ const DestinationDetail = () => {
         ogImage={destination.bannerImage}
         url={`https://serenevalleytours.com/destinations/${destination.id}`}
       />
-      <Box>
-        {/* Hero */}
-        <Box
-          component="header"
-          sx={{
-            height: { xs: '50vh', md: '60vh' },
-            backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(${destination.bannerImage})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <Container>
-            <Typography variant="h1" sx={{ fontSize: { xs: '2.5rem', md: '4rem' }, fontWeight: 'bold', color: 'white', textAlign: 'center' }}>
-              {destination.name}
-            </Typography>
-            <Typography variant="h2" sx={{ fontSize: { xs: '1.25rem', md: '1.75rem' }, fontWeight: 400, color: 'white', textAlign: 'center', mt: 1 }}>
-              {destination.tagline}
-            </Typography>
-          </Container>
-        </Box>
+      <Box sx={{ bgcolor: '#FFFFFF' }}>
+        <PageHero
+          subtitle="Top Destination"
+          title={destination.name}
+          description={destination.tagline}
+          image={destination.bannerImage}
+          ariaLabel={`${destination.name} banner`}
+        />
 
         <Container sx={{ py: { xs: 8, md: 12 }, px: { xs: 2, sm: 3 } }}>
           <Grid container spacing={4}>
@@ -81,7 +67,7 @@ const DestinationDetail = () => {
               {/* Description */}
               <Card sx={{ mb: 3, p: 1 }}>
                 <CardContent sx={{ p: 3 }}>
-                  <Typography variant="h2" sx={{ fontSize: '1.75rem', fontWeight: 'bold', mb: 3, color: '#2C3E50' }}>
+                  <Typography variant="h2" sx={{ fontSize: '1.75rem', fontWeight: 'bold', mb: 3, color: '#123E49' }}>
                     About {destination.name}
                   </Typography>
                   <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.8, fontSize: '1.0625rem' }}>
@@ -93,7 +79,7 @@ const DestinationDetail = () => {
               {/* Gallery */}
               <Card sx={{ mb: 3, p: 1 }}>
                 <CardContent sx={{ p: 3 }}>
-                  <Typography variant="h2" sx={{ fontSize: '1.75rem', fontWeight: 'bold', mb: 3, color: '#2C3E50' }}>
+                  <Typography variant="h2" sx={{ fontSize: '1.75rem', fontWeight: 'bold', mb: 3, color: '#123E49' }}>
                     Gallery
                   </Typography>
                   <Grid container spacing={2}>
@@ -128,7 +114,7 @@ const DestinationDetail = () => {
               {/* Highlights */}
               <Card sx={{ mb: 3, p: 1 }}>
                 <CardContent sx={{ p: 3 }}>
-                  <Typography variant="h3" sx={{ fontSize: '1.5rem', fontWeight: 'bold', mb: 2, color: '#2C3E50' }}>
+                  <Typography variant="h3" sx={{ fontSize: '1.5rem', fontWeight: 'bold', mb: 2, color: '#123E49' }}>
                     Highlights
                   </Typography>
                   <List dense>
@@ -147,7 +133,7 @@ const DestinationDetail = () => {
               {/* Best Time */}
               <Card sx={{ mb: 3, p: 1 }}>
                 <CardContent sx={{ p: 3 }}>
-                  <Typography variant="h3" sx={{ fontSize: '1.5rem', fontWeight: 'bold', mb: 2, color: '#2C3E50' }}>
+                  <Typography variant="h3" sx={{ fontSize: '1.5rem', fontWeight: 'bold', mb: 2, color: '#123E49' }}>
                     Best Time to Visit
                   </Typography>
                   <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.7 }}>
@@ -159,7 +145,7 @@ const DestinationDetail = () => {
               {/* CTA */}
               <Card sx={{ p: 1 }}>
                 <CardContent sx={{ p: 3 }}>
-                  <Typography variant="h3" sx={{ fontSize: '1.5rem', fontWeight: 'bold', mb: 2, color: '#2C3E50' }}>
+                  <Typography variant="h3" sx={{ fontSize: '1.5rem', fontWeight: 'bold', mb: 2, color: '#123E49' }}>
                     Plan Your Visit
                   </Typography>
                   <Button
@@ -222,3 +208,4 @@ const DestinationDetail = () => {
 };
 
 export default DestinationDetail;
+

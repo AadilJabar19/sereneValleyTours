@@ -10,6 +10,8 @@ import {
 } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import SEO from '../components/SEO';
+import PageHero from '../components/PageHero';
+import SectionHeader from '../components/SectionHeader';
 
 const About = () => {
   const features = [
@@ -30,108 +32,71 @@ const About = () => {
         url="https://serenevalleytours.com/about"
       />
       
-      <Box component="main">
-        {/* Hero Section */}
-        <Box
-          component="section"
-          sx={{
-            height: { xs: '50vh', md: '60vh' },
-            position: 'relative',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundImage:
-              'linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url(https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80&fm=webp&fit=crop)',
-          }}
-          role="img"
-          aria-label="About Serene Valley Tours"
-        >
-          <Container sx={{ height: '100%', display: 'flex', alignItems: 'center', px: { xs: 2, sm: 3 } }}>
-            <Box sx={{ color: 'white', textAlign: 'center', width: '100%' }}>
-              <Typography 
-                sx={{ 
-                  fontFamily: 'Pacifico, cursive', 
-                  fontSize: { xs: '1.5rem', md: '2rem' }, 
-                  color: 'white',
-                  mb: 1
-                }}
-              >
-                Who We Are
-              </Typography>
-              <Typography variant="h1" sx={{ color: 'white', fontSize: { xs: '2rem', md: '3rem' }, fontWeight: 'bold', mb: 2 }}>
-                About Serene Valley Tours
-              </Typography>
-              <Typography variant="body1" sx={{ fontSize: { xs: '1rem', md: '1.125rem' }, color: 'rgba(255,255,255,0.9)', maxWidth: '600px', mx: 'auto' }}>
-                Your trusted partner for Kashmir & Ladakh adventures
-              </Typography>
-            </Box>
-          </Container>
-        </Box>
+      <Box component="main" sx={{ bgcolor: '#FFFFFF' }}>
+        <PageHero
+          subtitle="Who We Are"
+          title="About Serene Valley Tours"
+          description="Your trusted partner for Kashmir & Ladakh adventures"
+          image="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80&fm=webp&fit=crop"
+          ariaLabel="About Serene Valley Tours"
+        />
 
-        {/* About Content */}
         <Container component="section" sx={{ py: { xs: 8, md: 12 }, px: { xs: 2, sm: 3 } }}>
-          <Grid container spacing={6}>
+          <Grid container spacing={{ xs: 4, md: 6 }} alignItems="stretch">
             <Grid item xs={12} md={6}>
-              <Typography 
-                sx={{ 
-                  fontFamily: 'Pacifico, cursive', 
-                  fontSize: { xs: '1.25rem', md: '1.5rem' }, 
-                  color: 'primary.main',
-                  mb: 1
-                }}
-              >
-                Our Story
-              </Typography>
-              <Typography variant="h2" sx={{ fontSize: { xs: '1.75rem', md: '2.25rem' }, fontWeight: 'bold', mb: 3, color: '#2C3E50' }}>
-                Who We Are
-              </Typography>
-              <Typography variant="body1" color="text.secondary" sx={{ mb: 2.5, lineHeight: 1.8, fontSize: '1.0625rem' }}>
-                Serene Valley Tours is a premier travel company specializing in Kashmir and Ladakh tour packages. 
-                Based in Srinagar, we are passionate locals who know every corner of this paradise on earth.
-              </Typography>
-              <Typography variant="body1" color="text.secondary" sx={{ mb: 2.5, lineHeight: 1.8, fontSize: '1.0625rem' }}>
-                We believe in creating memorable experiences that go beyond typical tourism. Our carefully crafted 
-                itineraries combine breathtaking landscapes, rich cultural heritage, and authentic local experiences.
-              </Typography>
-              <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.8, fontSize: '1.0625rem' }}>
-                Whether you're seeking adventure in the mountains, peace in the valleys, or cultural immersion in 
-                local traditions, we design each journey to match your dreams.
-              </Typography>
+              <Card sx={{ height: '100%', p: 1.2 }}>
+                <CardContent sx={{ p: { xs: 3, md: 4 } }}>
+                  <SectionHeader
+                    subtitle="Our Story"
+                    title="Who We Are"
+                    description=""
+                  />
+                  <Typography variant="body1" color="text.secondary" sx={{ mb: 2.5, lineHeight: 1.8, fontSize: '1.0625rem' }}>
+                    Serene Valley Tours is a premier travel company specializing in Kashmir and Ladakh tour packages.
+                    Based in Srinagar, we are passionate locals who know every corner of this paradise on earth.
+                  </Typography>
+                  <Typography variant="body1" color="text.secondary" sx={{ mb: 2.5, lineHeight: 1.8, fontSize: '1.0625rem' }}>
+                    We believe in creating memorable experiences that go beyond typical tourism. Our carefully crafted
+                    itineraries combine breathtaking landscapes, rich cultural heritage, and authentic local experiences.
+                  </Typography>
+                  <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.8, fontSize: '1.0625rem' }}>
+                    Whether you're seeking adventure in the mountains, peace in the valleys, or cultural immersion in
+                    local traditions, we design each journey to match your dreams.
+                  </Typography>
+                </CardContent>
+              </Card>
             </Grid>
+
             <Grid item xs={12} md={6}>
-              <Box
-                component="img"
-                src="/images/gulmarg1.webp"
-                alt="Kashmir landscape"
-                sx={{ width: '100%', height: '450px', objectFit: 'cover', borderRadius: '20px', boxShadow: '0 12px 40px rgba(28, 168, 175, 0.15)' }}
-                loading="lazy"
-              />
+              <Card sx={{ height: '100%', p: 1.2 }}>
+                <CardContent sx={{ p: { xs: 2, md: 2.5 }, height: '100%' }}>
+                  <Box
+                    component="img"
+                    src="/images/gulmarg1.webp"
+                    alt="Kashmir landscape"
+                    sx={{ width: '100%', height: '100%', minHeight: { xs: 280, md: 520 }, objectFit: 'cover', borderRadius: '18px' }}
+                    loading="lazy"
+                  />
+                </CardContent>
+              </Card>
             </Grid>
           </Grid>
 
-          {/* Why Choose Us */}
           <Box sx={{ mt: 10 }}>
-            <Box sx={{ textAlign: 'center', mb: 6 }}>
-              <Typography 
-                sx={{ 
-                  fontFamily: 'Pacifico, cursive', 
-                  fontSize: { xs: '1.25rem', md: '1.5rem' }, 
-                  color: 'primary.main',
-                  mb: 1
-                }}
-              >
-                Our Advantages
-              </Typography>
-              <Typography variant="h2" sx={{ fontSize: { xs: '1.75rem', md: '2.25rem' }, fontWeight: 'bold', color: '#2C3E50' }}>
-                Why Choose Us
-              </Typography>
-            </Box>
+            <SectionHeader
+              subtitle="Our Services"
+              title="Why Choose Us"
+              description=""
+            />
             <Grid container spacing={3}>
               {features.map((feature, index) => (
                 <Grid item xs={12} sm={6} md={4} key={index}>
                   <Card sx={{ height: '100%', p: 1 }}>
                     <CardContent sx={{ display: 'flex', alignItems: 'flex-start', gap: 1.5, p: 3 }}>
-                      <CheckCircleIcon sx={{ color: 'primary.main', fontSize: '1.75rem' }} />
-                      <Typography variant="body1" sx={{ fontWeight: 500, color: '#2C3E50', fontSize: '1rem' }}>{feature}</Typography>
+                      <CheckCircleIcon sx={{ color: 'primary.main', fontSize: '1.75rem', mt: 0.2 }} />
+                      <Typography variant="body1" sx={{ fontWeight: 500, color: '#123E49', fontSize: '1rem', lineHeight: 1.6 }}>
+                        {feature}
+                      </Typography>
                     </CardContent>
                   </Card>
                 </Grid>
@@ -139,31 +104,18 @@ const About = () => {
             </Grid>
           </Box>
 
-          {/* Mission */}
-          <Box sx={{ mt: 10, p: 5, bgcolor: '#F0F9FA', borderRadius: '20px' }}>
-            <Typography 
-              sx={{ 
-                fontFamily: 'Pacifico, cursive', 
-                fontSize: { xs: '1.25rem', md: '1.5rem' }, 
-                color: 'primary.main',
-                mb: 1,
-                textAlign: 'center'
-              }}
-            >
-              What Drives Us
-            </Typography>
-            <Typography variant="h2" sx={{ fontSize: { xs: '1.75rem', md: '2.25rem' }, fontWeight: 'bold', mb: 3, textAlign: 'center', color: '#2C3E50' }}>
-              Our Mission
-            </Typography>
-            <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.8, fontSize: '1.0625rem', maxWidth: '800px', mx: 'auto', textAlign: 'center' }}>
-              To showcase the unparalleled beauty of Kashmir and Ladakh while promoting sustainable tourism, 
-              supporting local communities, and creating unforgettable memories for travelers from around the world.
-            </Typography>
-          </Box>
+          <Card sx={{ mt: 10, p: 1.2, bgcolor: '#FAFCFD' }}>
+            <CardContent sx={{ p: { xs: 3, md: 5 } }}>
+              <SectionHeader
+                subtitle="What Drives Us"
+                title="Our Mission"
+                description="To showcase the unparalleled beauty of Kashmir and Ladakh while promoting sustainable tourism, supporting local communities, and creating unforgettable memories for travelers from around the world."
+              />
+            </CardContent>
+          </Card>
 
-          {/* CTA */}
           <Box sx={{ textAlign: 'center', mt: 8 }}>
-            <Typography variant="h3" sx={{ fontSize: '1.75rem', fontWeight: 'bold', mb: 3, color: '#2C3E50' }}>
+            <Typography variant="h3" sx={{ fontSize: { xs: '1.5rem', md: '1.75rem' }, fontWeight: 700, mb: 3, color: '#123E49' }}>
               Ready to Start Your Journey?
             </Typography>
             <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', flexDirection: { xs: 'column', sm: 'row' }, maxWidth: '500px', mx: 'auto' }}>
@@ -194,3 +146,4 @@ const About = () => {
 };
 
 export default About;
+

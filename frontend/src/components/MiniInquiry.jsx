@@ -87,9 +87,33 @@ const MiniInquiry = ({ tourName, onClose }) => {
               fullWidth
               size="small"
               label="Name"
-              {...register('name', { required: 'Name required' })}
+              {...register('name', { 
+                required: 'Name required',
+                pattern: {
+                  value: /^[a-zA-Z\s]+$/,
+                  message: 'Letters only'
+                },
+                validate: value => value.trim().length > 0 || 'Name required'
+              })}
               error={!!errors.name}
               helperText={errors.name?.message}
+              margin="dense"
+            />
+
+            <TextField
+              fullWidth
+              size="small"
+              label="Email"
+              type="email"
+              {...register('email', {
+                required: 'Email required',
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: 'Invalid email'
+                }
+              })}
+              error={!!errors.email}
+              helperText={errors.email?.message}
               margin="dense"
             />
 
@@ -102,11 +126,15 @@ const MiniInquiry = ({ tourName, onClose }) => {
                 pattern: {
                   value: /^[0-9]{10}$/,
                   message: '10-digit number'
-                }
+                },
+                validate: value => /^[0-9]+$/.test(value) || 'Numbers only'
               })}
               error={!!errors.phone}
               helperText={errors.phone?.message}
               margin="dense"
+              onKeyPress={(e) => {
+                if (!/[0-9]/.test(e.key)) e.preventDefault();
+              }}
             />
 
             <TextField
@@ -140,15 +168,22 @@ const MiniInquiry = ({ tourName, onClose }) => {
                   type="number"
                   {...register('people', { 
                     required: 'Required',
-                    min: { value: 1, message: 'Min 1' }
+                    validate: value => {
+                      const num = Number(value);
+                      if (!Number.isInteger(num)) return 'Whole number only';
+                      if (num < 1) return 'Min 1';
+                      if (num > 50) return 'Max 50';
+                      return true;
+                    }
                   })}
                   error={!!errors.people}
                   sx={{ width: '80px', '& input': { textAlign: 'center' } }}
-                  inputProps={{ min: 1, readOnly: true }}
+                  inputProps={{ min: 1, max: 50, step: 1, readOnly: true }}
                 />
                 <IconButton 
                   size="small"
-                  onClick={() => setValue('people', people + 1)}
+                  onClick={() => setValue('people', Math.min(50, people + 1))}
+                  disabled={people >= 50}
                   sx={{ border: '1px solid', borderColor: 'divider' }}
                 >
                   <AddIcon fontSize="small" />

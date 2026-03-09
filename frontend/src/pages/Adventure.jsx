@@ -4,6 +4,8 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { adventureContent } from '../data/tourContent';
 import { tours } from '../data/tours';
 import SEO from '../components/SEO';
+import SectionHeader from '../components/SectionHeader';
+import PageHero from '../components/PageHero';
 
 const Adventure = () => {
   const adventureTours = tours.filter(tour => 
@@ -18,50 +20,22 @@ const Adventure = () => {
         keywords="adventure tours, trekking Kashmir, skiing Gulmarg, Ladakh trekking, adventure packages, outdoor activities Kashmir"
         url="https://serenevalleytours.com/adventure"
       />
-      <Box>
-        {/* Hero Section */}
-        <Box
-          component="section"
-          className="relative h-screen bg-cover bg-center"
-          sx={{
-            backgroundImage:
-              'linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(/images/trekking.webp)',
-          }}
-          role="img"
-          aria-label="Mountain trekking adventure"
-        >
-          <Container sx={{ height: '100%', display: 'flex', alignItems: 'center', position: 'relative', zIndex: 10, px: { xs: 2, sm: 3 } }}>
-            <Box sx={{ color: 'white', maxWidth: '48rem' }}>
-              <Typography variant="h1" sx={{ color: 'white', fontSize: { xs: '2rem', md: '3rem' }, fontWeight: 'bold', mb: 2 }}>
-                {adventureContent.heading}
-              </Typography>
-              <Typography variant="h2" sx={{ fontSize: { xs: '1.25rem', md: '1.5rem' }, fontWeight: 400, mb: 3, color: 'white' }}>
-                {adventureContent.description}
-              </Typography>
-            </Box>
-          </Container>
-        </Box>
+      <Box sx={{ bgcolor: '#FFFFFF' }}>
+        <PageHero
+          subtitle="Adventure Tours"
+          title={adventureContent.heading}
+          description={adventureContent.description}
+          image="/images/trekking.webp"
+          ariaLabel="Mountain trekking adventure"
+        />
 
         {/* Popular Tours */}
         <Container component="section" sx={{ py: { xs: 8, md: 12 } }}>
-          <Box sx={{ textAlign: 'center', mb: 8 }}>
-            <Typography 
-              sx={{ 
-                fontFamily: 'Pacifico, cursive', 
-                fontSize: { xs: '1.5rem', md: '2rem' }, 
-                color: 'primary.main',
-                mb: 1
-              }}
-            >
-              Thrilling Experiences
-            </Typography>
-            <Typography variant="h2" sx={{ fontSize: { xs: '2rem', md: '2.75rem' }, fontWeight: 'bold', mb: 2, color: '#2C3E50' }}>
-              Adventure Tours
-            </Typography>
-            <Typography variant="body1" color="text.secondary" sx={{ fontSize: { xs: '1rem', md: '1.125rem' }, maxWidth: '700px', mx: 'auto' }}>
-              Browse our most loved trekking and adventure tours across Kashmir and Ladakh.
-            </Typography>
-          </Box>
+          <SectionHeader
+            subtitle="Thrilling Experiences"
+            title="Adventure Tours"
+            description="Browse our most loved trekking and adventure tours across Kashmir and Ladakh."
+          />
 
           <Grid container spacing={4}>
             {adventureTours.map((tour) => (
@@ -79,7 +53,7 @@ const Adventure = () => {
                     <Chip label={tour.category} size="small" sx={{ position: 'absolute', top: 16, left: 16 }} />
                   </Box>
                   <CardContent sx={{ flexGrow: 1, p: 3 }}>
-                    <Typography variant="h3" sx={{ fontSize: '1.375rem', fontWeight: 'bold', mb: 1.5, color: '#2C3E50' }}>
+                    <Typography variant="h3" sx={{ fontSize: '1.375rem', fontWeight: 'bold', mb: 1.5, color: '#123E49' }}>
                       {tour.name}
                     </Typography>
                     <Typography variant="body2" color="text.secondary" sx={{ mb: 2, overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', lineHeight: 1.6 }}>
@@ -102,26 +76,13 @@ const Adventure = () => {
         </Container>
 
         {/* Adventure Activities Section */}
-        <Box component="section" sx={{ bgcolor: '#F0F9FA', py: { xs: 8, md: 12 } }}>
+        <Box component="section" sx={{ bgcolor: '#FAFCFD', py: { xs: 8, md: 12 } }}>
           <Container>
-            <Box sx={{ textAlign: 'center', mb: 8 }}>
-              <Typography 
-                sx={{ 
-                  fontFamily: 'Pacifico, cursive', 
-                  fontSize: { xs: '1.5rem', md: '2rem' }, 
-                  color: 'primary.main',
-                  mb: 1
-                }}
-              >
-                Outdoor Activities
-              </Typography>
-              <Typography variant="h2" sx={{ fontSize: { xs: '2rem', md: '2.75rem' }, fontWeight: 'bold', mb: 2, color: '#2C3E50' }}>
-                {adventureContent.subHeading}
-              </Typography>
-              <Typography variant="body1" color="text.secondary" sx={{ fontSize: { xs: '1rem', md: '1.125rem' }, maxWidth: '600px', mx: 'auto' }}>
-                From skiing in Gulmarg to trekking Himalayan trails
-              </Typography>
-            </Box>
+            <SectionHeader
+              subtitle="Outdoor Activities"
+              title={adventureContent.subHeading}
+              description="From skiing in Gulmarg to trekking Himalayan trails"
+            />
 
             <Grid container spacing={4}>
               {adventureContent.categories.map((category, index) => (
@@ -151,3 +112,4 @@ const Adventure = () => {
 };
 
 export default Adventure;
+
