@@ -3,7 +3,7 @@ export const destinations = [
     id: 'gulmarg',
     name: 'Gulmarg',
     tagline: 'The Meadow of Flowers',
-    description: 'Gulmarg, meaning "Meadow of Flowers", is a stunning hill station known for its world-class skiing facilities and the highest golf course in the world. Located at an altitude of 2,650 meters, it offers breathtaking views of snow-capped peaks and lush green meadows.',
+    description: 'Gulmarg is a high-altitude meadow resort in Kashmir, around 2,600 meters above sea level, known for sweeping alpine views, winter skiing terrain, and summer wildflower meadows framed by pine and fir forests.',
     highlights: [
       'Gulmarg Gondola - Asia\'s highest cable car',
       'Skiing and snowboarding paradise',
@@ -19,7 +19,7 @@ export const destinations = [
     id: 'pahalgam',
     name: 'Pahalgam',
     tagline: 'Valley of Shepherds',
-    description: 'Pahalgam is a picturesque town famous for its scenic beauty, lush green meadows, and the Lidder River. It serves as the base camp for the annual Amarnath Yatra and offers numerous trekking opportunities through pine forests and alpine meadows.',
+    description: 'Pahalgam sits along the Lidder River in the Kashmir Valley at about 2,200 meters, with pine-clad slopes, open meadows, and valley viewpoints that make it one of the region\'s most scenic hill destinations.',
     highlights: [
       'Betaab Valley - Bollywood filming location',
       'Aru Valley - Pristine meadows',
@@ -35,7 +35,7 @@ export const destinations = [
     id: 'sonamarg',
     name: 'Sonamarg',
     tagline: 'Meadow of Gold',
-    description: 'Sonamarg, the "Meadow of Gold", is a breathtaking valley adorned with flowers and surrounded by snow-capped mountains. Located at 2,800 meters, it\'s the gateway to Ladakh and offers spectacular views of glaciers and alpine lakes.',
+    description: 'Sonamarg is a mountain hill station in Ganderbal district, set at roughly 2,730 meters, where alpine meadows, glacial landscapes, and river valleys create dramatic high-Himalayan scenery.',
     highlights: [
       'Thajiwas Glacier trekking',
       'Vishansar and Krishansar Lakes',
@@ -51,7 +51,7 @@ export const destinations = [
     id: 'srinagar',
     name: 'Srinagar',
     tagline: 'The Summer Capital',
-    description: 'Srinagar, the summer capital of Jammu and Kashmir, is famous for its beautiful Dal Lake, Mughal gardens, and traditional houseboats. The city offers a perfect blend of natural beauty, rich culture, and historical heritage.',
+    description: 'Srinagar, the summer capital of Jammu and Kashmir, spreads across the Kashmir Valley along the Jhelum River and Dal Lake, known for Mughal gardens, lakeside houseboats, and iconic city-meets-mountain views.',
     highlights: [
       'Dal Lake and Shikara rides',
       'Mughal Gardens - Shalimar, Nishat',
@@ -67,7 +67,7 @@ export const destinations = [
     id: 'leh',
     name: 'Leh',
     tagline: 'Land of High Passes',
-    description: 'Leh, the capital of Ladakh, sits at 3,500 meters and offers stunning mountain landscapes, ancient monasteries, and unique Tibetan Buddhist culture. The city is the gateway to exploring the rugged beauty of Ladakh.',
+    description: 'Leh stands in the upper Indus Valley at around 3,520 meters, surrounded by stark high-altitude ranges, historic monasteries, and wide open mountain terrain that defines the Ladakh travel experience.',
     highlights: [
       'Leh Palace and Shanti Stupa',
       'Ancient Buddhist monasteries',
@@ -83,7 +83,7 @@ export const destinations = [
     id: 'nubra-valley',
     name: 'Nubra Valley',
     tagline: 'Valley of Flowers',
-    description: 'Nubra Valley, accessible via the world\'s highest motorable road Khardung La, is a cold desert with sand dunes, double-humped camels, and stunning monasteries. The valley offers a unique landscape of mountains meeting desert.',
+    description: 'Nubra Valley is a tri-armed high-altitude valley formed by the Shyok and Nubra rivers, known for dramatic contrasts of river plains, monasteries, and cold-desert sand dunes with Bactrian camels.',
     highlights: [
       'Khardung La Pass - World\'s highest motorable road',
       'Diskit Monastery and Giant Buddha',
@@ -99,7 +99,7 @@ export const destinations = [
     id: 'pangong-lake',
     name: 'Pangong Lake',
     tagline: 'The Blue Wonder',
-    description: 'Pangong Lake, at 4,350 meters, is a stunning high-altitude lake that changes colors throughout the day. Made famous by Bollywood, this 134 km long lake extends from India to Tibet and offers breathtaking views.',
+    description: 'Pangong Tso is a long, high-altitude endorheic lake at about 4,225 meters, stretching across Ladakh and Tibet, famous for its deep blue tones, stark mountain backdrop, and frozen winter surface.',
     highlights: [
       'Color-changing lake waters',
       'Chang La Pass crossing',

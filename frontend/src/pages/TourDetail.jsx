@@ -12,14 +12,12 @@ import {
   ListItemIcon,
   ListItemText,
   Button,
-  Chip,
   Dialog,
   IconButton,
   Fab,
 } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import PhoneIcon from '@mui/icons-material/Phone';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import CloseIcon from '@mui/icons-material/Close';
@@ -29,6 +27,7 @@ import EmailIcon from '@mui/icons-material/Email';
 import { getTourById } from '../data/tours';
 import SEO from '../components/SEO';
 import MiniInquiry from '../components/MiniInquiry';
+import PageHero from '../components/PageHero';
 
 const TourDetail = () => {
   const { id } = useParams();
@@ -82,38 +81,14 @@ const TourDetail = () => {
         ogImage={tour.bannerImage}
         url={`https://serenevalleytours.com/tours/${tour.id}`}
       />
-      <Box>
-        {/* Hero Image */}
-        <Box
-          component="header"
-          sx={{
-            height: '24rem',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            position: 'relative',
-            backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${tour.bannerImage})`,
-          }}
-          role="img"
-          aria-label={`${tour.name} banner`}
-        >
-          <Container sx={{ height: '100%', display: 'flex', alignItems: 'flex-end', pb: 4 }}>
-            <Box sx={{ color: 'white' }}>
-              <Chip
-                label={tour.category}
-                sx={{ mb: 1, borderRadius: '9999px', height: '3rem', width: '7rem', fontSize: '1.125rem', fontWeight: 'bold' }}
-              />
-              <Typography variant="h1" sx={{ fontSize: { xs: '2rem', md: '2.5rem' }, fontWeight: 'bold', mb: 1, color: 'white' }}>
-                {tour.name}
-              </Typography>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                  <AccessTimeIcon aria-hidden="true" />
-                  <Typography sx={{ color: 'white' }}>{tour.duration}</Typography>
-                </Box>
-              </Box>
-            </Box>
-          </Container>
-        </Box>
+      <Box sx={{ bgcolor: '#FFFFFF' }}>
+        <PageHero
+          subtitle={tour.category}
+          title={tour.name}
+          description={tour.duration}
+          image={tour.bannerImage}
+          ariaLabel={`${tour.name} banner`}
+        />
 
         <Container component="article" sx={{ py: { xs: 8, md: 12 } }}>
           <Grid container spacing={4}>
@@ -122,7 +97,7 @@ const TourDetail = () => {
               {/* Description */}
               <Card component="section" sx={{ mb: 3, p: 1 }}>
                 <CardContent sx={{ p: 3 }}>
-                  <Typography variant="h2" sx={{ fontSize: '1.75rem', fontWeight: 'bold', mb: 3, color: '#2C3E50' }}>
+                  <Typography variant="h2" sx={{ fontSize: '1.75rem', fontWeight: 'bold', mb: 3, color: '#123E49' }}>
                     About This Tour
                   </Typography>
                   <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.8 }}>
@@ -134,7 +109,7 @@ const TourDetail = () => {
               {/* Itinerary */}
               <Card component="section" sx={{ mb: 3, p: 1 }}>
                 <CardContent sx={{ p: 3 }}>
-                  <Typography variant="h2" sx={{ fontSize: '1.75rem', fontWeight: 'bold', mb: 3, color: '#2C3E50' }}>
+                  <Typography variant="h2" sx={{ fontSize: '1.75rem', fontWeight: 'bold', mb: 3, color: '#123E49' }}>
                     Itinerary
                   </Typography>
                   <Box sx={{ mb: 3, p: 2.5, bgcolor: '#E0F7F8', borderRadius: '12px', borderLeft: '4px solid', borderColor: 'primary.main' }}>
@@ -158,7 +133,7 @@ const TourDetail = () => {
               {/* Tour Gallery */}
               <Card component="section" sx={{ mb: 3, p: 1 }}>
                 <CardContent sx={{ p: 3 }}>
-                  <Typography variant="h2" sx={{ fontSize: '1.75rem', fontWeight: 'bold', mb: 3, color: '#2C3E50' }}>
+                  <Typography variant="h2" sx={{ fontSize: '1.75rem', fontWeight: 'bold', mb: 3, color: '#123E49' }}>
                     Tour Gallery
                   </Typography>
                   <Grid container spacing={2}>
@@ -193,7 +168,7 @@ const TourDetail = () => {
                 <Grid item xs={12} md={6}>
                   <Card component="section" sx={{ p: 1 }}>
                     <CardContent sx={{ p: 3 }}>
-                      <Typography variant="h3" sx={{ fontSize: '1.25rem', fontWeight: 'bold', mb: 2, color: '#2C3E50' }}>
+                      <Typography variant="h3" sx={{ fontSize: '1.25rem', fontWeight: 'bold', mb: 2, color: '#123E49' }}>
                         Inclusions
                       </Typography>
                       <List dense>
@@ -212,7 +187,7 @@ const TourDetail = () => {
                 <Grid item xs={12} md={6}>
                   <Card component="section" sx={{ p: 1 }}>
                     <CardContent sx={{ p: 3 }}>
-                      <Typography variant="h3" sx={{ fontSize: '1.25rem', fontWeight: 'bold', mb: 2, color: '#2C3E50' }}>
+                      <Typography variant="h3" sx={{ fontSize: '1.25rem', fontWeight: 'bold', mb: 2, color: '#123E49' }}>
                         Exclusions
                       </Typography>
                       <List dense>
@@ -242,7 +217,7 @@ const TourDetail = () => {
 
               <Card component="aside" sx={{ p: 1, position: 'sticky', top: 24 }}>
                 <CardContent sx={{ p: 3 }}>
-                  <Typography variant="h2" sx={{ fontSize: '1.5rem', fontWeight: 'bold', mb: 2, color: '#2C3E50' }}>
+                  <Typography variant="h2" sx={{ fontSize: '1.5rem', fontWeight: 'bold', mb: 2, color: '#123E49' }}>
                     Interested in This Tour?
                   </Typography>
                   <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
@@ -376,3 +351,4 @@ const TourDetail = () => {
 };
 
 export default TourDetail;
+

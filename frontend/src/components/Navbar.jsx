@@ -58,15 +58,26 @@ const Navbar = () => {
                 key={item.path}
                 component={NavLink}
                 to={item.path}
+                end={item.path === '/'}
                 sx={{
                   fontSize: '1rem',
                   color: 'text.primary',
                   fontWeight: 500,
-                  px: 2,
-                  '&:hover': { color: 'primary.main' },
+                  px: 2.2,
+                  py: 0.85,
+                  borderRadius: '999px',
+                  border: '1px solid transparent',
+                  transition: 'all 0.2s ease',
+                  '&:hover': {
+                    color: 'primary.main',
+                    backgroundColor: 'rgba(33, 173, 194, 0.08)',
+                  },
                   '&.active': {
                     color: 'primary.main',
-                    fontWeight: 600
+                    fontWeight: 700,
+                    background: 'linear-gradient(135deg, rgba(33, 173, 194, 0.18), rgba(24, 143, 163, 0.1))',
+                    borderColor: 'rgba(33, 173, 194, 0.45)',
+                    boxShadow: '0 6px 14px rgba(33, 173, 194, 0.22)',
                   },
                 }}
               >
@@ -100,12 +111,17 @@ const Navbar = () => {
                     <ListItemButton
                       component={NavLink}
                       to={item.path}
+                      end={item.path === '/'}
                       onClick={() => setMobileOpen(false)}
                       sx={{
+                        borderRadius: 2,
+                        border: '1px solid transparent',
+                        mb: 0.5,
                         '&.active': {
-                          borderLeft: '4px solid',
-                          borderColor: 'primary.main',
-                          backgroundColor: 'rgba(25, 118, 210, 0.08)',
+                          color: 'primary.main',
+                          fontWeight: 700,
+                          borderColor: 'rgba(33, 173, 194, 0.45)',
+                          background: 'linear-gradient(135deg, rgba(33, 173, 194, 0.15), rgba(24, 143, 163, 0.08))',
                         },
                       }}
                     >

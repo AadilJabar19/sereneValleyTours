@@ -14,6 +14,8 @@ import {
 } from '@mui/material';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import SEO from '../components/SEO';
+import PageHero from '../components/PageHero';
+import SectionHeader from '../components/SectionHeader';
 
 const products = [
   {
@@ -126,40 +128,23 @@ const Store = () => {
         url="https://serenevalleytours.com/store"
       />
       
-      <Box component="main">
-        {/* Hero Section */}
-        <Box component="header" sx={{ bgcolor: '#F0F9FA', py: 10 }}>
-          <Container>
-            <Box sx={{ textAlign: 'center' }}>
-              <Typography 
-                sx={{ 
-                  fontFamily: 'Pacifico, cursive', 
-                  fontSize: { xs: '1.5rem', md: '2rem' }, 
-                  color: 'primary.main',
-                  mb: 1
-                }}
-              >
-                Authentic Products
-              </Typography>
-              <Typography variant="h1" sx={{ fontSize: { xs: '2rem', md: '2.75rem' }, fontWeight: 'bold', mb: 2, color: '#2C3E50' }}>
-                Kashmir & Ladakh Store
-              </Typography>
-              <Typography variant="body1" color="text.secondary" sx={{ fontSize: { xs: '1rem', md: '1.125rem' }, maxWidth: '600px', mx: 'auto' }}>
-                Premium quality products directly from the valleys
-              </Typography>
-            </Box>
-          </Container>
-        </Box>
+      <Box component="main" sx={{ bgcolor: '#FFFFFF' }}>
+        <PageHero
+          subtitle="Authentic Products"
+          title="Kashmir & Ladakh Store"
+          description="Premium quality products directly from the valleys"
+          image="/images/aruvalley2.webp"
+          ariaLabel="Store for authentic Kashmir and Ladakh products"
+        />
 
         {/* Products Grid */}
         <Container component="section" sx={{ py: { xs: 8, md: 12 }, px: { xs: 2, sm: 3 } }}>
-          <Box sx={{ textAlign: 'center', mb: 8 }}>
-            <Typography variant="h2" sx={{ fontSize: { xs: '2rem', md: '2.75rem' }, fontWeight: 'bold', mb: 2, color: '#2C3E50' }}>
-              Our Products
-            </Typography>
-            <Typography variant="body1" color="text.secondary" sx={{ mb: 3 }}>
-              Contact us on WhatsApp for pricing, availability, and orders
-            </Typography>
+          <Box sx={{ mb: 8, textAlign: 'center' }}>
+            <SectionHeader
+              subtitle="Our Services"
+              title="Our Products"
+              description="Contact us on WhatsApp for pricing, availability, and orders"
+            />
             <Box sx={{ p: 3, bgcolor: 'rgba(28, 168, 175, 0.1)', borderRadius: '12px', display: 'inline-block', mb: 4 }}>
               <Typography variant="body1" sx={{ color: 'primary.main', fontWeight: 600 }}>
                 🚚 7-Day Delivery Available Across India
@@ -196,7 +181,7 @@ const Store = () => {
                     <Typography variant="caption" color="primary" sx={{ fontWeight: 600, display: 'block', mb: 1 }}>
                       {product.category}
                     </Typography>
-                    <Typography variant="h3" sx={{ fontSize: '1.375rem', fontWeight: 'bold', mb: 1.5, color: '#2C3E50' }}>
+                    <Typography variant="h3" sx={{ fontSize: '1.375rem', fontWeight: 'bold', mb: 1.5, color: '#123E49' }}>
                       {product.name}
                     </Typography>
                     <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6 }}>
@@ -220,8 +205,8 @@ const Store = () => {
           </Grid>
 
           {/* Contact Info */}
-          <Box sx={{ textAlign: 'center', mt: 8, p: 6, bgcolor: '#F0F9FA', borderRadius: '20px' }}>
-            <Typography variant="h3" sx={{ fontSize: '1.75rem', fontWeight: 'bold', mb: 2, color: '#2C3E50' }}>
+          <Box sx={{ textAlign: 'center', mt: 8, p: 6, bgcolor: '#FAFCFD', borderRadius: '20px' }}>
+            <Typography variant="h3" sx={{ fontSize: '1.75rem', fontWeight: 'bold', mb: 2, color: '#123E49' }}>
               Need Help?
             </Typography>
             <Typography variant="body1" color="text.secondary" sx={{ mb: 4 }}>
@@ -253,3 +238,4 @@ const Store = () => {
 };
 
 export default Store;
+

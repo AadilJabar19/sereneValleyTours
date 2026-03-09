@@ -1,100 +1,116 @@
-import { Box, Container, Grid, Typography } from '@mui/material';
-import GroupsIcon from '@mui/icons-material/Groups';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import SupportAgentIcon from '@mui/icons-material/SupportAgent';
+import { Box, Container, Typography } from '@mui/material';
+import SectionHeader from './SectionHeader';
 
 const TrustStats = () => {
   const stats = [
-    {
-      number: '500+',
-      label: 'Happy Travelers',
-    },
-    {
-      number: '5+',
-      label: 'Years Experience',
-    },
-    {
-      number: '50+',
-      label: 'Destinations',
-    },
-    {
-      number: '24/7',
-      label: 'Support',
-    },
+    { value: '12', label: 'Years Experience', offset: { md: 64, lg: 92 }, dotTop: '80%' },
+    { value: '97%', label: 'Retention Rate', offset: { md: -28, lg: -44 }, dotTop: '18%' },
+    { value: '8K', label: 'Tour Completed', offset: { md: 64, lg: 92 }, dotTop: '78%' },
+    { value: '19K', label: 'Happy Travellers', offset: { md: -28, lg: -34 }, dotTop: '20%' },
   ];
 
   return (
-    <Box component="section" sx={{ py: { xs: 8, md: 12 } }}>
+    <Box component="section" sx={{ bgcolor: 'transparent', py: { xs: 8, md: 11 }, overflow: 'hidden', position: 'relative' }}>
+      <Box
+        sx={{
+          position: 'absolute',
+          left: -120,
+          top: -120,
+          width: 380,
+          height: 260,
+          border: '2px solid rgba(120, 208, 222, 0.18)',
+          borderRadius: '50%',
+          pointerEvents: 'none',
+        }}
+      />
+      <Box sx={{ position: 'absolute', left: { xs: 18, md: 140 }, top: { xs: 170, md: 205 }, color: '#2DB9CF', opacity: 0.8, fontSize: { xs: '1.2rem', md: '1.5rem' }, pointerEvents: 'none' }}>
+        🎈
+      </Box>
+      <Box sx={{ position: 'absolute', left: { xs: 44, md: 188 }, top: { xs: 208, md: 250 }, color: '#2DB9CF', opacity: 0.95, fontSize: { xs: '2rem', md: '3.2rem' }, pointerEvents: 'none' }}>
+        🎈
+      </Box>
+      <Box sx={{ position: 'absolute', right: { xs: 24, md: 170 }, top: { xs: 55, md: 72 }, color: '#2DB9CF', opacity: 0.9, fontSize: { xs: '2rem', md: '3rem' }, pointerEvents: 'none' }}>
+        ⚓
+      </Box>
+      <Box sx={{ position: 'absolute', left: { xs: 22, md: 150 }, bottom: { xs: 32, md: 22 }, opacity: 0.95, fontSize: { xs: '2.2rem', md: '3rem' }, pointerEvents: 'none' }}>
+        🌴
+      </Box>
+
       <Container>
-        <Box sx={{ textAlign: 'center', mb: 8 }}>
-          <Typography 
-            sx={{ 
-              fontFamily: 'Pacifico, cursive', 
-              fontSize: { xs: '1.5rem', md: '2rem' }, 
-              color: 'primary.main',
-              mb: 1
-            }}
-          >
-            Our Achievements
-          </Typography>
-          <Typography 
-            variant="h2" 
-            sx={{ fontSize: { xs: '2rem', md: '2.75rem' }, fontWeight: 'bold', color: '#2C3E50' }}
-          >
-            Why Choose Us
-          </Typography>
-        </Box>
-        <Grid container spacing={4}>
-          {stats.map((stat, index) => (
-            <Grid item xs={6} md={3} key={index}>
-              <Box 
-                sx={{ 
-                  textAlign: 'center',
-                  p: 4,
+        <SectionHeader
+          subtitle="Our Achievements"
+          title="Why Choose Us"
+          description=""
+        />
+
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, minmax(240px, 1fr))', lg: 'repeat(4, minmax(210px, 1fr))' },
+            justifyItems: 'center',
+            alignItems: 'center',
+            gap: { xs: 4, sm: 5, md: 3 },
+          }}
+        >
+          {stats.map((item, index) => (
+            <Box
+              key={item.label}
+              sx={{
+                mt: { xs: 0, sm: index % 2 ? -1 : 1, lg: item.offset },
+                position: 'relative',
+              }}
+            >
+              <Box
+                sx={{
+                  width: { xs: 216, md: 252, lg: 286 },
+                  height: { xs: 216, md: 252, lg: 286 },
                   borderRadius: '50%',
-                  width: { xs: '160px', md: '200px' },
-                  height: { xs: '160px', md: '200px' },
-                  mx: 'auto',
+                  border: '2px solid #7ED0DE',
                   display: 'flex',
-                  flexDirection: 'column',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  bgcolor: '#E0F7F8',
-                  border: '3px solid',
-                  borderColor: 'primary.main',
-                  transition: 'all 0.3s',
-                  '&:hover': {
-                    transform: 'scale(1.05)',
-                    boxShadow: '0 8px 30px rgba(28, 168, 175, 0.2)'
-                  }
+                  position: 'relative',
+                  bgcolor: 'transparent',
                 }}
               >
-                <Typography 
-                  variant="h3" 
-                  sx={{ 
-                    fontSize: { xs: '2.5rem', md: '3rem' }, 
-                    fontWeight: 'bold',
-                    color: 'primary.main',
-                    mb: 0.5
+                <Box
+                  sx={{
+                    width: { xs: 186, md: 218, lg: 246 },
+                    height: { xs: 186, md: 218, lg: 246 },
+                    borderRadius: '50%',
+                    bgcolor: '#E5F2F6',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexDirection: 'column',
+                    textAlign: 'center',
+                    px: 2,
                   }}
                 >
-                  {stat.number}
-                </Typography>
-                <Typography 
-                  variant="body1" 
-                  sx={{ 
-                    fontSize: { xs: '0.875rem', md: '1rem' }, 
-                    fontWeight: 600,
-                    color: '#2C3E50'
+                  <Typography sx={{ fontSize: { xs: '2.4rem', md: '3rem' }, fontWeight: 700, color: '#111827', lineHeight: 1, mb: 0.5 }}>
+                    {item.value}
+                  </Typography>
+                  <Typography sx={{ fontSize: { xs: '1rem', md: '1.08rem' }, color: '#1F2937', lineHeight: 1.18, maxWidth: '150px' }}>
+                    {item.label}
+                  </Typography>
+                </Box>
+
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    right: 7,
+                    top: item.dotTop,
+                    width: 12,
+                    height: 12,
+                    borderRadius: '50%',
+                    bgcolor: '#19B6D1',
+                    boxShadow: '0 0 0 3px rgba(25,182,209,0.18)',
                   }}
-                >
-                  {stat.label}
-                </Typography>
+                />
               </Box>
-            </Grid>
+            </Box>
           ))}
-        </Grid>
+        </Box>
       </Container>
     </Box>
   );

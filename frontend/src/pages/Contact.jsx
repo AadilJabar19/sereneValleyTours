@@ -19,6 +19,7 @@ import EmailIcon from '@mui/icons-material/Email';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { sendContactEmail } from '../services/emailService';
 import SEO from '../components/SEO';
+import PageHero from '../components/PageHero';
 
 const Contact = () => {
   const navigate = useNavigate();
@@ -66,30 +67,14 @@ const Contact = () => {
         keywords="contact, book tour, Kashmir tour booking, Ladakh tour booking, travel agency contact"
         url="https://serenevalleytours.com/contact"
       />
-      <Box>
-        {/* Header */}
-        <Box component="header" sx={{ bgcolor: '#F0F9FA', py: 10 }}>
-          <Container>
-            <Box sx={{ textAlign: 'center' }}>
-              <Typography 
-                sx={{ 
-                  fontFamily: 'Pacifico, cursive', 
-                  fontSize: { xs: '1.5rem', md: '2rem' }, 
-                  color: 'primary.main',
-                  mb: 1
-                }}
-              >
-                Get In Touch
-              </Typography>
-              <Typography variant="h1" sx={{ fontSize: { xs: '2rem', md: '2.75rem' }, fontWeight: 'bold', mb: 2, color: '#2C3E50' }}>
-                Contact Us
-              </Typography>
-              <Typography variant="body1" color="text.secondary" sx={{ fontSize: { xs: '1rem', md: '1.125rem' }, maxWidth: '600px', mx: 'auto' }}>
-                Get in touch with us for any queries or bookings
-              </Typography>
-            </Box>
-          </Container>
-        </Box>
+      <Box sx={{ bgcolor: '#FFFFFF' }}>
+        <PageHero
+          subtitle="Get In Touch"
+          title="Contact Us"
+          description="Get in touch with us for any queries or bookings"
+          image="/images/srinagar4.webp"
+          ariaLabel="Contact Serene Valley Tours"
+        />
 
         <Container component="section" sx={{ py: 8 }}>
           <Grid container spacing={4}>
@@ -97,7 +82,7 @@ const Contact = () => {
             <Grid item xs={12} md={7}>
               <Card sx={{ p: 1 }}>
                 <CardContent sx={{ p: 4 }}>
-                  <Typography variant="h2" sx={{ fontSize: '1.75rem', fontWeight: 'bold', mb: 3, color: '#2C3E50' }}>
+                  <Typography variant="h2" sx={{ fontSize: '1.75rem', fontWeight: 'bold', mb: 3, color: '#123E49' }}>
                     Send us a Message
                   </Typography>
 
@@ -105,7 +90,14 @@ const Contact = () => {
                     <TextField
                       fullWidth
                       label="Name"
-                      {...register('name', { required: 'Name is required' })}
+                      {...register('name', { 
+                        required: 'Name is required',
+                        pattern: {
+                          value: /^[a-zA-Z\s]+$/,
+                          message: 'Name can only contain letters and spaces'
+                        },
+                        validate: value => value.trim().length > 0 || 'Name cannot be empty spaces'
+                      })}
                       error={!!errors.name}
                       helperText={errors.name?.message}
                       margin="normal"
@@ -137,12 +129,20 @@ const Contact = () => {
                         pattern: {
                           value: /^[0-9]{10}$/,
                           message: 'Enter valid 10-digit phone number'
+                        },
+                        validate: value => {
+                          if (!/^[0-9]+$/.test(value)) return 'Phone can only contain numbers';
+                          if (value.length !== 10) return 'Enter valid 10-digit phone number';
+                          return true;
                         }
                       })}
                       error={!!errors.phone}
                       helperText={errors.phone?.message}
                       margin="normal"
                       inputProps={{ 'aria-label': 'Your phone number' }}
+                      onKeyPress={(e) => {
+                        if (!/[0-9]/.test(e.key)) e.preventDefault();
+                      }}
                     />
 
                     <TextField
@@ -180,13 +180,18 @@ const Contact = () => {
                       type="number"
                       {...register('numberOfTravelers', { 
                         required: 'Number of travelers is required',
-                        min: { value: 1, message: 'At least 1 traveler required' },
-                        max: { value: 50, message: 'Maximum 50 travelers allowed' }
+                        validate: value => {
+                          const num = Number(value);
+                          if (!Number.isInteger(num)) return 'Please enter a whole number';
+                          if (num < 1) return 'At least 1 traveler required';
+                          if (num > 50) return 'Maximum 50 travelers allowed';
+                          return true;
+                        }
                       })}
                       error={!!errors.numberOfTravelers}
                       helperText={errors.numberOfTravelers?.message}
                       margin="normal"
-                      inputProps={{ 'aria-label': 'Number of travelers', min: 1, max: 50 }}
+                      inputProps={{ 'aria-label': 'Number of travelers', min: 1, max: 50, step: 1 }}
                     />
 
                     <TextField
@@ -194,7 +199,10 @@ const Contact = () => {
                       label="Message"
                       multiline
                       rows={5}
-                      {...register('message', { required: 'Message is required' })}
+                      {...register('message', { 
+                        required: 'Message is required',
+                        validate: value => value.trim().length > 0 || 'Message cannot be empty spaces'
+                      })}
                       error={!!errors.message}
                       helperText={errors.message?.message}
                       margin="normal"
@@ -220,14 +228,14 @@ const Contact = () => {
             <Grid item xs={12} md={5}>
               <Card sx={{ mb: 3, p: 1 }}>
                 <CardContent sx={{ p: 3 }}>
-                  <Typography variant="h2" sx={{ fontSize: '1.75rem', fontWeight: 'bold', mb: 3, color: '#2C3E50' }}>
+                  <Typography variant="h2" sx={{ fontSize: '1.75rem', fontWeight: 'bold', mb: 3, color: '#123E49' }}>
                     Contact Information
                   </Typography>
 
                   <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1.5, mb: 3 }}>
                     <LocationOnIcon sx={{ color: 'primary.main', mt: 0.5, fontSize: '1.5rem' }} aria-hidden="true" />
                     <Box>
-                      <Typography variant="body1" sx={{ fontWeight: 600, mb: 0.5, color: '#2C3E50' }}>
+                      <Typography variant="body1" sx={{ fontWeight: 600, mb: 0.5, color: '#123E49' }}>
                         Address
                       </Typography>
                       <Typography variant="body2" sx={{ color: 'text.secondary', lineHeight: 1.6 }}>
@@ -241,7 +249,7 @@ const Contact = () => {
                   <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1.5, mb: 3 }}>
                     <PhoneIcon sx={{ color: 'primary.main', mt: 0.5, fontSize: '1.5rem' }} aria-hidden="true" />
                     <Box>
-                      <Typography variant="body1" sx={{ fontWeight: 600, mb: 0.5, color: '#2C3E50' }}>
+                      <Typography variant="body1" sx={{ fontWeight: 600, mb: 0.5, color: '#123E49' }}>
                         Phone
                       </Typography>
                       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
@@ -258,7 +266,7 @@ const Contact = () => {
                   <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1.5 }}>
                     <EmailIcon sx={{ color: 'primary.main', mt: 0.5, fontSize: '1.5rem' }} aria-hidden="true" />
                     <Box>
-                      <Typography variant="body1" sx={{ fontWeight: 600, mb: 0.5, color: '#2C3E50' }}>
+                      <Typography variant="body1" sx={{ fontWeight: 600, mb: 0.5, color: '#123E49' }}>
                         Email
                       </Typography>
                       <Typography variant="body2" sx={{ color: 'text.secondary' }}>
@@ -273,7 +281,7 @@ const Contact = () => {
 
               <Card sx={{ p: 1 }}>
                 <CardContent sx={{ p: 3 }}>
-                  <Typography variant="h3" sx={{ fontSize: '1.25rem', fontWeight: 'bold', mb: 2, color: '#2C3E50' }}>
+                  <Typography variant="h3" sx={{ fontSize: '1.25rem', fontWeight: 'bold', mb: 2, color: '#123E49' }}>
                     Business Hours
                   </Typography>
                   <Typography variant="body2" sx={{ color: 'text.secondary', lineHeight: 1.8 }}>
@@ -303,3 +311,4 @@ const Contact = () => {
 };
 
 export default Contact;
+

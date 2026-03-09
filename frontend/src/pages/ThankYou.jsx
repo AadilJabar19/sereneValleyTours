@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import { Box, Container, Typography, Button, Card, CardContent } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import DownloadIcon from '@mui/icons-material/Download';
 import SEO from '../components/SEO';
 
 const ThankYou = () => {
@@ -17,26 +16,37 @@ const ThankYou = () => {
         url="https://serenevalleytours.com/thank-you"
       />
       
-      <Box className="min-h-screen flex items-center justify-center bg-background-light py-12">
+      <Box
+        sx={{
+          minHeight: '100vh',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          py: 10,
+          px: 2,
+          bgcolor: '#FFFFFF',
+          background: 'linear-gradient(180deg, #FAFCFD 0%, #FFFFFF 70%)',
+        }}
+      >
         <Container maxWidth="md">
-          <Card className="text-center">
-            <CardContent className="p-8">
+          <Card sx={{ textAlign: 'center' }}>
+            <CardContent sx={{ p: { xs: 4, md: 5 } }}>
               <CheckCircleIcon 
                 sx={{ fontSize: 80, color: 'primary.main', mb: 3 }} 
                 aria-hidden="true"
               />
               
-              <Typography variant="h1" className="font-bold mb-4" sx={{ fontSize: { xs: '2rem', md: '2.5rem' } }}>
+              <Typography variant="h1" sx={{ fontSize: { xs: '2rem', md: '2.5rem' }, fontWeight: 700, mb: 2, color: '#123E49' }}>
                 Thank You for Your Inquiry!
               </Typography>
               
-              <Typography variant="body1" color="text.secondary" className="mb-6" sx={{ fontSize: '1.125rem' }}>
+              <Typography variant="body1" color="text.secondary" sx={{ fontSize: '1.125rem', mb: 3 }}>
                 We've received your message and our team will contact you within 24 hours.
                 <br />
                 Check your email for confirmation.
               </Typography>
 
-              <Box className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
+              <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2, justifyContent: 'center', mb: 3 }}>
                 <Button
                   variant="contained"
                   size="large"
@@ -50,20 +60,19 @@ const ThankYou = () => {
                 </Button>
 
                 <Button
+                  component={Link}
+                  to="/tours"
                   variant="outlined"
                   size="large"
-                  startIcon={<DownloadIcon />}
-                  href="/brochure.pdf"
-                  download
                   color="primary"
                 >
-                  Download Brochure
+                  Browse Tours
                 </Button>
               </Box>
 
-              <Typography variant="body2" color="text.secondary" className="mb-4">
+              <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
                 Need immediate assistance? Call us at{' '}
-                <a href="tel:+917006601277" className="text-primary-main font-semibold no-underline">
+                <a href="tel:+917006601277" style={{ color: '#1CA8AF', fontWeight: 600, textDecoration: 'none' }}>
                   +91 7006601277
                 </a>
               </Typography>
@@ -85,3 +94,4 @@ const ThankYou = () => {
 };
 
 export default ThankYou;
+

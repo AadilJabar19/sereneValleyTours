@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Box,
@@ -6,52 +5,27 @@ import {
   Typography,
   Button,
   Grid,
-  Card,
-  CardMedia,
-  CardContent,
-  CardActions,
-  Chip,
+  Stack,
 } from '@mui/material';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import StarIcon from '@mui/icons-material/Star';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import { getFeaturedTours, getAllTours } from '../data/tours';
+import RouteIcon from '@mui/icons-material/Route';
+import Groups2Icon from '@mui/icons-material/Groups2';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { tours } from '../data/tours';
 import { destinations } from '../data/destinations';
-import Loader from '../components/Loader';
 import SEO from '../components/SEO';
 import WhyChooseUs from '../components/WhyChooseUs';
-import Testimonials from '../components/Testimonials';
 import TrustStats from '../components/TrustStats';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Autoplay, EffectCoverflow } from 'swiper/modules';
-import { FloatingPlane, FloatingMountain, FloatingHotAirBalloon } from '../components/DecorativeIcons';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/effect-coverflow';
+import Testimonials from '../components/Testimonials';
+import StackedCarousel from '../components/StackedCarousel';
+import PageHero from '../components/PageHero';
 
 const Home = () => {
-  const [featuredTours, setFeaturedTours] = useState([]);
-  const [allTours, setAllTours] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    loadFeaturedTours();
-  }, []);
-
-  const loadFeaturedTours = async () => {
-    setLoading(true);
-    try {
-      await new Promise(resolve => setTimeout(resolve, 500));
-      const tours = getFeaturedTours(3);
-      const all = getAllTours();
-      setFeaturedTours(tours);
-      setAllTours(all);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  if (loading) return <Loader />;
+  const tourCategories = ['All', 'Kashmir', 'Ladakh', 'Trekking', 'Skiing'];
+  const destinationCategories = ['All', 'Kashmir', 'Ladakh'];
+  const destinationsWithCategory = destinations.map((dest) => ({
+    ...dest,
+    category: ['leh', 'nubra-valley', 'pangong-lake'].includes(dest.id) ? 'Ladakh' : 'Kashmir'
+  }));
 
   return (
     <>
@@ -61,411 +35,250 @@ const Home = () => {
         keywords="Kashmir tours, Ladakh tours, Kashmir packages, Ladakh packages, Gulmarg skiing, Pangong Lake, Dal Lake, Srinagar tours"
         url="https://serenevalleytours.com"
       />
-      <Box>
-        {/* Hero Section */}
-        <Box
-          component="section"
-          sx={{
-            position: 'relative',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            overflow: 'hidden',
-            height: { xs: '70vh', sm: '80vh', md: '100vh' },
-          }}
-          role="img"
-          aria-label="Serene Kashmir valley with snow-capped mountains and lush green meadows"
+      <Box
+        sx={{
+          background: 'linear-gradient(180deg, #F8FCFF 0%, #F3FAFC 52%, #EEF8FB 100%)',
+        }}
+      >
+        <PageHero
+          subtitle="Serene Valley Tours"
+          title="Discover the Paradise on Earth"
+          description="Experience breathtaking landscapes, rich culture, and unforgettable adventures in Kashmir and Ladakh"
+          image="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=1920&q=85&fit=crop"
+          ariaLabel="Serene Kashmir valley with snow-capped mountains and lush green meadows"
         >
-          <picture style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}>
-            <source srcSet="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=1920&q=85&fm=webp&fit=crop" type="image/webp" />
-            <img 
-              src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=1920&q=85&fit=crop" 
-              alt="Panoramic view of Kashmir valley with Dal Lake and Himalayan mountains"
-              style={{ width: '100%', height: '100%', objectFit: 'cover', animation: 'fadeIn 1.5s ease-in' }}
-              loading="eager"
-            />
-          </picture>
-          <Box sx={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.4), rgba(0,0,0,0.2))' }} />
-          
-          <Container sx={{ height: '100%', display: 'flex', alignItems: 'center', position: 'relative', zIndex: 10, px: { xs: 2, sm: 3 } }}>
-            <Box sx={{ color: 'white', animation: 'slideUp 1s ease-out', maxWidth: { xs: '100%', md: '66.666667%' } }}>
-              <Typography variant="h1" sx={{ color: 'white', fontSize: { xs: '1.75rem', sm: '2.5rem', md: '3rem' }, fontWeight: 'bold', mb: 2 }}>
-                Discover the Paradise on Earth
-              </Typography>
-              <Typography variant="h2" sx={{ fontSize: { xs: '1rem', sm: '1.25rem', md: '1.5rem' }, fontWeight: 400, mb: 3, color: '#E5E7EB' }}>
-                Experience breathtaking landscapes, rich culture, and unforgettable
-                adventures in Kashmir and Ladakh
-              </Typography>
-              <Box sx={{ display: 'flex', gap: 2, flexDirection: { xs: 'column', sm: 'row' } }}>
-                <Button
-                  component={Link}
-                  to="/tours"
-                  variant="contained"
-                  size="large"
-                  sx={{ width: { xs: '100%', sm: 'auto' } }}
-                >
-                  Plan Your Trip
-                </Button>
-                <Button
-                  component="a"
-                  href="https://wa.me/917006601277?text=Hi!%20I%20am%20interested%20in%20Kashmir/Ladakh%20tour%20packages."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  variant="outlined"
-                  size="large"
-                  sx={{ 
-                    width: { xs: '100%', sm: 'auto' },
-                    color: 'white', 
-                    borderColor: 'white',
-                    '&:hover': { 
-                      bgcolor: 'white', 
-                      color: 'primary.main',
-                      borderColor: 'white'
-                    }
-                  }}
-                >
-                  WhatsApp Us
-                </Button>
-              </Box>
-            </Box>
-          </Container>
-        </Box>
-
-        {/* Featured Tours */}
-        <Container component="section" sx={{ py: { xs: 6, md: 8 }, px: { xs: 2, sm: 3 }, position: 'relative', zIndex: 1 }}>
-          <FloatingPlane sx={{ top: 50, right: 100, color: 'primary.main', zIndex: -1 }} />
-          <FloatingMountain sx={{ bottom: 100, left: 50, color: 'primary.main', zIndex: -1 }} />
-          
-          <Box sx={{ textAlign: 'center', mb: 6 }} className="fade-in-up">
-            <Typography 
-              sx={{ 
-                fontFamily: 'Pacifico, cursive', 
-                fontSize: { xs: '1.5rem', md: '2rem' }, 
-                color: 'primary.main',
-                mb: 1
-              }}
-            >
-              Explore Our Tours
-            </Typography>
-            <Typography variant="h2" sx={{ fontSize: { xs: '2rem', md: '2.75rem' }, fontWeight: 'bold', mb: 2, color: '#2C3E50' }}>
-              All Tours
-            </Typography>
-            <Typography variant="body1" color="text.secondary" sx={{ fontSize: { xs: '1rem', md: '1.125rem' }, maxWidth: '600px', mx: 'auto' }}>
-              Handpicked experiences for your perfect getaway
-            </Typography>
-          </Box>
-
-          <Swiper
-            modules={[Pagination, Autoplay, EffectCoverflow]}
-            effect="coverflow"
-            centeredSlides={true}
-            slidesPerView="auto"
-            loop={true}
-            loopedSlides={allTours.length}
-            slideToClickedSlide={true}
-            allowTouchMove={true}
-            coverflowEffect={{
-              rotate: 15,
-              stretch: 0,
-              depth: 200,
-              modifier: 1.5,
-              slideShadows: true,
-            }}
-            pagination={{ clickable: true }}
-            autoplay={{ delay: 4500, disableOnInteraction: false }}
-            style={{ paddingBottom: '60px', paddingTop: '20px' }}
-          >
-            {allTours.map((tour, index) => (
-              <SwiperSlide key={tour.id} style={{ width: '420px', maxWidth: '90vw' }}>
-                <Card sx={{ 
-                  height: '100%', 
-                  display: 'flex', 
-                  flexDirection: 'column', 
-                  position: 'relative', 
-                  overflow: 'visible',
-                  cursor: 'pointer',
-                  '&:hover': {
-                    transform: 'none',
-                    boxShadow: '0 10px 40px rgba(28, 168, 175, 0.15)',
-                  }
-                }}>
-                  <Box sx={{ position: 'relative', overflow: 'hidden', borderRadius: '28px 28px 0 0' }}>
-                    <CardMedia
-                      component="img"
-                      height="280"
-                      image={tour.bannerImage || 'https://via.placeholder.com/400x280'}
-                      alt={tour.name}
-                      sx={{ height: 280, objectFit: 'cover', transition: 'transform 0.5s ease', '&:hover': { transform: 'scale(1.1)' }, borderRadius: '28px 28px 0 0' }}
-                      loading="lazy"
-                    />
-                    <Chip
-                      label={tour.category}
-                      size="small"
-                      sx={{ 
-                        position: 'absolute', 
-                        top: 16, 
-                        left: 16,
-                      }}
-                    />
-                    <Box sx={{ 
-                      position: 'absolute', 
-                      top: 16, 
-                      right: 16,
-                      bgcolor: 'white',
-                      borderRadius: '12px',
-                      p: 1,
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: 0.5,
-                      boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
-                    }}>
-                      <StarIcon sx={{ fontSize: 18, color: '#FFC107' }} aria-hidden="true" />
-                      <Typography variant="body2" sx={{ fontWeight: 600, color: '#2C3E50' }}>
-                        {tour.rating}
-                      </Typography>
-                    </Box>
-                  </Box>
-                  <CardContent sx={{ flexGrow: 1, p: 3 }}>
-                    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
-                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, color: 'text.secondary' }}>
-                        <AccessTimeIcon fontSize="small" aria-hidden="true" />
-                        <Typography variant="body2" sx={{ fontWeight: 500 }}>{tour.duration}</Typography>
-                      </Box>
-                      <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.875rem' }}>
-                        ({tour.reviewCount} reviews)
-                      </Typography>
-                    </Box>
-                    <Typography variant="h3" sx={{ fontSize: '1.375rem', fontWeight: 'bold', mb: 1.5, color: '#2C3E50' }}>
-                      {tour.name}
-                    </Typography>
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, mb: 1.5 }} color="text.secondary">
-                      <LocationOnIcon fontSize="small" aria-hidden="true" />
-                      <Typography variant="body2">
-                        {tour.itinerary?.slice(1, 4).map(day => day.title.split(' to ')[1] || day.title.split(' ')[0]).filter(Boolean).join(', ')}
-                      </Typography>
-                    </Box>
-                    <Typography
-                      variant="body2"
-                      color="text.secondary"
-                      sx={{ 
-                        mb: 2,
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                        display: '-webkit-box',
-                        WebkitLineClamp: 2,
-                        WebkitBoxOrient: 'vertical',
-                        lineHeight: 1.6
-                      }}
-                    >
-                      {tour.description}
-                    </Typography>
-                  </CardContent>
-                  <CardActions sx={{ p: 3, pt: 0 }}>
-                    <Button
-                      component={Link}
-                      to={`/tours/${tour.id}`}
-                      variant="contained"
-                      fullWidth
-                      size="large"
-                      aria-label={`View details for ${tour.name}`}
-                      sx={{ py: 1.5, fontSize: '1rem' }}
-                    >
-                      Book Now
-                    </Button>
-                  </CardActions>
-                </Card>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-
-          <Box sx={{ textAlign: 'center', mt: 6 }}>
+          <Box sx={{ display: 'flex', gap: 2, flexDirection: { xs: 'column', sm: 'row' }, alignItems: 'stretch' }}>
             <Button
               component={Link}
               to="/tours"
+              variant="contained"
+              size="large"
+              sx={{
+                width: { xs: '100%', sm: 'auto' },
+                borderRadius: '999px',
+                px: 4,
+                py: 1.4,
+                fontSize: '1.05rem',
+                textTransform: 'none',
+                background: 'linear-gradient(135deg, #2DBFD4 0%, #1A95A7 100%)',
+                boxShadow: '0 10px 24px rgba(26,149,167,0.35)',
+                '&:hover': {
+                  background: 'linear-gradient(135deg, #28B5C8 0%, #167F8F 100%)',
+                },
+              }}
+            >
+              Plan Your Trip
+            </Button>
+            <Button
+              component="a"
+              href="https://wa.me/917006601277?text=Hi!%20I%20am%20interested%20in%20Kashmir/Ladakh%20tour%20packages."
+              target="_blank"
+              rel="noopener noreferrer"
               variant="outlined"
               size="large"
-              sx={{ px: 4, py: 1.5, fontSize: '1rem' }}
+              sx={{
+                width: { xs: '100%', sm: 'auto' },
+                color: 'white',
+                borderColor: 'rgba(255,255,255,0.6)',
+                borderWidth: 1.5,
+                borderRadius: '999px',
+                px: 4,
+                py: 1.4,
+                fontSize: '1.05rem',
+                textTransform: 'none',
+                backdropFilter: 'blur(1px)',
+                '&:hover': {
+                  bgcolor: 'rgba(255,255,255,0.1)',
+                  color: 'white',
+                  borderColor: 'rgba(255,255,255,0.85)',
+                },
+              }}
             >
-              View All Tours
+              WhatsApp Us
             </Button>
           </Box>
-        </Container>
+        </PageHero>
+
+        {/* Tours Section */}
+        <Box component="section" sx={{ py: { xs: 2, md: 4 } }}>
+          <StackedCarousel
+            title="Top Tours"
+            subtitle="Find Your Adventure"
+            items={tours}
+            categories={tourCategories}
+            linkPrefix="/tours"
+            ctaLabel="View All Tours"
+            ctaTo="/tours"
+          />
+        </Box>
 
         {/* Destinations Section */}
-        <Box component="section" sx={{ bgcolor: '#F0F9FA', py: { xs: 6, md: 8 }, overflow: 'hidden', position: 'relative', zIndex: 1 }} className="decorative-bg">
-          <FloatingHotAirBalloon sx={{ top: 80, right: 120, color: 'primary.main', zIndex: -1 }} />
-          <Container sx={{ px: { xs: 2, sm: 3 } }}>
-            <Box sx={{ textAlign: 'center', mb: 6 }}>
-              <Typography 
-                sx={{ 
-                  fontFamily: 'Pacifico, cursive', 
-                  fontSize: { xs: '1.5rem', md: '2rem' }, 
-                  color: 'primary.main',
-                  mb: 1
-                }}
-              >
-                Beautiful Places
-              </Typography>
-              <Typography variant="h2" sx={{ fontSize: { xs: '2rem', md: '2.75rem' }, fontWeight: 'bold', mb: 2, color: '#2C3E50' }}>
-                Explore Destinations
-              </Typography>
-              <Typography variant="body1" color="text.secondary" sx={{ fontSize: { xs: '1rem', md: '1.125rem' }, maxWidth: '600px', mx: 'auto' }}>
-                Discover the most beautiful places in Kashmir
-              </Typography>
-            </Box>
-
-            <Swiper
-              modules={[Pagination, Autoplay, EffectCoverflow]}
-              effect="coverflow"
-              centeredSlides={true}
-              slidesPerView="auto"
-              loop={true}
-              loopedSlides={destinations.length}
-              slideToClickedSlide={true}
-              allowTouchMove={true}
-              coverflowEffect={{
-                rotate: 15,
-                stretch: 0,
-                depth: 200,
-                modifier: 1.5,
-                slideShadows: true,
-              }}
-              pagination={{ clickable: true }}
-              autoplay={{ delay: 4000, disableOnInteraction: false }}
-              style={{ paddingBottom: '60px', paddingTop: '20px' }}
-            >
-              {destinations.map((dest) => (
-                <SwiperSlide key={dest.id} style={{ width: '400px', maxWidth: '85vw' }}>
-                  <Card sx={{ 
-                    height: '100%', 
-                    display: 'flex', 
-                    flexDirection: 'column', 
-                    position: 'relative',
-                    cursor: 'pointer',
-                    '&:hover': {
-                      transform: 'none',
-                      boxShadow: '0 10px 40px rgba(28, 168, 175, 0.15)',
-                    }
-                  }}>
-                    <Box sx={{ position: 'relative', overflow: 'hidden', '&::after': { content: '""', position: 'absolute', inset: 0, background: 'linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.5) 100%)', pointerEvents: 'none' } }}>
-                      <CardMedia
-                        component="img"
-                        height="300"
-                        image={dest.bannerImage}
-                        alt={dest.name}
-                        sx={{ height: 300, objectFit: 'cover', transition: 'transform 0.5s ease', '&:hover': { transform: 'scale(1.1)' } }}
-                        loading="lazy"
-                      />
-                      <Typography 
-                        variant="h3" 
-                        sx={{ 
-                          position: 'absolute', 
-                          bottom: 16, 
-                          left: 16, 
-                          color: 'white', 
-                          fontSize: '1.75rem', 
-                          fontWeight: 'bold',
-                          textShadow: '0 2px 10px rgba(0,0,0,0.5)',
-                          zIndex: 1
-                        }}
-                      >
-                        {dest.name}
-                      </Typography>
-                    </Box>
-                    <CardContent sx={{ flexGrow: 1, p: 3 }}>
-                      <Typography variant="body2" color="text.secondary" sx={{ mb: 2, lineHeight: 1.7, fontSize: '0.9375rem' }}>
-                        {dest.tagline}
-                      </Typography>
-                    </CardContent>
-                    <CardActions sx={{ p: 3, pt: 0 }}>
-                      <Button
-                        component={Link}
-                        to={`/destinations/${dest.id}`}
-                        variant="outlined"
-                        fullWidth
-                        sx={{ py: 1.25 }}
-                      >
-                        Explore
-                      </Button>
-                    </CardActions>
-                  </Card>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-
-            <Box sx={{ textAlign: 'center', mt: 6 }}>
-              <Button
-                component={Link}
-                to="/destinations"
-                variant="outlined"
-                size="large"
-                sx={{ px: 4, py: 1.5, fontSize: '1rem' }}
-              >
-                Explore All Destinations
-              </Button>
-            </Box>
-          </Container>
+        <Box component="section" sx={{ py: { xs: 2, md: 4 } }}>
+          <StackedCarousel
+            title="Top Destinations"
+            subtitle="Beautiful Places"
+            items={destinationsWithCategory}
+            categories={destinationCategories}
+            linkPrefix="/destinations"
+            ctaLabel="Explore All Destinations"
+            ctaTo="/destinations"
+          />
         </Box>
 
         {/* About Us Section */}
-        <Box component="section" sx={{ py: { xs: 6, md: 8 } }}>
+        <Box component="section" sx={{ py: { xs: 7, md: 10 }, bgcolor: 'transparent' }}>
           <Container sx={{ px: { xs: 2, sm: 3 } }}>
-            <Grid container spacing={6} alignItems="center">
-              <Grid item xs={12} md={6}>
-                <Typography 
-                  sx={{ 
-                    fontFamily: 'Pacifico, cursive', 
-                    fontSize: { xs: '1.5rem', md: '2rem' }, 
-                    color: 'primary.main',
-                    mb: 1
+            <Grid container spacing={{ xs: 4, md: 6 }} alignItems="center">
+              <Grid item xs={12} lg={5.2}>
+                <Box
+                  sx={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(2, 1fr)',
+                    gridTemplateRows: { xs: '250px 200px', md: '320px 260px' },
+                    gap: 2,
+                    maxWidth: 540,
+                    mx: 'auto',
                   }}
                 >
-                  Who We Are
+                  <Box
+                    component="img"
+                    src="/images/gurez1.webp"
+                    alt="Mountain trekking"
+                    loading="lazy"
+                    sx={{
+                      gridRow: '1 / 3',
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      borderRadius: '180px 180px 0 0',
+                    }}
+                  />
+                  <Box
+                    component="img"
+                    src="/images/pangong1.webp"
+                    alt="Kayaking and lake adventures"
+                    loading="lazy"
+                    sx={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      borderRadius: '180px 180px 0 180px',
+                    }}
+                  />
+                  <Box
+                    component="img"
+                    src="/images/srinagar6.webp"
+                    alt="Travel memories in Kashmir"
+                    loading="lazy"
+                    sx={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      borderRadius: '180px 180px 180px 0',
+                    }}
+                  />
+                </Box>
+              </Grid>
+
+              <Grid item xs={12} lg={4.8}>
+                <Typography
+                  sx={{
+                    fontFamily: 'Pacifico, cursive',
+                    fontSize: { xs: '1.6rem', md: '2rem' },
+                    color: '#3D8C95',
+                    mb: 0.5,
+                  }}
+                >
+                  Let&apos;s Go Together
                 </Typography>
-                <Typography variant="h2" sx={{ fontSize: { xs: '2rem', md: '2.75rem' }, fontWeight: 'bold', mb: 3, color: '#2C3E50' }}>
-                  About Serene Valley Tours
+                <Typography
+                  variant="h2"
+                  sx={{ fontSize: { xs: '2.25rem', md: '3rem' }, fontWeight: 700, lineHeight: 1.08, color: '#123E49', mb: 2.5 }}
+                >
+                  Plan Your Trip
+                  <br />
+                  With Us
                 </Typography>
-                <Typography variant="body1" color="text.secondary" sx={{ mb: 2.5, lineHeight: 1.8, fontSize: '1.0625rem' }}>
-                  We are passionate locals who know every corner of Kashmir and Ladakh. Based in Srinagar, 
-                  we specialize in creating memorable experiences that go beyond typical tourism.
+                <Typography color="text.secondary" sx={{ lineHeight: 1.75, mb: 3, maxWidth: 560 }}>
+                  We curate seamless Kashmir and Ladakh journeys with local experts, trusted stays, and flexible plans so your vacation feels effortless from day one.
                 </Typography>
-                <Typography variant="body1" color="text.secondary" sx={{ mb: 4, lineHeight: 1.8, fontSize: '1.0625rem' }}>
-                  Our carefully crafted itineraries combine breathtaking landscapes, rich cultural heritage, 
-                  and authentic local experiences tailored to your dreams.
-                </Typography>
+
+                <Stack spacing={2.3} sx={{ mb: 4 }}>
+                  <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1.7 }}>
+                    <Box sx={{ width: 56, height: 56, borderRadius: '50%', bgcolor: '#27B8CD', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                      <RouteIcon />
+                    </Box>
+                    <Box>
+                      <Typography sx={{ fontSize: '2rem', fontWeight: 700, color: '#123E49' }}>Exclusive Trip</Typography>
+                      <Typography color="text.secondary">Private itineraries designed around your style, budget, and pace.</Typography>
+                    </Box>
+                  </Box>
+                  <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1.7 }}>
+                    <Box sx={{ width: 56, height: 56, borderRadius: '50%', bgcolor: '#27B8CD', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                      <Groups2Icon />
+                    </Box>
+                    <Box>
+                      <Typography sx={{ fontSize: '2rem', fontWeight: 700, color: '#123E49' }}>Professional Guide</Typography>
+                      <Typography color="text.secondary">Experienced local support for safe travel and richer experiences.</Typography>
+                    </Box>
+                  </Box>
+                </Stack>
+
                 <Button
                   component={Link}
                   to="/about"
                   variant="contained"
-                  size="large"
-                  sx={{ px: 4, py: 1.5, fontSize: '1rem' }}
+                  endIcon={<ArrowForwardIcon />}
+                  sx={{
+                    borderRadius: '999px',
+                    px: 4,
+                    py: 1.4,
+                    fontSize: '1.05rem',
+                    textTransform: 'none',
+                    bgcolor: '#104B59',
+                    '&:hover': { bgcolor: '#0D404C' },
+                  }}
                 >
-                  Learn More About Us
+                  Learn More
                 </Button>
               </Grid>
-              <Grid item xs={12} md={6}>
-                <Box
-                  component="img"
-                  src="/images/doodpathri1.webp"
-                  alt="About Serene Valley Tours"
-                  sx={{ 
-                    width: '100%', 
-                    height: { xs: '320px', md: '450px' }, 
-                    objectFit: 'cover', 
-                    borderRadius: '20px',
-                    boxShadow: '0 12px 40px rgba(28, 168, 175, 0.15)'
-                  }}
-                  loading="lazy"
-                />
+
+              <Grid item xs={12} lg={2}>
+                <Box sx={{ position: 'relative', maxWidth: 280, mx: 'auto', display: { xs: 'none', lg: 'block' } }}>
+                  <Box sx={{ width: 260, height: 260, borderRadius: '50%', bgcolor: '#E8F5F8', ml: 'auto' }} />
+                  <Box
+                    component="img"
+                    src="/images/aruvalley1.webp"
+                    alt="Traveler with luggage"
+                    loading="lazy"
+                    sx={{
+                      position: 'absolute',
+                      bottom: 0,
+                      right: 0,
+                      width: 220,
+                      height: 300,
+                      objectFit: 'cover',
+                      borderRadius: '120px 120px 16px 16px',
+                      boxShadow: '0 16px 40px rgba(18,62,73,0.16)',
+                    }}
+                  />
+                  <Box sx={{ position: 'absolute', top: 24, right: -6, bgcolor: 'white', borderRadius: '999px', px: 1.2, py: 0.7, boxShadow: '0 8px 20px rgba(0,0,0,0.12)', fontWeight: 700, color: '#123E49' }}>
+                    4.9k
+                  </Box>
+                  <Box sx={{ position: 'absolute', bottom: 72, left: -10, bgcolor: 'white', borderRadius: '50%', width: 42, height: 42, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 8px 20px rgba(0,0,0,0.12)', fontSize: '1.3rem' }}>
+                    😍
+                  </Box>
+                </Box>
               </Grid>
             </Grid>
           </Container>
         </Box>
 
-        {/* Trust Stats */}
-        <TrustStats />
-
         {/* Why Choose Us */}
         <WhyChooseUs />
+
+        {/* Trust Stats */}
+        <TrustStats />
 
         {/* Testimonials */}
         <Testimonials />
@@ -475,3 +288,4 @@ const Home = () => {
 };
 
 export default Home;
+
