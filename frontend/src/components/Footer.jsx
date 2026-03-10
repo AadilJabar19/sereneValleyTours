@@ -38,7 +38,7 @@ const Footer = () => {
                 size="small"
                 aria-label="Visit our Facebook page"
                 component="a"
-                href="https://facebook.com"
+                href="https://www.facebook.com/serenevalleytours"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -49,7 +49,7 @@ const Footer = () => {
                 size="small"
                 aria-label="Visit our Twitter page"
                 component="a"
-                href="https://twitter.com"
+                href="https://x.com/serenevalleytour"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -60,7 +60,7 @@ const Footer = () => {
                 size="small"
                 aria-label="Visit our Instagram page"
                 component="a"
-                href="https://instagram.com"
+                href="https://www.instagram.com/serenevalleytours"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -71,7 +71,7 @@ const Footer = () => {
                 size="small"
                 aria-label="Visit our YouTube channel"
                 component="a"
-                href="https://youtube.com"
+                href="https://www.youtube.com/@serenevalleytours"
                 target="_blank"
                 rel="noopener noreferrer"
               >
