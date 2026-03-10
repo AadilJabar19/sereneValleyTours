@@ -19,6 +19,7 @@ import { sendContactEmail } from '../services/emailService';
 
 const MiniInquiry = ({ tourName, onClose, mode = 'sidebar' }) => {
   const isFloating = mode === 'floating';
+  const noHtmlTags = (value) => !/[<>]/.test(value) || 'HTML/script tags are not allowed';
   const { register, handleSubmit, formState: { errors }, reset, setValue, watch } = useForm({
     defaultValues: { people: 1 }
   });
@@ -32,7 +33,7 @@ const MiniInquiry = ({ tourName, onClose, mode = 'sidebar' }) => {
     const emailData = {
       ...data,
       interestedIn: tourName || 'Tour Inquiry',
-      message: `Quick Inquiry - Travel Date: ${data.travelDate}, People: ${data.people}`,
+      message: `Quick Inquiry - Travel Date: ${data.travelDate}, People: ${data.people}. ${data.message}`,
     };
 
     try {
@@ -97,10 +98,31 @@ const MiniInquiry = ({ tourName, onClose, mode = 'sidebar' }) => {
                   value: /^[a-zA-Z\s]+$/,
                   message: 'Letters only'
                 },
-                validate: value => value.trim().length > 0 || 'Name required'
+                validate: {
+                  noOnlySpaces: (value) => value.trim().length > 0 || 'Name required',
+                  noHtmlTags,
+                }
               })}
               error={!!errors.name}
               helperText={errors.name?.message}
+              margin="dense"
+            />
+
+            <TextField
+              fullWidth
+              size="small"
+              label="Message"
+              multiline
+              rows={2}
+              {...register('message', {
+                required: 'Message required',
+                validate: {
+                  noOnlySpaces: (value) => value.trim().length > 0 || 'Message required',
+                  noHtmlTags,
+                }
+              })}
+              error={!!errors.message}
+              helperText={errors.message?.message}
               margin="dense"
             />
 

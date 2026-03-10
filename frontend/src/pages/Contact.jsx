@@ -26,6 +26,7 @@ const Contact = () => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
   const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' });
   const [loading, setLoading] = useState(false);
+  const noHtmlTags = (value) => !/[<>]/.test(value) || 'HTML/script tags are not allowed';
 
   const tourOptions = [
     'Kashmir Tour',
@@ -96,7 +97,10 @@ const Contact = () => {
                           value: /^[a-zA-Z\s]+$/,
                           message: 'Name can only contain letters and spaces'
                         },
-                        validate: value => value.trim().length > 0 || 'Name cannot be empty spaces'
+                        validate: {
+                          noOnlySpaces: (value) => value.trim().length > 0 || 'Name cannot be empty spaces',
+                          noHtmlTags,
+                        }
                       })}
                       error={!!errors.name}
                       helperText={errors.name?.message}
@@ -201,7 +205,10 @@ const Contact = () => {
                       rows={5}
                       {...register('message', { 
                         required: 'Message is required',
-                        validate: value => value.trim().length > 0 || 'Message cannot be empty spaces'
+                        validate: {
+                          noOnlySpaces: (value) => value.trim().length > 0 || 'Message cannot be empty spaces',
+                          noHtmlTags,
+                        }
                       })}
                       error={!!errors.message}
                       helperText={errors.message?.message}
