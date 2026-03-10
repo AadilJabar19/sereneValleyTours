@@ -19,12 +19,12 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
 import PhoneIcon from '@mui/icons-material/Phone';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import DownloadIcon from '@mui/icons-material/Download';
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { getTourById } from '../data/tours';
 import SEO from '../components/SEO';
-import MiniInquiry from '../components/MiniInquiry';
 import PageHero from '../components/PageHero';
 
 const TourDetail = () => {
@@ -32,7 +32,6 @@ const TourDetail = () => {
   const [tour, setTour] = useState(null);
   const [openImage, setOpenImage] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-  const [showInquiry, setShowInquiry] = useState(true);
 
   useEffect(() => {
     loadTour();
@@ -206,13 +205,6 @@ const TourDetail = () => {
 
             {/* Sidebar */}
             <Grid item xs={12} md={4}>
-              {/* Mini Inquiry Widget */}
-              {showInquiry && (
-                <Box sx={{ mb: 2 }}>
-                  <MiniInquiry tourName={tour.name} onClose={() => setShowInquiry(false)} />
-                </Box>
-              )}
-
               <Card component="aside" sx={{ p: 1, position: 'sticky', top: 24 }}>
                 <CardContent sx={{ p: 3 }}>
                   <Typography variant="h2" sx={{ fontSize: '1.5rem', fontWeight: 'bold', mb: 2, color: '#123E49' }}>
@@ -254,6 +246,19 @@ const TourDetail = () => {
                     aria-label="Contact us on WhatsApp"
                   >
                     WhatsApp
+                  </Button>
+                  <Button
+                    variant="text"
+                    size="large"
+                    fullWidth
+                    startIcon={<DownloadIcon />}
+                    component="a"
+                    href="/brochures/serene-valley-tours-brochure.pdf"
+                    download
+                    sx={{ mt: 1, py: 1.2 }}
+                    aria-label="Download tour brochure"
+                  >
+                    Download Brochure
                   </Button>
                 </CardContent>
               </Card>
