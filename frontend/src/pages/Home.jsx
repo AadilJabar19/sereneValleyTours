@@ -1,3 +1,4 @@
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Box,
@@ -13,20 +14,40 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { tours } from '../data/tours';
 import { destinations } from '../data/destinations';
 import SEO from '../components/SEO';
-import WhyChooseUs from '../components/WhyChooseUs';
-import TrustStats from '../components/TrustStats';
-import Testimonials from '../components/Testimonials';
 import StackedCarousel from '../components/StackedCarousel';
 import PageHero from '../components/PageHero';
 import { FloatingPlane, FloatingMountain, FloatingPalmTree, DecorativeWave } from '../components/DecorativeIcons';
 
+const WhyChooseUs = lazy(() => import('../components/WhyChooseUs'));
+const TrustStats = lazy(() => import('../components/TrustStats'));
+const Testimonials = lazy(() => import('../components/Testimonials'));
+
 const Home = () => {
+  const [showDeferredSections, setShowDeferredSections] = useState(false);
   const tourCategories = ['All', 'Kashmir', 'Ladakh', 'Trekking', 'Skiing'];
   const destinationCategories = ['All', 'Kashmir', 'Ladakh'];
   const destinationsWithCategory = destinations.map((dest) => ({
     ...dest,
     category: ['leh', 'nubra-valley', 'pangong-lake'].includes(dest.id) ? 'Ladakh' : 'Kashmir'
   }));
+
+  useEffect(() => {
+    let timeoutId;
+    let idleId;
+
+    const enableDeferred = () => setShowDeferredSections(true);
+
+    if ('requestIdleCallback' in window) {
+      idleId = window.requestIdleCallback(enableDeferred, { timeout: 1200 });
+    } else {
+      timeoutId = window.setTimeout(enableDeferred, 800);
+    }
+
+    return () => {
+      if (timeoutId) window.clearTimeout(timeoutId);
+      if (idleId && 'cancelIdleCallback' in window) window.cancelIdleCallback(idleId);
+    };
+  }, []);
   const sectionStrokeSx = {
     position: 'relative',
     overflow: 'hidden',
@@ -104,7 +125,7 @@ const Home = () => {
             subtitle="Serene Valley Tours"
             title="Discover the Paradise on Earth"
             description="Experience breathtaking landscapes, rich culture, and unforgettable adventures in Kashmir and Ladakh"
-            image="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=1920&q=85&fit=crop"
+            image="/images/srinagar7.webp"
             ariaLabel="Serene Kashmir valley with snow-capped mountains and lush green meadows"
           >
             <Box sx={{ display: 'flex', gap: 2, flexDirection: { xs: 'column', sm: 'row' }, alignItems: 'stretch' }}>
@@ -357,18 +378,36 @@ const Home = () => {
 
         {/* Why Choose Us */}
         <Box component="section" sx={sectionStrokeSx}>
-          <FloatingPlane sx={{ display: { xs: 'none', sm: 'block' }, left: { sm: 14, md: 54 }, top: { sm: 42, md: 54 }, color: '#30B1C7', opacity: 0.1 }} />
-          <WhyChooseUs />
+          {showDeferredSections ? (
+            <Suspense fallback={<Box sx={{ minHeight: { xs: 420, md: 520 } }} />} >
+              <FloatingPlane sx={{ display: { xs: 'none', sm: 'block' }, left: { sm: 14, md: 54 }, top: { sm: 42, md: 54 }, color: '#30B1C7', opacity: 0.1 }} />
+              <WhyChooseUs />
+            </Suspense>
+          ) : (
+            <Box sx={{ minHeight: { xs: 420, md: 520 } }} />
+          )}
         </Box>
 
         {/* Trust Stats */}
         <Box component="section" sx={sectionStrokeSx}>
-          <TrustStats />
+          {showDeferredSections ? (
+            <Suspense fallback={<Box sx={{ minHeight: { xs: 520, md: 620 } }} />}>
+              <TrustStats />
+            </Suspense>
+          ) : (
+            <Box sx={{ minHeight: { xs: 520, md: 620 } }} />
+          )}
         </Box>
 
         {/* Testimonials */}
         <Box component="section" sx={sectionStrokeSx}>
-          <Testimonials />
+          {showDeferredSections ? (
+            <Suspense fallback={<Box sx={{ minHeight: { xs: 440, md: 520 } }} />}>
+              <Testimonials />
+            </Suspense>
+          ) : (
+            <Box sx={{ minHeight: { xs: 440, md: 520 } }} />
+          )}
         </Box>
       </Box>
     </>

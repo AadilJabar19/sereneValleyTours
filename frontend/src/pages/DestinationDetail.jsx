@@ -40,7 +40,7 @@ const DestinationDetail = () => {
   };
 
   if (!destination) {
-    return <Box className="py-16 text-center">Loading...</Box>;
+    return <Box sx={{ py: 16, textAlign: 'center' }}>Loading...</Box>;
   }
 
   return (
@@ -121,7 +121,7 @@ const DestinationDetail = () => {
                     {destination.highlights.map((item, index) => (
                       <ListItem key={index}>
                         <ListItemIcon>
-                          <CheckCircleIcon className="text-primary-main" />
+                          <CheckCircleIcon sx={{ color: 'success.main' }} />
                         </ListItemIcon>
                         <ListItemText primary={item} />
                       </ListItem>
