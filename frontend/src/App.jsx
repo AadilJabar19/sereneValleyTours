@@ -10,6 +10,7 @@ import FloatingWhatsApp from './components/FloatingWhatsApp';
 import FloatingInquiry from './components/FloatingInquiry';
 import Loader from './components/Loader';
 import './index.css';
+import { Box } from '@mui/material';
 
 // Lazy load pages
 const Home = lazy(() => import('./pages/Home'));
@@ -33,9 +34,9 @@ function App() {
         <ScrollToTop />
         <FloatingInquiry />
         <FloatingWhatsApp />
-        <div className="flex flex-col min-h-screen">
+        <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
           <Navbar />
-          <main className="flex-grow">
+          <Box component="main" sx={{ flexGrow: 1 }}>
             <Suspense fallback={<Loader />}>
               <Routes>
                 <Route path="/" element={<Home />} />
@@ -52,9 +53,9 @@ function App() {
                 <Route path="/thank-you" element={<ThankYou />} />
               </Routes>
             </Suspense>
-          </main>
+          </Box>
           <Footer />
-        </div>
+        </Box>
       </BrowserRouter>
     </ThemeProvider>
   );
